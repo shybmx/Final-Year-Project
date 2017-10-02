@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.shahzademambaccus.myapplication.Register_Activity">
+
+    <EditText
+        android:id="@+id/RegisterE-Mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginLeft="20sp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="E-Mail"/>
+
+    <EditText
+        android:id="@+id/RegisterFirstName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/RegisterE-Mail"
+        android:layout_marginTop="15sp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="First Name"/>
+
+    <EditText
+        android:id="@+id/RegisterLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/RegisterFirstName"
+        android:layout_marginTop="15sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginLeft="20sp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="Last Name"/>
+
+    <EditText
+        android:id="@+id/RegisterBirthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/RegisterLastName"
+        android:layout_marginTop="15sp"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:ems="10"
+        android:inputType="date"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="Date of Birth"/>
+
+    <EditText
+        android:id="@+id/RegisterNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15sp"
+        android:layout_marginRight="20sp"
+        android:layout_marginLeft="20sp"
+        android:ems="10"
+        android:inputType="number"
+        android:layout_below="@+id/RegisterBirthday"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="Phone Number"/>
+
+    <Button
+        android:id="@+id/RegisterRegisterBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35sp"
+        android:text="Register"
+        android:layout_below="@+id/RegisterNumber"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
