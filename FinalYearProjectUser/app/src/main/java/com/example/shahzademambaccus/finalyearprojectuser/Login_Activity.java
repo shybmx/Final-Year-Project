@@ -41,4 +41,9 @@ public class Login_Activity extends AppCompatActivity {
         String passwordTxt = passwordET.getText().toString();
         return passwordTxt;
     }
+
+    public void setEmail(String email){
+        EditText eMailET = (EditText) findViewById(R.id.LoginEMail);
+        eMailET.setText(email);
+    }
 }
