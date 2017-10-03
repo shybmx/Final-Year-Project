@@ -18,12 +18,12 @@ public class Register {
         this.registerActivity = register_activity;
     }
 
-    public boolean registerToDatabase(String eMail, String firstName, String lastName, String dateOfBirth, String phoneNumber, String passWord){
-        if(eMail.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || dateOfBirth.isEmpty() || phoneNumber.isEmpty() || passWord.isEmpty()){
+    public boolean registerToDatabase(String eMail, String firstName, String lastName, String dateOfBirth, String phoneNumber, String passWord, String passWordRe){
+        if(!passWord.equals(passWordRe)){
+            Toast.makeText(registerActivity, "Password do not match", Toast.LENGTH_LONG).show();
             registerComplete = false;
             return registerComplete;
         }
-        int phonenumber = Integer.parseInt(phoneNumber);
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -45,7 +45,7 @@ public class Register {
             }
         };
         //Toast.makeText(registerActivity, eMail + firstName + lastName + dateOfBirth + phoneNumber + passWord, Toast.LENGTH_LONG).show();
-        RegisterRequest registerRequest = new RegisterRequest(eMail, firstName, lastName, dateOfBirth, phonenumber, passWord, responseListener);
+        RegisterRequest registerRequest = new RegisterRequest(eMail, firstName, lastName, dateOfBirth, Integer.parseInt(phoneNumber), passWord, responseListener);
         RequestQueue queue = Volley.newRequestQueue(registerActivity);
         queue.add(registerRequest);
         return registerComplete;

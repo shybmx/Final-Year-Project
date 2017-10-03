@@ -19,7 +19,11 @@ public class Register_Activity extends AppCompatActivity {
     }
 
     public void registerToDatabase(View v){
-        if(register.registerToDatabase(getEMail(), getFirstName(), getLastName(), getDateOfBirth(), getPhoneNumber(), getPassword())){
+        if(getEMail().isEmpty() || getFirstName().isEmpty() || getLastName().isEmpty() || getDateOfBirth().isEmpty() || getPhoneNumber().isEmpty() || getPassword().isEmpty() || getReTypePassword().isEmpty()){
+            Toast.makeText(this, "Fill in all fields", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(register.registerToDatabase(getEMail(), getFirstName(), getLastName(), getDateOfBirth(), getPhoneNumber(), getPassword(), getReTypePassword())){
             Toast.makeText(this, "Register Successful", Toast.LENGTH_LONG).show();
             clearFields();
             startActivity(new Intent(Register_Activity.this, Login_Activity.class));
@@ -32,15 +36,21 @@ public class Register_Activity extends AppCompatActivity {
         EditText eMailET = (EditText) findViewById(R.id.RegisterEMail);
         EditText firstNameET = (EditText) findViewById(R.id.RegisterFirstName);
         EditText lastNameET = (EditText) findViewById(R.id.RegisterLastName);
-        EditText dateOfBirthET = (EditText) findViewById(R.id.RegisterBirthday);
+        EditText dateOfBirthET = (EditText) findViewById(R.id.RegisterBirthdayDate);
+        EditText monthOfBirthET = (EditText) findViewById(R.id.RegisterBirthdayMonth);
+        EditText yearOfBirthET = (EditText) findViewById(R.id.RegisterBirthdayYear);
         EditText phoneNumberET = (EditText) findViewById(R.id.RegisterPhoneNumber);
         EditText passwordET = (EditText) findViewById(R.id.RegisterPassword);
+        EditText passwordReET = (EditText) findViewById(R.id.RegisterPasswordRe);
         eMailET.setText("");
         firstNameET.setText("");
         lastNameET.setText("");
         dateOfBirthET.setText("");
+        monthOfBirthET.setText("");
+        yearOfBirthET.setText("");
         phoneNumberET.setText("");
         passwordET.setText("");
+        passwordReET.setText("");
     }
 
     public String getEMail(){
@@ -62,9 +72,29 @@ public class Register_Activity extends AppCompatActivity {
     }
 
     public String getDateOfBirth(){
-        EditText dateOfBirthET = (EditText) findViewById(R.id.RegisterBirthday);
-        String dateOfBirthTxt = dateOfBirthET.getText().toString();
-        return dateOfBirthTxt;
+        EditText birthDateET = (EditText) findViewById(R.id.RegisterBirthdayDate);
+        EditText birthMonthET = (EditText) findViewById(R.id.RegisterBirthdayMonth);
+        EditText birthYearET = (EditText) findViewById(R.id.RegisterBirthdayYear);
+        int birthDateInt = Integer.parseInt(birthDateET.getText().toString());
+        int birthMonthInt = Integer.parseInt(birthMonthET.getText().toString());
+        int birthYearInt = Integer.parseInt(birthYearET.getText().toString());
+        if(birthDateInt > 31){
+            Toast.makeText(this, "Invalid Date", Toast.LENGTH_LONG).show();
+            birthDateET.setText("");
+            return "";
+        }
+        if(birthMonthInt > 12){
+            Toast.makeText(this, "Invalid Month", Toast.LENGTH_LONG).show();
+            birthMonthET.setText("");
+            return "";
+        }
+        if((birthYearInt < 1900) || (birthYearInt > 2018)){
+            Toast.makeText(this, "Invalid Year", Toast.LENGTH_LONG).show();
+            birthYearET.setText("");
+            return "";
+        }
+        String date = Integer.toString(birthDateInt) + "/" + Integer.toString(birthMonthInt) + "/" + Integer.toString(birthYearInt);
+        return date;
     }
 
     public String getPhoneNumber(){
@@ -77,6 +107,12 @@ public class Register_Activity extends AppCompatActivity {
         EditText passwordET = (EditText) findViewById(R.id.RegisterPassword);
         String passwordTxt = passwordET.getText().toString();
         return passwordTxt;
+    }
+
+    public String getReTypePassword(){
+        EditText passWordReET = (EditText) findViewById(R.id.RegisterPasswordRe);
+        String passwordReTxt = passWordReET.getText().toString();
+        return passwordReTxt;
     }
 
 }
