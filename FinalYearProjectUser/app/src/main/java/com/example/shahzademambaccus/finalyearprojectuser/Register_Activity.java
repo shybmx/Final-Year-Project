@@ -19,10 +19,6 @@ public class Register_Activity extends AppCompatActivity {
     }
 
     public void registerToDatabase(View v){
-        if(getEMail().isEmpty() || getFirstName().isEmpty() || getLastName().isEmpty() || getDateOfBirth().isEmpty() || getPhoneNumber().isEmpty() || getPassword().isEmpty() || getReTypePassword().isEmpty()){
-            Toast.makeText(this, "Fill in all fields", Toast.LENGTH_LONG).show();
-            return;
-        }
         if(register.registerToDatabase(getEMail(), getFirstName(), getLastName(), getDateOfBirth(), getPhoneNumber(), getPassword(), getReTypePassword())){
             Toast.makeText(this, "Register Successful", Toast.LENGTH_LONG).show();
             clearFields();

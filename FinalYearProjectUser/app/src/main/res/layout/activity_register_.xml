@@ -161,5 +161,4 @@
         android:layout_alignParentEnd="true"
         android:hint="Re-Type Password"/>
 
-
 </RelativeLayout>

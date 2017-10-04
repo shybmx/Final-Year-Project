@@ -19,6 +19,11 @@ public class Register {
     }
 
     public boolean registerToDatabase(String eMail, String firstName, String lastName, String dateOfBirth, String phoneNumber, String passWord, String passWordRe){
+        if(eMail.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || dateOfBirth.isEmpty() || phoneNumber.isEmpty() || passWord.isEmpty() || passWordRe.isEmpty()){
+            Toast.makeText(registerActivity, "Fill in all fields", Toast.LENGTH_LONG).show();
+            registerComplete = false;
+            return registerComplete;
+        }
         if(!passWord.equals(passWordRe)){
             Toast.makeText(registerActivity, "Password do not match", Toast.LENGTH_LONG).show();
             registerComplete = false;
@@ -32,19 +37,15 @@ public class Register {
                     boolean success = jsonResponse.getBoolean("success");
                     if(success){
                         registerComplete = true;
-                        //Toast.makeText(registerActivity, "Register Successful", Toast.LENGTH_LONG).show();
                     }else{
                         registerComplete = false;
-                        //Toast.makeText(registerActivity, "Not", Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                     registerComplete = false;
-                    //Toast.makeText(registerActivity, "Error", Toast.LENGTH_LONG).show();
                 }
             }
         };
-        //Toast.makeText(registerActivity, eMail + firstName + lastName + dateOfBirth + phoneNumber + passWord, Toast.LENGTH_LONG).show();
         RegisterRequest registerRequest = new RegisterRequest(eMail, firstName, lastName, dateOfBirth, Integer.parseInt(phoneNumber), passWord, responseListener);
         RequestQueue queue = Volley.newRequestQueue(registerActivity);
         queue.add(registerRequest);

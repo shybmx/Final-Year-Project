@@ -68,7 +68,4 @@
         android:text="Register"
         android:onClick="registerActivity"/>
 
-
-
-
 </RelativeLayout>
