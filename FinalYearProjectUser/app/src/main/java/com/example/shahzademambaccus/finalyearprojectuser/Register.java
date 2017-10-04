@@ -18,8 +18,8 @@ public class Register {
         this.registerActivity = register_activity;
     }
 
-    public boolean registerToDatabase(String eMail, String firstName, String lastName, String dateOfBirth, String phoneNumber, String passWord, String passWordRe){
-        if(eMail.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || dateOfBirth.isEmpty() || phoneNumber.isEmpty() || passWord.isEmpty() || passWordRe.isEmpty()){
+    public boolean registerToDatabase(String eMail, String userName, String firstName, String lastName, String dateOfBirth, String phoneNumber, String passWord, String passWordRe){
+        if(eMail.isEmpty() || userName.isEmpty() || firstName.isEmpty() || lastName.isEmpty() || dateOfBirth.isEmpty() || phoneNumber.isEmpty() || passWord.isEmpty() || passWordRe.isEmpty()){
             Toast.makeText(registerActivity, "Fill in all fields", Toast.LENGTH_LONG).show();
             registerComplete = false;
             return registerComplete;
@@ -46,7 +46,7 @@ public class Register {
                 }
             }
         };
-        RegisterRequest registerRequest = new RegisterRequest(eMail, firstName, lastName, dateOfBirth, Integer.parseInt(phoneNumber), passWord, responseListener);
+        RegisterRequest registerRequest = new RegisterRequest(eMail, userName,firstName, lastName, dateOfBirth, Integer.parseInt(phoneNumber), passWord, responseListener);
         RequestQueue queue = Volley.newRequestQueue(registerActivity);
         queue.add(registerRequest);
         return registerComplete;

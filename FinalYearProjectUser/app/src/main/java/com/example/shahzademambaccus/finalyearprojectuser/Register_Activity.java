@@ -19,7 +19,7 @@ public class Register_Activity extends AppCompatActivity {
     }
 
     public void registerToDatabase(View v){
-        if(register.registerToDatabase(getEMail(), getFirstName(), getLastName(), getDateOfBirth(), getPhoneNumber(), getPassword(), getReTypePassword())){
+        if(register.registerToDatabase(getEMail(), getUsername(), getFirstName(), getLastName(), getDateOfBirth(), getPhoneNumber(), getPassword(), getReTypePassword())){
             Toast.makeText(this, "Register Successful", Toast.LENGTH_LONG).show();
             clearFields();
             startActivity(new Intent(Register_Activity.this, Login_Activity.class));
@@ -30,6 +30,7 @@ public class Register_Activity extends AppCompatActivity {
 
     public void clearFields(){
         EditText eMailET = (EditText) findViewById(R.id.RegisterEMail);
+        EditText userNameET = (EditText) findViewById(R.id.RegisterUsername);
         EditText firstNameET = (EditText) findViewById(R.id.RegisterFirstName);
         EditText lastNameET = (EditText) findViewById(R.id.RegisterLastName);
         EditText dateOfBirthET = (EditText) findViewById(R.id.RegisterBirthdayDate);
@@ -39,6 +40,7 @@ public class Register_Activity extends AppCompatActivity {
         EditText passwordET = (EditText) findViewById(R.id.RegisterPassword);
         EditText passwordReET = (EditText) findViewById(R.id.RegisterPasswordRe);
         eMailET.setText("");
+        userNameET.setText("");
         firstNameET.setText("");
         lastNameET.setText("");
         dateOfBirthET.setText("");
@@ -109,6 +111,12 @@ public class Register_Activity extends AppCompatActivity {
         EditText passWordReET = (EditText) findViewById(R.id.RegisterPasswordRe);
         String passwordReTxt = passWordReET.getText().toString();
         return passwordReTxt;
+    }
+
+    public String getUsername(){
+        EditText userNameET = (EditText) findViewById(R.id.RegisterUsername);
+        String userNameTxt = userNameET.getText().toString();
+        return userNameTxt;
     }
 
 }
