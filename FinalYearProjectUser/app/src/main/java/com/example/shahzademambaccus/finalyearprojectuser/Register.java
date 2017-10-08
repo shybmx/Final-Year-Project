@@ -46,7 +46,7 @@ public class Register {
                 }
             }
         };
-        RegisterRequest registerRequest = new RegisterRequest(eMail, userName,firstName, lastName, dateOfBirth, Integer.parseInt(phoneNumber), passWord, responseListener);
+        RegisterRequest registerRequest = new RegisterRequest(eMail, userName, firstName, lastName, dateOfBirth, Integer.parseInt(phoneNumber), passWord, responseListener);
         RequestQueue queue = Volley.newRequestQueue(registerActivity);
         queue.add(registerRequest);
         return registerComplete;

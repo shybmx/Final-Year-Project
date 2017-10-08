@@ -25,6 +25,7 @@ public class Login_Activity extends AppCompatActivity {
     public void loginToDatabase(View v){
         if(login.loginToDatabase(getEMail(), getPassword())){
             Toast.makeText(this, "Login Successful", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(Login_Activity.this, Words_Activity.class));
         }else{
             Toast.makeText(this, "Login Failed", Toast.LENGTH_LONG).show();
         }
