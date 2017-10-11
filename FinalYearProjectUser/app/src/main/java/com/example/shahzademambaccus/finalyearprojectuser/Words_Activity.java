@@ -5,22 +5,26 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class Words_Activity extends AppCompatActivity {
 
     ImageView image;
+    private ImageDatabase imageDatabase;
+    public String imageTxt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_words_);
         image = (ImageView) findViewById(R.id.Image);
+        this.imageDatabase = new ImageDatabase(this);
     }
 
-
     public void search(View v){
-        new DownloadImage(getSearchTerm(), image).execute();
+        String imageURL = imageDatabase.imageFromDatabase(getSearchTerm());
+        //new DownloadImage(imageURL, image);
     }
 
     public String getSearchTerm(){

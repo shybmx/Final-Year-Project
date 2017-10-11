@@ -12,19 +12,20 @@ import java.net.URLConnection;
 
 public class DownloadImage extends AsyncTask<Void, Void, Bitmap>{
 
-    private String word;
-    private static final String SERVER_NAME = "https://lissome-amperage.000webhostapp.com/";
+    private String imageURL;
+    //private static final String SERVER_NAME = "https://lissome-amperage.000webhostapp.com/";
     private ImageView image;
 
-    public DownloadImage(String word, ImageView image){
-        this.word = word;
+    public DownloadImage(String imageURL, ImageView image){
+        this.imageURL = imageURL;
         this.image = image;
     }
 
 
     @Override
     protected Bitmap doInBackground(Void... params) {
-        String url = SERVER_NAME + "Pictures/" + word + ".jpg";
+        //String url = SERVER_NAME + "Pictures/" + word + ".jpg";
+        String url = imageURL;
         try{
             URLConnection connection = new URL(url).openConnection();
             connection.setConnectTimeout(1000 * 30);
@@ -44,5 +45,7 @@ public class DownloadImage extends AsyncTask<Void, Void, Bitmap>{
             image.setImageBitmap(bitmap);
         }
     }
+
+
 
 }
