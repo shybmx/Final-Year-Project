@@ -34,9 +34,8 @@ public class ImageDatabase {
                     boolean success = jsonResponse.getBoolean("success");
                     if(success){
                         String link = jsonResponse.getString("image");
-                        Toast.makeText(wordsActivity, "1: " + link, Toast.LENGTH_LONG).show();
-                        //wordsActivity.imageTxt = link;
-                        new DownloadImage(link, wordsActivity.image);
+                        new DownloadImage(link, wordsActivity.image).execute();
+
                     }else{
                         Toast.makeText(wordsActivity, "Cannot get Image", Toast.LENGTH_LONG).show();
                         getImage = false;
