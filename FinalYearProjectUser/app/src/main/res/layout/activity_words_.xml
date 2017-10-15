@@ -33,9 +33,22 @@
 
     <ImageView
         android:id="@+id/Image"
-        android:layout_width="150sp"
-        android:layout_height="150sp"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/wordsActivityTitle1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/wordsActivityTitle1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginTop="15sp"
+        android:textSize="35sp"
+        android:text="BSL Symbols" />
 
 </RelativeLayout>

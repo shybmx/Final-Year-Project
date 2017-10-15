@@ -5,14 +5,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 
 public class Words_Activity extends AppCompatActivity {
 
     ImageView image;
     private ImageDatabase imageDatabase;
-    public String imageTxt;
+    private ImageView[] imageArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +22,18 @@ public class Words_Activity extends AppCompatActivity {
     }
 
     public void search(View v){
-        String imageURL = imageDatabase.imageFromDatabase(getSearchTerm());
-        //new DownloadImage(imageURL, image);
+        image.setImageResource(0);
+        imageDatabase.imageFromDatabase(getSearchTerm());
     }
 
     public String getSearchTerm(){
         EditText searchTermET = (EditText) findViewById(R.id.SearchTerm);
         String searchTermTxt = searchTermET.getText().toString();
         return searchTermTxt;
+    }
+
+    public ImageView[] getImageArray(){
+        return imageArray;
     }
 
 }

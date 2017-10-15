@@ -13,8 +13,8 @@ import java.net.URLConnection;
 public class DownloadImage extends AsyncTask<Void, Void, Bitmap>{
 
     private String imageURL;
-    //private static final String SERVER_NAME = "https://lissome-amperage.000webhostapp.com/";
     private ImageView image;
+    private ImageView[] imageArray;
 
     public DownloadImage(String imageURL, ImageView image){
         this.imageURL = imageURL;
@@ -24,7 +24,6 @@ public class DownloadImage extends AsyncTask<Void, Void, Bitmap>{
 
     @Override
     protected Bitmap doInBackground(Void... params) {
-        //String url = SERVER_NAME + "Pictures/" + word + ".jpg";
         String url = imageURL;
         try{
             URLConnection connection = new URL(url).openConnection();
