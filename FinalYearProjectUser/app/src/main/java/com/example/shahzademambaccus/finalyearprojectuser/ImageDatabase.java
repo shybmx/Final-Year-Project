@@ -1,5 +1,6 @@
 package com.example.shahzademambaccus.finalyearprojectuser;
 
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -17,7 +18,7 @@ public class ImageDatabase {
         wordsActivity = words_activity;
     }
 
-    public void imageFromDatabase(String word){
+    public void imageFromDatabase(String word, final ImageView image){
         if(word.isEmpty()){
             Toast.makeText(wordsActivity, "Please fill in box", Toast.LENGTH_LONG).show();
             return;
@@ -33,7 +34,7 @@ public class ImageDatabase {
                         boolean success = jsonResponse.getBoolean("success");
                         if (success) {
                             String link = jsonResponse.getString("image");
-                            new DownloadImage(link, wordsActivity.image).execute();
+                            new DownloadImage(link, image).execute();
                         } else {
                             Toast.makeText(wordsActivity, "Some Symbols cannot be found", Toast.LENGTH_LONG).show();
                         }

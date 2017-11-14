@@ -29,7 +29,6 @@ public class DownloadImage extends AsyncTask<Void, Void, Bitmap>{
             URLConnection connection = new URL(url).openConnection();
             connection.setConnectTimeout(1000 * 30);
             connection.setReadTimeout(1000 * 30);
-
             return BitmapFactory.decodeStream((InputStream) connection.getContent(), null, null);
         }catch(Exception e){
             e.printStackTrace();
@@ -44,7 +43,5 @@ public class DownloadImage extends AsyncTask<Void, Void, Bitmap>{
             image.setImageBitmap(bitmap);
         }
     }
-
-
 
 }
