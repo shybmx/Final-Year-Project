@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Words_Activity"></activity>
+        <activity android:name=".Words_Activity" />
+        <activity android:name=".Categories"></activity>
     </application>
 
 </manifest>

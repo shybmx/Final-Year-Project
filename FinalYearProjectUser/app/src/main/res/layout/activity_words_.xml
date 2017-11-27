@@ -26,7 +26,8 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/BSLSymbolTitle"
         android:stretchColumns="*"
-        android:layout_marginTop="0sp">
+        android:layout_marginTop="0sp"
+        android:layout_marginBottom="50sp">
 
 
     </TableLayout>
