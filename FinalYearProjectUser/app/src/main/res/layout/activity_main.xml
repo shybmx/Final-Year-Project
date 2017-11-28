@@ -14,14 +14,13 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/BSLSymbolToText"
         android:gravity="left|center_vertical"
         android:onClick="textToBSLActivity"
         android:text="Text to BSL"
         android:textColor="@android:color/black" />
 
     <Button
-        android:id="@+id/BSLSymbolToText"
+        android:id="@+id/BSLSymbolsToTextBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -30,7 +29,34 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textToBSLBtn"
         android:gravity="left|center_vertical"
-        android:onClick="textToBSLActivity"
-        android:text="BSL Symbol to Text"
-        android:textColor="@android:color/black" />
+        android:onClick="bslSymbolToText"
+        android:text="BSL Symbol to text" />
+
+    <Button
+        android:id="@+id/BSLSignsToTextBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/BSLSymbolsToTextBtn"
+        android:gravity="left|center_vertical"
+        android:onClick="bslSignsToText"
+        android:text="BSL Signs To Text" />
+
+    <Button
+        android:id="@+id/previouslyVisitedSign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/BSLSignsToTextBtn"
+        android:gravity="left|center_vertical"
+        android:onClick="previouslyVisitedSigns"
+        android:text="Previously Visited Signs" />
+
+
 </RelativeLayout>

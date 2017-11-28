@@ -16,4 +16,16 @@ public class MainActivity extends AppCompatActivity {
     public void textToBSLActivity(View v){
         startActivity(new Intent(MainActivity.this, Words_Activity.class));
     }
+
+    public void bslSymbolToText (View v){
+        startActivity(new Intent(MainActivity.this, Categories.class));
+    }
+
+    public void bslSignsToText(View v){
+        startActivity(new Intent(MainActivity.this, Categories.class));
+    }
+
+    public void previouslyVisitedSigns(View v){
+        startActivity(new Intent(MainActivity.this, PreviouslyVisitedSigns.class));
+    }
 }
