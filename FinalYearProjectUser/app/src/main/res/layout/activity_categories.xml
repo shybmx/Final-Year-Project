@@ -9,12 +9,116 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="480dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/FamilyAndPeopleBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Family and People"
+                android:onClick="symbolPressed"/>
+
+            <Button
+                android:id="@+id/FoodAndDrinksBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Food and Drinks" />
+
+            <Button
+                android:id="@+id/HouseholdObjectsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Household Objects" />
+
+            <Button
+                android:id="@+id/QuestionsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Questions" />
+
+            <Button
+                android:id="@+id/VerbsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Verbs" />
+
+            <Button
+                android:id="@+id/GreetingsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Greetings" />
+
+            <Button
+                android:id="@+id/DemandsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Demands" />
+
+            <Button
+                android:id="@+id/AnimalsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Animals" />
+
+            <Button
+                android:id="@+id/OutdoorObjectsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Outdoor Objects" />
+
+            <Button
+                android:id="@+id/ConnectivesBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Connectives" />
+
+            <Button
+                android:id="@+id/FeelingsBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Feelings" />
+
+            <Button
+                android:id="@+id/MovementBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Movement" />
+
+            <Button
+                android:id="@+id/SizeAndPositionBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Size and Positions" />
+        </LinearLayout>
 
     </ScrollView>
+
+    <EditText
+        android:id="@+id/TranslatedTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/ClearBtn"
+        android:layout_toStartOf="@+id/ClearBtn"
+        android:ems="10"
+        android:inputType="none"
+        android:editable="false"
+        android:hint="Translated text will be here" />
+
+    <Button
+        android:id="@+id/ClearBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TranslatedTxt"
+        android:layout_alignBottom="@+id/TranslatedTxt"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Clear" />
 </RelativeLayout>

@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".Words_Activity" />
         <activity android:name=".Categories" />
-        <activity android:name=".PreviouslyVisitedSigns"></activity>
+        <activity android:name=".PreviouslyVisitedSigns" />
+        <activity android:name=".SignsAndSymbols"></activity>
     </application>
 
 </manifest>

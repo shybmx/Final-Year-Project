@@ -58,5 +58,23 @@
         android:onClick="previouslyVisitedSigns"
         android:text="Previously Visited Signs" />
 
+    <TextView
+        android:id="@+id/SignOfTheDayTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="30sp"
+        android:text="Sign Of The Day" />
+
+    <ImageView
+        android:id="@+id/SignOfTheDayImg"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        android:layout_below="@+id/SignOfTheDayTxt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        app:srcCompat="@android:drawable/screen_background_light_transparent" />
+
 
 </RelativeLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.shahzademambaccus.finalyearprojectuser.SignsAndSymbols">
+
+    <Button
+        android:id="@+id/BackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="Back" />
+
+    <Button
+        android:id="@+id/ClearSignAndSymbolBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/scrollView2"
+        android:text="Clear" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="480sp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/BackBtn"
+        android:id="@+id/scrollView2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+    </ScrollView>
+
+    <EditText
+        android:id="@+id/TranslatedSignSymbolTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/scrollView2"
+        android:layout_toLeftOf="@+id/ClearSignAndSymbolBtn"
+        android:layout_toStartOf="@+id/ClearSignAndSymbolBtn"
+        android:ems="10"
+        android:inputType="none"
+        android:hint="Translated text will be here" />
+
+</RelativeLayout>
