@@ -21,79 +21,91 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Family and People"
-                android:onClick="symbolPressed"/>
+                android:onClick="familyAndPeopleButtonPressed"/>
 
             <Button
                 android:id="@+id/FoodAndDrinksBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Food and Drinks" />
+                android:text="Food and Drinks"
+                android:onClick="foodAndDrinksButtonPressed"/>
 
             <Button
                 android:id="@+id/HouseholdObjectsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Household Objects" />
+                android:text="Household Objects"
+                android:onClick="householdObjectsButtonPressed"/>
 
             <Button
                 android:id="@+id/QuestionsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Questions" />
+                android:text="Questions"
+                android:onClick="questionButtonPressed"/>
 
             <Button
                 android:id="@+id/VerbsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Verbs" />
+                android:text="Verbs"
+                android:onClick="verbsButtonPressed"/>
 
             <Button
                 android:id="@+id/GreetingsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Greetings" />
+                android:text="Greetings"
+                android:onClick="greetingsButtonPressed"/>
 
             <Button
                 android:id="@+id/DemandsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Demands" />
+                android:text="Demands"
+                android:onClick="demandsButtonPressed"/>
 
             <Button
                 android:id="@+id/AnimalsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Animals" />
+                android:text="Animals"
+                android:onClick="animalsButtonPressed"/>
 
             <Button
                 android:id="@+id/OutdoorObjectsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Outdoor Objects" />
+                android:text="Outdoor Objects"
+                android:onClick="outdoorObjectsButtonPressed"/>
 
             <Button
                 android:id="@+id/ConnectivesBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Connectives" />
+                android:text="Connectives"
+                android:onClick="connectivesButtonPressed"/>
 
             <Button
                 android:id="@+id/FeelingsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Feelings" />
+                android:text="Feelings"
+                android:onClick="feelingsButtonPressed"/>
 
             <Button
                 android:id="@+id/MovementBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Movement" />
+                android:text="Movement"
+                android:onClick="movementButtonPressed"/>
 
             <Button
                 android:id="@+id/SizeAndPositionBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Size and Positions" />
+                android:text="Size and Positions"
+                android:onClick="sizeAndPositionButtonPressed"/>
         </LinearLayout>
 
     </ScrollView>

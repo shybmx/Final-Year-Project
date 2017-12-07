@@ -15,7 +15,7 @@ public class Words_Activity extends AppCompatActivity {
     private TableLayout table;
     private ImageDatabase imageDatabase;
     private ImageView[] imageArray;
-    private static int NUMBER_OF_ROWS = 2;
+    private static int NUMBER_OF_ROWS = 1;
     private static int NUMBER_OF_COLUMNS = 5;
 
     @Override
