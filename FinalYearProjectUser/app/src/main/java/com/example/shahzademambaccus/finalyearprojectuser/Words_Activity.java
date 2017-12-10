@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -14,49 +15,53 @@ import android.widget.Toast;
 public class Words_Activity extends AppCompatActivity {
     private TableLayout table;
     private ImageDatabase imageDatabase;
-    private ImageView[] imageArray;
-    private static int NUMBER_OF_ROWS = 1;
-    private static int NUMBER_OF_COLUMNS = 5;
+    private static int NUMBER_OF_ROWS = 8;
+    private static int NUMBER_OF_COLUMNS = 1;
+    private String[] words;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_words_);
-        // image = (ImageView) findViewById(R.id.Image);
-        this.imageDatabase = new ImageDatabase(this);
         TableLayout table = (TableLayout) findViewById(R.id.tableForImages);
+        this.imageDatabase = new ImageDatabase(this);
         this.table = table;
     }
 
     public void search(View v) {
-        table.removeAllViews();
-        String[] words = getSearchTerm().split(" ");
-        for (int row = 0; row < NUMBER_OF_ROWS; row++) {
+        clearScreen();
+        String[] typedWords = getSearchTerm().split(" ");
+        //words = typedWords;
+        for (int row = 0; row < typedWords.length; row++) {
             TableRow tableRow = new TableRow(this);
             tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT, 1.0f));
             table.addView(tableRow);
-            for (int col = 0; col < /*NUMBER_OF_COLUMNS*/ words.length; col++) {
+            for (int col = 0; col < NUMBER_OF_COLUMNS /*typedWords.length*/; col++) {
                 ImageView image = new ImageView(this);
                 image.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
-                //Button button = new Button(this);
                 tableRow.addView(image);
-                // tableRow.addView(button);
-                imageDatabase.imageFromDatabase(/*getSearchTerm()*/words[col], image);
+                imageDatabase.imageFromDatabase(typedWords[row], image);
+
             }
         }
+    }
 
-        //image.setImageResource(0);
-        //imageDatabase.imageFromDatabase(getSearchTerm());
+    public void clearScreen(){
+        table.removeAllViews();
+    }
+
+    public String[] getTypedWords(){
+        return words;
     }
 
     public String getSearchTerm() {
         EditText searchTermET = (EditText) findViewById(R.id.SearchTerm);
         String searchTermTxt = searchTermET.getText().toString();
+        if(searchTermTxt.isEmpty()){
+            Toast.makeText(this, "Insert Text to be translated", Toast.LENGTH_LONG).show();
+        }
         return searchTermTxt;
     }
 
-    public ImageView[] getImageArray() {
-        return imageArray;
-    }
 
 }

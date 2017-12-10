@@ -12,7 +12,7 @@
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $imageID, $word, $image);
+    mysqli_stmt_bind_result($statement, $imageID, $word, $category, $image);
 
     $response = array();
     $response["success"] = false;
@@ -21,6 +21,7 @@
         $response["success"] = true;
         $response["imageID"] = $imageID;
         $response["word"] = $word;
+        $response["category"] = $category;
         $response["image"] = $image;
     }
 

@@ -19,6 +19,7 @@ public class DownloadImage extends AsyncTask<Void, Void, Bitmap>{
     public DownloadImage(String imageURL, ImageView image){
         this.imageURL = imageURL;
         this.image = image;
+
     }
 
 
@@ -40,7 +41,7 @@ public class DownloadImage extends AsyncTask<Void, Void, Bitmap>{
     protected void onPostExecute(Bitmap bitmap){
         super.onPostExecute(bitmap);
         if(bitmap != null){
-            image.setImageBitmap(bitmap);
+             image.setImageBitmap(bitmap);
         }
     }
 

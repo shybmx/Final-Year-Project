@@ -9,7 +9,7 @@ import android.widget.Toast;
 public class Categories extends AppCompatActivity {
 
     boolean isSymbolCategory = false;
-    private static final String[] categories = new String[12];
+    private static final String[] categories = new String[13];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

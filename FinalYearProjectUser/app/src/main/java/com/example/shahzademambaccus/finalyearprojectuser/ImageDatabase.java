@@ -18,7 +18,7 @@ public class ImageDatabase {
         wordsActivity = words_activity;
     }
 
-    public void imageFromDatabase(String word, final ImageView image){
+    public void imageFromDatabase(final String word, final ImageView image){
         if(word.isEmpty()){
             Toast.makeText(wordsActivity, "Please fill in box", Toast.LENGTH_LONG).show();
             return;
@@ -34,6 +34,7 @@ public class ImageDatabase {
                         boolean success = jsonResponse.getBoolean("success");
                         if (success) {
                             String link = jsonResponse.getString("image");
+                            Toast.makeText(wordsActivity, link, Toast.LENGTH_LONG).show();
                             new DownloadImage(link, image).execute();
                         } else {
                             Toast.makeText(wordsActivity, "Some Symbols cannot be found", Toast.LENGTH_LONG).show();
