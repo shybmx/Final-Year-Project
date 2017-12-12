@@ -98,6 +98,11 @@ public class Categories extends AppCompatActivity {
         translatedSignsAndSymbolsET.setText(currentText);
     }
 
+    public void clearButtonPressed(){
+        EditText translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedTxt);
+        translatedSignsAndSymbolsET.setText("");
+    }
+
     public void createNewActivity(View v, String category){
         Intent intent = new Intent(Categories.this, SignsAndSymbols.class);
         intent.putExtra("Symbol", isSymbolCategory);

@@ -46,4 +46,9 @@ public class SignsAndSymbols extends AppCompatActivity {
         EditText translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
         translatedSignsAndSymbolsET.setText(currentText);
     }
+
+    public void clearSignAndSymbolButtonPressed(){
+        EditText translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
+        translatedSignsAndSymbolsET.setText("");
+    }
 }

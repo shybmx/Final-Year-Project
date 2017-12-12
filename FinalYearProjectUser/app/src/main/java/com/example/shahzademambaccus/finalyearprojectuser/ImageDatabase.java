@@ -13,6 +13,8 @@ import org.json.JSONObject;
 
 public class ImageDatabase {
 
+    int count;
+
     public ImageDatabase(){
 
     }
@@ -72,5 +74,53 @@ public class ImageDatabase {
         queue.add(signOfTheDayRequest);
     }
 
+    public void getSignsAndSymbolsCount(String category, SignsAndSymbols signsAndSymbols){
+        count = 0;
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
+                    boolean success = jsonResponse.getBoolean("success");
+                    if(success){
+                         count =  jsonResponse.getInt("count");
+                    }else{
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        CountRequest countRequest = new CountRequest(category ,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(signsAndSymbols);
+        queue.add(countRequest);
+    }
+
+    public int getSignsAndSymbolsCount(){
+        return count;
+    }
+
+    public void signsAndCounts(String category, SignsAndSymbols signsAndSymbols){
+       Response.Listener<String> responseListener = new Response.Listener<String>() {
+           @Override
+           public void onResponse(String response) {
+               try {
+                   JSONObject jsonResponse  = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
+                   boolean success = jsonResponse.getBoolean("success");
+                   if(success){
+                       String link = jsonResponse.getString("image");
+                   }else{
+
+                   }
+               } catch (JSONException e) {
+                   e.printStackTrace();
+               }
+           }
+       };
+       SignsAndSymbolsRequest signsAndSymbolsRequest = new SignsAndSymbolsRequest(category, responseListener);
+       RequestQueue queue = Volley.newRequestQueue(signsAndSymbols);
+       queue.add(signsAndSymbolsRequest);
+    }
     
 }

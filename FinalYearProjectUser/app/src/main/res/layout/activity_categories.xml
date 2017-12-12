@@ -131,5 +131,6 @@
         android:layout_alignBottom="@+id/TranslatedTxt"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:text="Clear" />
+        android:text="Clear"
+        android:onClick="clearButtonPressed"/>
 </RelativeLayout>
