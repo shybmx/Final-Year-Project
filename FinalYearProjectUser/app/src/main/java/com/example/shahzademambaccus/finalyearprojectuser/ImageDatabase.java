@@ -10,15 +10,14 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 public class ImageDatabase {
 
-    private Words_Activity wordsActivity;
+    public ImageDatabase(){
 
-    public ImageDatabase(Words_Activity words_activity){
-        wordsActivity = words_activity;
     }
 
-    public void imageFromDatabase(final String word, final ImageView image){
+    public void imageFromDatabase(final String word, final ImageView image, Words_Activity wordsActivity){
         if(word.isEmpty()){
             Toast.makeText(wordsActivity, "Please fill in box", Toast.LENGTH_LONG).show();
             return;
@@ -34,10 +33,10 @@ public class ImageDatabase {
                         boolean success = jsonResponse.getBoolean("success");
                         if (success) {
                             String link = jsonResponse.getString("image");
-                            Toast.makeText(wordsActivity, link, Toast.LENGTH_LONG).show();
+                            //Toast.makeText(wordsActivity, link, Toast.LENGTH_LONG).show();
                             new DownloadImage(link, image).execute();
                         } else {
-                            Toast.makeText(wordsActivity, "Some Symbols cannot be found", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(wordsActivity, "Some Symbols cannot be found", Toast.LENGTH_LONG).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -50,4 +49,28 @@ public class ImageDatabase {
         }
     }
 
+    public void getSignOfTheDay(final ImageView image, MainActivity mainActivity){
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
+                    boolean success = jsonResponse.getBoolean("success");
+                    if(success){
+                        String link = jsonResponse.getString("image");
+                        new DownloadImage(link, image).execute();
+                    }else{
+                        //Toast.makeText(mainActivity, "Sign of the day cannot be retrieved", Toast.LENGTH_LONG).show();
+                    }
+                }catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        };
+        SignOfTheDayRequest signOfTheDayRequest = new SignOfTheDayRequest(responseListener);
+        RequestQueue queue = Volley.newRequestQueue(mainActivity);
+        queue.add(signOfTheDayRequest);
+    }
+
+    
 }

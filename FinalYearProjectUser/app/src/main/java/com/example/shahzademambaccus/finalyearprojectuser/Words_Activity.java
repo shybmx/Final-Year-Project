@@ -24,7 +24,8 @@ public class Words_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_words_);
         TableLayout table = (TableLayout) findViewById(R.id.tableForImages);
-        this.imageDatabase = new ImageDatabase(this);
+        //this.imageDatabase = new ImageDatabase(this);
+        this.imageDatabase = new ImageDatabase();
         this.table = table;
     }
 
@@ -40,8 +41,7 @@ public class Words_Activity extends AppCompatActivity {
                 ImageView image = new ImageView(this);
                 image.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
                 tableRow.addView(image);
-                imageDatabase.imageFromDatabase(typedWords[row], image);
-
+                imageDatabase.imageFromDatabase(typedWords[row], image, this);
             }
         }
     }
