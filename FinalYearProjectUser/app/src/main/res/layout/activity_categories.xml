@@ -120,8 +120,7 @@
         android:layout_toLeftOf="@+id/ClearBtn"
         android:layout_toStartOf="@+id/ClearBtn"
         android:ems="10"
-        android:inputType="none"
-        android:editable="false"
+        android:inputType="textPersonName"
         android:hint="Translated text will be here" />
 
     <Button

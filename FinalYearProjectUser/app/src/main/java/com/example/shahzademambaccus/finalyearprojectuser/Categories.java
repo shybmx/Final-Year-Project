@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class Categories extends AppCompatActivity {
@@ -17,7 +18,8 @@ public class Categories extends AppCompatActivity {
         setContentView(R.layout.activity_categories);
         Bundle bundle = getIntent().getExtras();
         isSymbolCategory = bundle.getBoolean("Symbol");
-        //Toast.makeText(this, isSymbolCategory + "", Toast.LENGTH_LONG).show();
+        String currentText = bundle.getString("CurrentText");
+        setCurrentText(currentText);
         categories[0] = "foodanddrinks";
         categories[1] = "householdobjects";
         categories[2] = "questions";
@@ -85,10 +87,22 @@ public class Categories extends AppCompatActivity {
         createNewActivity(v, categories[11]);
     }
 
+    public String getCurrentText(){
+        EditText translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedTxt);
+        String translatedSignsAndSymbolsTxt = translatedSignsAndSymbolsET.getText().toString();
+        return translatedSignsAndSymbolsTxt;
+    }
+
+    public void setCurrentText(String currentText){
+        EditText translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedTxt);
+        translatedSignsAndSymbolsET.setText(currentText);
+    }
+
     public void createNewActivity(View v, String category){
         Intent intent = new Intent(Categories.this, SignsAndSymbols.class);
-        intent.putExtra("isSymbol", isSymbolCategory);
-        intent.putExtra("category", category);
+        intent.putExtra("Symbol", isSymbolCategory);
+        intent.putExtra("Category", category);
+        intent.putExtra("CurrentText", getCurrentText());
         startActivity(intent);
     }
 }

@@ -13,7 +13,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:text="Back" />
+        android:text="Back"
+        android:onClick="backButtonPressed"/>
 
     <Button
         android:id="@+id/ClearSignAndSymbolBtn"
@@ -49,7 +50,7 @@
         android:layout_toLeftOf="@+id/ClearSignAndSymbolBtn"
         android:layout_toStartOf="@+id/ClearSignAndSymbolBtn"
         android:ems="10"
-        android:inputType="none"
+        android:inputType="textPersonName"
         android:hint="Translated text will be here" />
 
 </RelativeLayout>

@@ -28,12 +28,14 @@ public class MainActivity extends AppCompatActivity {
     public void bslSymbolToText (View v){
         Intent intent = new Intent(MainActivity.this, Categories.class);
         intent.putExtra("Symbol", true);
+        intent.putExtra("CurrentText", "");
         startActivity(intent);
     }
 
     public void bslSignsToText(View v){
         Intent intent = new Intent(MainActivity.this, Categories.class);
         intent.putExtra("Symbol", false);
+        intent.putExtra("CurrentText", "");
         startActivity(intent);
     }
 
