@@ -20,38 +20,32 @@
         android:id="@+id/ClearSignAndSymbolBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/TranslatedSignSymbolTxt"
+        android:layout_alignBottom="@+id/TranslatedSignSymbolTxt"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/scrollView2"
-        android:text="Clear"
-        android:onClick="clearSignAndSymbolButtonPressed"/>
+        android:onClick="clearSignAndSymbolButtonPressed"
+        android:text="Clear" />
 
-    <ScrollView
+    <TableLayout
+        android:id="@+id/tableForSignsAndSymbols"
         android:layout_width="match_parent"
-        android:layout_height="480sp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/BackBtn"
-        android:id="@+id/scrollView2">
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
 
-    </ScrollView>
+    </TableLayout>
 
     <EditText
         android:id="@+id/TranslatedSignSymbolTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/scrollView2"
         android:layout_toLeftOf="@+id/ClearSignAndSymbolBtn"
         android:layout_toStartOf="@+id/ClearSignAndSymbolBtn"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Translated text will be here" />
+        android:hint="Translated text will be here"
+        android:inputType="textPersonName" />
 
 </RelativeLayout>

@@ -9,7 +9,7 @@
     $category = $_POST["category"];
 
     $statement = mysqli_prepare($con, "SELECT * FROM Symbols WHERE category = ?");
-    mysqli_stmt_bind_param($statement, "s", $word);
+    mysqli_stmt_bind_param($statement, "s", $category);
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);

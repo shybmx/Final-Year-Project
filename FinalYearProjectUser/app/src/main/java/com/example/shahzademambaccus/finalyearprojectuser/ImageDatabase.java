@@ -14,18 +14,20 @@ import org.json.JSONObject;
 public class ImageDatabase {
 
     int count;
+    private String[] listOfWords;
+    int counter;
 
-    public ImageDatabase(){
+    public ImageDatabase() {
 
     }
 
-    public void imageFromDatabase(final String word, final ImageView image, Words_Activity wordsActivity){
-        if(word.isEmpty()){
+    public void imageFromDatabase(final String word, final ImageView image, Words_Activity wordsActivity) {
+        if (word.isEmpty()) {
             Toast.makeText(wordsActivity, "Please fill in box", Toast.LENGTH_LONG).show();
             return;
         }
-        final String [] wordSplitted = word.split(" ");
-        for(int i = 0; wordSplitted.length > i; i++) {
+        final String[] wordSplitted = word.split(" ");
+        for (int i = 0; wordSplitted.length > i; i++) {
             //Toast.makeText(wordsActivity, wordsSplitted[i], Toast.LENGTH_LONG).show();
             Response.Listener<String> responseListener = new Response.Listener<String>() {
                 @Override
@@ -51,20 +53,20 @@ public class ImageDatabase {
         }
     }
 
-    public void getSignOfTheDay(final ImageView image, MainActivity mainActivity){
+    public void getSignOfTheDay(final ImageView image, MainActivity mainActivity) {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
                     boolean success = jsonResponse.getBoolean("success");
-                    if(success){
+                    if (success) {
                         String link = jsonResponse.getString("image");
                         new DownloadImage(link, image).execute();
-                    }else{
+                    } else {
                         //Toast.makeText(mainActivity, "Sign of the day cannot be retrieved", Toast.LENGTH_LONG).show();
                     }
-                }catch (JSONException e){
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
@@ -74,7 +76,7 @@ public class ImageDatabase {
         queue.add(signOfTheDayRequest);
     }
 
-    public void getSignsAndSymbolsCount(String category, SignsAndSymbols signsAndSymbols){
+    public void signsAndSymbolsCounter(String category, SignsAndSymbols signsAndSymbols) {
         count = 0;
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
@@ -82,9 +84,9 @@ public class ImageDatabase {
                 try {
                     JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
                     boolean success = jsonResponse.getBoolean("success");
-                    if(success){
-                         count =  jsonResponse.getInt("count");
-                    }else{
+                    if (success) {
+                        count = jsonResponse.getInt("count");
+                    } else {
 
                     }
                 } catch (JSONException e) {
@@ -92,35 +94,40 @@ public class ImageDatabase {
                 }
             }
         };
-        CountRequest countRequest = new CountRequest(category ,responseListener);
+        CountRequest countRequest = new CountRequest(category, responseListener);
         RequestQueue queue = Volley.newRequestQueue(signsAndSymbols);
         queue.add(countRequest);
     }
 
-    public int getSignsAndSymbolsCount(){
+    public void getSignsAndSymbols(String category, final SignsAndSymbols signsAndSymbols) {
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        //String link = jsonResponse.getString("image");
+                        //String word = jsonResponse.getString("word");
+                        
+                        //signsAndSymbols.getListOfWords()[counter] = jsonResponse.getString("word");
+                    } else {
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        SignsAndSymbolsRequest signsAndSymbolsRequest = new SignsAndSymbolsRequest(category, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(signsAndSymbols);
+        queue.add(signsAndSymbolsRequest);
+        counter++;
+
+    }
+
+    public int getSignsAndSymbolsCount() {
         return count;
     }
 
-    public void signsAndCounts(String category, SignsAndSymbols signsAndSymbols){
-       Response.Listener<String> responseListener = new Response.Listener<String>() {
-           @Override
-           public void onResponse(String response) {
-               try {
-                   JSONObject jsonResponse  = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
-                   boolean success = jsonResponse.getBoolean("success");
-                   if(success){
-                       String link = jsonResponse.getString("image");
-                   }else{
-
-                   }
-               } catch (JSONException e) {
-                   e.printStackTrace();
-               }
-           }
-       };
-       SignsAndSymbolsRequest signsAndSymbolsRequest = new SignsAndSymbolsRequest(category, responseListener);
-       RequestQueue queue = Volley.newRequestQueue(signsAndSymbols);
-       queue.add(signsAndSymbolsRequest);
-    }
-    
 }

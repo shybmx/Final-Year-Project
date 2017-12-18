@@ -1,4 +1,3 @@
-
 <?php
     $con = mysqli_connect("localhost", "id2981493_finalyear", "Testing123", "id2981493_finalyearproject");
     if($con){
@@ -10,7 +9,7 @@
     $category = $_POST["category"];
 
     $statement = mysqli_prepare($con, "SELECT COUNT(*) FROM Symbols WHERE `category` = ?");
-    mysqli_stmt_bind_param($statement, "s", $word);
+    mysqli_stmt_bind_param($statement, "s", $category);
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
