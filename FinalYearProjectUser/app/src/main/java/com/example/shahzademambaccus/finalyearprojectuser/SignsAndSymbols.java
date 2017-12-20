@@ -1,6 +1,7 @@
 package com.example.shahzademambaccus.finalyearprojectuser;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +34,15 @@ public class SignsAndSymbols extends AppCompatActivity {
         this.table = table;
 
         this.imageDatabase = new ImageDatabase();
+        imageDatabase.signsAndSymbolsCounter(category, this);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+               getAllSignsAndSymbols(imageDatabase.getSignsAndSymbolsCount());
+            }
+        },1000 );
+
 
         setCurrentText(currentText);
     }
@@ -58,29 +68,28 @@ public class SignsAndSymbols extends AppCompatActivity {
     public void clearSignAndSymbolButtonPressed(View view){
         EditText translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
         translatedSignsAndSymbolsET.setText("");
-//        imageDatabase.getSignsAndSymbolsCount();
-//        imageDatabase.getSignsAndSymbols(category, this);
     }
 
     public String[] getListOfWords(){
         return listOfWords;
     }
 
-    public void getAllSignsAndSymbols(View view){
-        imageDatabase.signsAndSymbolsCounter(category, this);
-        //Toast.makeText(this, imageDatabase.getSignsAndSymbolsCount() + " ", Toast.LENGTH_LONG).show();
-        int counter = imageDatabase.getSignsAndSymbolsCount();
-        for (int row = 0; row < counter; row++){
-            //create table
-            TableRow tableRow = new TableRow(this);
-            tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT, 1.0f));
-            table.addView(tableRow);
-            for(int col = 0; col < NUMBER_OF_COLUMNS; col++){
-                ImageView image = new ImageView(this);
-                image.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
-                tableRow.addView(image);
-                //imageDatabase.imageFromDatabase(getwordsfromStringarray, image, this);
-            }
-        }
+
+    public void getAllSignsAndSymbols(int numberOfSignsAndSymbols){
+        imageDatabase.getSignsAndSymbols(category, this, numberOfSignsAndSymbols);
+        //Toast.makeText(this, "Number of Symbols: " + numberOfSignsAndSymbols + " ", Toast.LENGTH_LONG).show();
+//        for (int row = 0; row < counter; row++){
+//            //create table
+//            TableRow tableRow = new TableRow(this);
+//            tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT, 1.0f));
+//            table.addView(tableRow);
+//            for(int col = 0; col < NUMBER_OF_COLUMNS; col++){
+//                ImageView image = new ImageView(this);
+//                image.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
+//                tableRow.addView(image);
+//                //imageDatabase.imageFromDatabase(getwordsfromStringarray, image, this);
+//            }
+//        }
     }
+
 }

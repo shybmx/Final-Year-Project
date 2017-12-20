@@ -1,21 +1,23 @@
 package com.example.shahzademambaccus.finalyearprojectuser;
 
 import android.widget.ImageView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
 public class ImageDatabase {
 
-    int count;
+    int count = 0;
+    int counter = 0;
     private String[] listOfWords;
-    int counter;
 
     public ImageDatabase() {
 
@@ -99,31 +101,28 @@ public class ImageDatabase {
         queue.add(countRequest);
     }
 
-    public void getSignsAndSymbols(String category, final SignsAndSymbols signsAndSymbols) {
-        Response.Listener<String> responseListener = new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
-                    boolean success = jsonResponse.getBoolean("success");
-                    if (success) {
-                        //String link = jsonResponse.getString("image");
-                        //String word = jsonResponse.getString("word");
-                        
-                        //signsAndSymbols.getListOfWords()[counter] = jsonResponse.getString("word");
-                    } else {
-
+    public void getSignsAndSymbols(String category, final SignsAndSymbols signsAndSymbols, int numberToDisplay) {
+        counter = 0;
+        while (counter < numberToDisplay){
+            Response.Listener<String> responseListener = new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
+                        JSONArray jsonArray = jsonResponse.getJSONArray("ListOfSignsAndSymbols");
+                        Toast.makeText(signsAndSymbols, "Counter is at: " + counter, Toast.LENGTH_LONG).show();
+                        JSONObject finalResponse = jsonArray.getJSONObject(counter);
+                        String word = finalResponse.getString("word");
+                        Toast.makeText(signsAndSymbols, word, Toast.LENGTH_LONG).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
                 }
-            }
-        };
-        SignsAndSymbolsRequest signsAndSymbolsRequest = new SignsAndSymbolsRequest(category, responseListener);
-        RequestQueue queue = Volley.newRequestQueue(signsAndSymbols);
-        queue.add(signsAndSymbolsRequest);
-        counter++;
-
+            };
+            SignsAndSymbolsRequest signsAndSymbolsRequest = new SignsAndSymbolsRequest(category, responseListener);
+            RequestQueue queue = Volley.newRequestQueue(signsAndSymbols);
+            queue.add(signsAndSymbolsRequest);
+        }
     }
 
     public int getSignsAndSymbolsCount() {
