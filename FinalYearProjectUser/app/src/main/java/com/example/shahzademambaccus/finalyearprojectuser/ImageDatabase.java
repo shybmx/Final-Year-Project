@@ -101,27 +101,14 @@ public class ImageDatabase {
         queue.add(countRequest);
     }
 
-    public void getSignsAndSymbols(String category, final SignsAndSymbols signsAndSymbols, int numberToDisplay) {
+    public void getSignsAndSymbols(String category, SignsAndSymbols signsAndSymbols, int numberToDisplay) {
         counter = 0;
         while (counter < numberToDisplay){
-            Response.Listener<String> responseListener = new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    try {
-                        JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
-                        JSONArray jsonArray = jsonResponse.getJSONArray("ListOfSignsAndSymbols");
-                        Toast.makeText(signsAndSymbols, "Counter is at: " + counter, Toast.LENGTH_LONG).show();
-                        JSONObject finalResponse = jsonArray.getJSONObject(counter);
-                        String word = finalResponse.getString("word");
-                        Toast.makeText(signsAndSymbols, word, Toast.LENGTH_LONG).show();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            };
+            MyResponseListener responseListener = new MyResponseListener(counter, signsAndSymbols);
             SignsAndSymbolsRequest signsAndSymbolsRequest = new SignsAndSymbolsRequest(category, responseListener);
             RequestQueue queue = Volley.newRequestQueue(signsAndSymbols);
             queue.add(signsAndSymbolsRequest);
+            counter++;
         }
     }
 

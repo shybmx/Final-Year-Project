@@ -11,11 +11,14 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class SignsAndSymbols extends AppCompatActivity {
 
     boolean isSymbolCategory = false;
     String category = "";
-    private String[] listOfWords;
+    //private String[] listOfWords;
+    private ArrayList<String> listOfWords;
     private ImageDatabase imageDatabase;
     private TableLayout table;
     private static int NUMBER_OF_COLUMNS = 1;
@@ -33,6 +36,8 @@ public class SignsAndSymbols extends AppCompatActivity {
         TableLayout table = (TableLayout) findViewById(R.id.tableForSignsAndSymbols);
         this.table = table;
 
+        listOfWords = new ArrayList<String>();
+
         this.imageDatabase = new ImageDatabase();
         imageDatabase.signsAndSymbolsCounter(category, this);
         Handler handler = new Handler();
@@ -42,8 +47,6 @@ public class SignsAndSymbols extends AppCompatActivity {
                getAllSignsAndSymbols(imageDatabase.getSignsAndSymbolsCount());
             }
         },1000 );
-
-
         setCurrentText(currentText);
     }
 
@@ -70,14 +73,12 @@ public class SignsAndSymbols extends AppCompatActivity {
         translatedSignsAndSymbolsET.setText("");
     }
 
-    public String[] getListOfWords(){
+    public ArrayList<String> getListOfWords(){
         return listOfWords;
     }
 
-
     public void getAllSignsAndSymbols(int numberOfSignsAndSymbols){
         imageDatabase.getSignsAndSymbols(category, this, numberOfSignsAndSymbols);
-        //Toast.makeText(this, "Number of Symbols: " + numberOfSignsAndSymbols + " ", Toast.LENGTH_LONG).show();
 //        for (int row = 0; row < counter; row++){
 //            //create table
 //            TableRow tableRow = new TableRow(this);
