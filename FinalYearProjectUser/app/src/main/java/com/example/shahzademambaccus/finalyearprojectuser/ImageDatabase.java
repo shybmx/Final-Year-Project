@@ -103,6 +103,8 @@ public class ImageDatabase {
 
     public void getSignsAndSymbols(String category, SignsAndSymbols signsAndSymbols, int numberToDisplay) {
         counter = 0;
+        signsAndSymbols.clearLists(signsAndSymbols.getListOfWords());
+        signsAndSymbols.clearLists(signsAndSymbols.getListOfLinks());
         while (counter < numberToDisplay){
             MyResponseListener responseListener = new MyResponseListener(counter, signsAndSymbols);
             SignsAndSymbolsRequest signsAndSymbolsRequest = new SignsAndSymbolsRequest(category, responseListener);

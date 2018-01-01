@@ -26,9 +26,9 @@ public class MyResponseListener implements Response.Listener<String> {
             JSONArray jsonArray = jsonResponse.getJSONArray(NAME_OF_ARRAY);
             JSONObject finalResponse = jsonArray.getJSONObject(positionOfSignOrSymbol);
             String word = finalResponse.getString("word");
+            String links = finalResponse.getString("image");
             signsAndSymbols.getListOfWords().add(word);
-
-            //Toast.makeText(signsAndSymbols, "Current position: " + positionOfSignOrSymbol + " Word is: " + signsAndSymbols.getListOfWords().get(positionOfSignOrSymbol), Toast.LENGTH_SHORT).show();
+            signsAndSymbols.getListOfLinks().add(links);
         } catch (JSONException e) {
             e.printStackTrace();
         }

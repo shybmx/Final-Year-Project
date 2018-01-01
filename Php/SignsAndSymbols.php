@@ -13,4 +13,4 @@
     }
 
     echo json_encode(array("ListOfSignsAndSymbols"=>$response));
-?>
+?>  
