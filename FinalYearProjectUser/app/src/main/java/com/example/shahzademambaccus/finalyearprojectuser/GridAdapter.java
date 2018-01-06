@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class GridAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View row = convertView;
         ViewHolder holder = null;
         if(row == null){
@@ -48,7 +49,6 @@ public class GridAdapter extends BaseAdapter {
             holder = (ViewHolder) row.getTag();
         }
         new DownloadImage(arrayList.get(position), holder.getImageView()).execute();
-        //Toast.makeText(context, "Position: " + position + " word: " +list.get(position), Toast.LENGTH_SHORT).show();
         return row;
     }
 }

@@ -23,31 +23,28 @@ public class ImageDatabase {
 
     }
 
-    public void imageFromDatabase(final String word, final ImageView image, final Words_Activity wordsActivity) {
+    public void imageFromDatabase(final String word, final Words_Activity wordsActivity) {
         if (word.isEmpty()) {
             Toast.makeText(wordsActivity, "Please fill in box", Toast.LENGTH_LONG).show();
             return;
         }
-        final String[] wordSplitted = word.split(" ");
-        for (int i = 0; wordSplitted.length > i; i++) {
-            //Toast.makeText(wordsActivity, wordsSplitted[i], Toast.LENGTH_LONG).show();
-            Response.Listener<String> responseListener = new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    try {
-                        JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
-                        String link = jsonResponse.getString("image");
-                        //Toast.makeText(wordsActivity, link, Toast.LENGTH_LONG).show();
-                        new DownloadImage(link, image).execute();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
+                    String link = jsonResponse.getString("image");
+                    if(!link.equals("")) {
+                        wordsActivity.getListOfLinks().add(link);
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            };
-            ImageRequest imageRequest = new ImageRequest(wordSplitted[i], responseListener);
-            RequestQueue queue = Volley.newRequestQueue(wordsActivity);
-            queue.add(imageRequest);
-        }
+            }
+        };
+        ImageRequest imageRequest = new ImageRequest(word, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(wordsActivity);
+        queue.add(imageRequest);
     }
 
     public void getSignOfTheDay(final ImageView image, MainActivity mainActivity) {
