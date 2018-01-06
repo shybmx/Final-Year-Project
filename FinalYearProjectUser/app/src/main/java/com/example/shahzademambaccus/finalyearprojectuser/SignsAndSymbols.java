@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -18,11 +19,14 @@ public class SignsAndSymbols extends AppCompatActivity {
 
     boolean isSymbolCategory = false;
     String category = "";
-    //private String[] listOfWords;
     private ArrayList<String> listOfWords;
     private ArrayList<String> listOfLinks;
     private ImageDatabase imageDatabase;
-    private TableLayout table;
+
+
+    //private TableLayout table;
+    private GridView grid;
+
     private static int NUMBER_OF_COLUMNS = 1;
 
     @Override
@@ -35,8 +39,11 @@ public class SignsAndSymbols extends AppCompatActivity {
         category = bundle.getString("Category");
         String currentText = bundle.getString("CurrentText");
 
-        TableLayout table = (TableLayout) findViewById(R.id.tableForSignsAndSymbols);
-        this.table = table;
+
+        grid = (GridView) findViewById(R.id.SignsAndSymbolsGrid);
+
+        //TableLayout table = (TableLayout) findViewById(R.id.tableForSignsAndSymbols);
+        //this.table = table;
 
         listOfWords = new ArrayList<String>();
         listOfLinks = new ArrayList<String>();
@@ -103,11 +110,11 @@ public class SignsAndSymbols extends AppCompatActivity {
                 placeSignsAndSymbolsOnScreen();
             }
         }, 1000);
-
     }
 
     public void placeSignsAndSymbolsOnScreen(){
-        for (int row = 0; row < listOfLinks.size() - 1; row++){
+        grid.setAdapter(new GridAdapter(listOfLinks, this));
+        /*for (int row = 0; row < listOfLinks.size() - 1; row++){
             //create table
             TableRow tableRow = new TableRow(this);
             tableRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.MATCH_PARENT, 1.0f));
@@ -126,7 +133,7 @@ public class SignsAndSymbols extends AppCompatActivity {
                 tableRow.addView(image);
                 new DownloadImage(listOfLinks.get(row), image).execute();
             }
-        }
+        }*/
     }
 
     public void loadingToast(String number){
