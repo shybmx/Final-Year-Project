@@ -10,7 +10,7 @@
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $imageID, $word, $category, $image, $gif);
+    mysqli_stmt_bind_result($statement, $imageID, $word, $category, $image, $video);
 
     $response = array();
     $response["success"] = false;
@@ -21,7 +21,7 @@
         $response["word"] = $word;
         $response["category"] = $category;
         $response["image"] = $image;
-        $response["gif"] = $gif;
+        $response["video"] = $video;
     }
 
     print_r(json_encode($response));

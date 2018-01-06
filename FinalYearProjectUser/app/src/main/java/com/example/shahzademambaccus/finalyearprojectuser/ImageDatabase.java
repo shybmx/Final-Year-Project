@@ -35,7 +35,7 @@ public class ImageDatabase {
                     JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
                     String link = jsonResponse.getString("image");
                     if(!link.equals("")) {
-                        wordsActivity.getListOfLinks().add(link);
+                        wordsActivity.getListOfLinks().add(link); //TODO: crashes when invalid word is typed in
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -47,7 +47,7 @@ public class ImageDatabase {
         queue.add(imageRequest);
     }
 
-    public void getSignOfTheDay(final ImageView image, MainActivity mainActivity) {
+    public void getSignOfTheDay(final ImageView image, final MainActivity mainActivity) {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -56,6 +56,9 @@ public class ImageDatabase {
                     boolean success = jsonResponse.getBoolean("success");
                     if (success) {
                         String link = jsonResponse.getString("image");
+                        String video = jsonResponse.getString("video");
+                        Toast.makeText(mainActivity, "In ID: " + video, Toast.LENGTH_SHORT).show();
+                        mainActivity.setSignGIF(video);
                         new DownloadImage(link, image).execute();
                     } else {
                         //Toast.makeText(mainActivity, "Sign of the day cannot be retrieved", Toast.LENGTH_LONG).show();

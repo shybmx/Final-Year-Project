@@ -5,11 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageView image;
     private ImageDatabase imageDatabase;
+    private String signGIF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void previouslyVisitedSigns(View v){
         startActivity(new Intent(MainActivity.this, PreviouslyVisitedSigns.class));
+        //Toast.makeText(this, "In M: " + signGIF, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -49,10 +52,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Gif_Activity.class);
-                intent.putExtra("Sign", "");
-                startActivity(intent);
+                intent.putExtra("Sign", signGIF);
+                startActivity(intent); //TODO: passing the correct parameters
             }
         });
+    }
+
+    public void setSignGIF(String link){
+        signGIF = link;
     }
 
 }

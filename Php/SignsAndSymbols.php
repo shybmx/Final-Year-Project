@@ -9,7 +9,7 @@
     $response = array();
 
     while($row = mysqli_fetch_array($result)){
-        array_push($response, array("imageID"=>$row[0], "word"=>$row[1], "category"=>$row[2], "image"=>$row[3], "gif"=>$row[4]));
+        array_push($response, array("imageID"=>$row[0], "word"=>$row[1], "category"=>$row[2], "image"=>$row[3], "video"=>$row[4]));
     }
 
     echo json_encode(array("ListOfSignsAndSymbols"=>$response));
