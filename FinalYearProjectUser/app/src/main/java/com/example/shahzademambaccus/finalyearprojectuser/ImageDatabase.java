@@ -23,7 +23,7 @@ public class ImageDatabase {
 
     }
 
-    public void imageFromDatabase(final String word, final ImageView image, Words_Activity wordsActivity) {
+    public void imageFromDatabase(final String word, final ImageView image, final Words_Activity wordsActivity) {
         if (word.isEmpty()) {
             Toast.makeText(wordsActivity, "Please fill in box", Toast.LENGTH_LONG).show();
             return;
@@ -36,14 +36,9 @@ public class ImageDatabase {
                 public void onResponse(String response) {
                     try {
                         JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
-                        boolean success = jsonResponse.getBoolean("success");
-                        if (success) {
-                            String link = jsonResponse.getString("image");
-                            //Toast.makeText(wordsActivity, link, Toast.LENGTH_LONG).show();
-                            new DownloadImage(link, image).execute();
-                        } else {
-                            //Toast.makeText(wordsActivity, "Some Symbols cannot be found", Toast.LENGTH_LONG).show();
-                        }
+                        String link = jsonResponse.getString("image");
+                        //Toast.makeText(wordsActivity, link, Toast.LENGTH_LONG).show();
+                        new DownloadImage(link, image).execute();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

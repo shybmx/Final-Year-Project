@@ -14,7 +14,6 @@ public class DownloadImage extends AsyncTask<Void, Void, Bitmap>{
 
     private String imageURL;
     private ImageView image;
-    private ImageView[] imageArray;
 
     public DownloadImage(String imageURL, ImageView image){
         this.imageURL = imageURL;

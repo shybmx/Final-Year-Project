@@ -73,11 +73,8 @@ public class SignsAndSymbols extends AppCompatActivity {
     }
 
     public void clearSignAndSymbolButtonPressed(View view){
-        //EditText translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
-        //translatedSignsAndSymbolsET.setText("");
-        for(int i = 0; i < listOfLinks.size() - 1; i++){
-            Toast.makeText(this, "Link: " + i + " - " + listOfLinks.get(i), Toast.LENGTH_LONG).show();
-        }
+        EditText translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
+        translatedSignsAndSymbolsET.setText("");
     }
 
     public ArrayList<String> getListOfWords(){
@@ -118,6 +115,14 @@ public class SignsAndSymbols extends AppCompatActivity {
             for(int col = 0; col < NUMBER_OF_COLUMNS; col++){
                 ImageView image = new ImageView(this);
                 image.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT, 1.0f));
+                image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EditText textField = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
+                        //textField.setText(listOfWords.get(0));
+                        textField.getText().append(" " + listOfWords.get(0));
+                    }
+                });
                 tableRow.addView(image);
                 new DownloadImage(listOfLinks.get(row), image).execute();
             }
