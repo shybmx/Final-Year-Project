@@ -100,12 +100,12 @@ public class ImageDatabase {
         queue.add(countRequest);
     }
 
-    public void getSignsAndSymbols(String category, SignsAndSymbols signsAndSymbols, int numberToDisplay) {
+    public void getSignsAndSymbols(String category, SignsAndSymbols signsAndSymbols, int numberToDisplay, boolean isSymbol) {
         counter = 0;
         signsAndSymbols.clearLists(signsAndSymbols.getListOfWords());
         signsAndSymbols.clearLists(signsAndSymbols.getListOfLinks());
         while (counter < numberToDisplay){
-            MyResponseListener responseListener = new MyResponseListener(counter, signsAndSymbols);
+            MyResponseListener responseListener = new MyResponseListener(counter, signsAndSymbols, isSymbol);
             SignsAndSymbolsRequest signsAndSymbolsRequest = new SignsAndSymbolsRequest(category, responseListener);
             RequestQueue queue = Volley.newRequestQueue(signsAndSymbols);
             queue.add(signsAndSymbolsRequest);

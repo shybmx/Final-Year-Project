@@ -85,7 +85,7 @@ public class Words_Activity extends AppCompatActivity {
     }
 
     public void displayWords(){
-        grid.setAdapter(new GridAdapter(listOfImageLinks, this));
+        grid.setAdapter(new GridAdapter(listOfImageLinks, this, true));
     }
 
     public void makeToast(String s){

@@ -38,7 +38,8 @@
         android:layout_toStartOf="@+id/ClearSignAndSymbolBtn"
         android:ems="10"
         android:hint="Translated text will be here"
-        android:inputType="textPersonName" />
+        android:inputType="none"
+        android:editable="false"/>
 
     <GridView
         android:id="@+id/SignsAndSymbolsGrid"

@@ -9,16 +9,20 @@ import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class GridAdapter extends BaseAdapter {
 
     private ArrayList<String> arrayList;
     private Context context;
+    private boolean isSymbol;
 
-    public GridAdapter(ArrayList<String> list, Context context){
+    public GridAdapter(ArrayList<String> list, Context context, boolean isSymbol){
        arrayList = list;
        this.context = context;
+       this.isSymbol = isSymbol;
     }
 
     @Override
@@ -48,7 +52,11 @@ public class GridAdapter extends BaseAdapter {
         }else{
             holder = (ViewHolder) row.getTag();
         }
-        new DownloadImage(arrayList.get(position), holder.getImageView()).execute();
+        if(isSymbol) {
+            new DownloadImage(arrayList.get(position), holder.getImageView()).execute();
+        }else{
+            Glide.with(context).load(arrayList.get(position)).asGif().into(holder.getImageView());
+        }
         return row;
     }
 }

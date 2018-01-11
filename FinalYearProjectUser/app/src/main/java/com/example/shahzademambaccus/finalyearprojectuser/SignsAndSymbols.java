@@ -18,12 +18,12 @@ import java.util.ArrayList;
 
 public class SignsAndSymbols extends AppCompatActivity{
 
-    boolean isSymbolCategory = false;
-    String category = "";
+    private String category = "";
     private ArrayList<String> listOfWords;
     private ArrayList<String> listOfLinks;
     private ImageDatabase imageDatabase;
     private GridView grid;
+    private boolean isSymbolCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +39,8 @@ public class SignsAndSymbols extends AppCompatActivity{
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                EditText textField = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
-                textField.getText().append(" " + listOfWords.get(position));
+                //EditText textField = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
+                //textField.getText().append(" " + listOfWords.get(position));
             }
         });
 
@@ -100,7 +100,7 @@ public class SignsAndSymbols extends AppCompatActivity{
     }
 
     public void getAllSignsAndSymbols(int numberOfSignsAndSymbols){
-        imageDatabase.getSignsAndSymbols(category, this, numberOfSignsAndSymbols);
+        imageDatabase.getSignsAndSymbols(category, this, numberOfSignsAndSymbols, isSymbolCategory);
         Handler handler = new Handler();
         loadingToast("..");
         handler.postDelayed(new Runnable() {
@@ -112,7 +112,7 @@ public class SignsAndSymbols extends AppCompatActivity{
     }
 
     public void placeSignsAndSymbolsOnScreen(){
-        grid.setAdapter(new GridAdapter(listOfLinks, this));
+        grid.setAdapter(new GridAdapter(listOfLinks, this, isSymbolCategory));
     }
 
     public void loadingToast(String number){

@@ -100,7 +100,9 @@ public class Categories extends AppCompatActivity {
 
     public void clearButtonPressed(){
         EditText translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedTxt);
-        translatedSignsAndSymbolsET.setText("");
+        if(translatedSignsAndSymbolsET.getText().equals("")){
+            translatedSignsAndSymbolsET.getText().clear();
+        }
     }
 
     public void createNewActivity(View v, String category){

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 public class Gif_Activity extends AppCompatActivity {
 
     private String gifLink = "";
@@ -22,6 +24,6 @@ public class Gif_Activity extends AppCompatActivity {
 
     public void playVideoGIF(){
         ImageView video = (ImageView) findViewById(R.id.GIFPlayer);
-        new DownloadImage(gifLink, video);
+        Glide.with(this).load(gifLink).asGif().into(video);
     }
 }
