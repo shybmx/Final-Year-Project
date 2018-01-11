@@ -1,39 +1,47 @@
 package com.example.shahzademambaccus.finalyearprojectuser;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class Words_Activity extends AppCompatActivity {
     private ImageDatabase imageDatabase;
     private GridView grid;
-    private ArrayList<String> listOfLinks;
+    private ArrayList<String> listOfImageLinks;
+    private ArrayList<String> listOfGifLinks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_words_);
         grid = (GridView) findViewById(R.id.TranslatedSignsGrid);
-        listOfLinks = new ArrayList<String>();
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(Words_Activity.this, Gif_Activity.class);
+                intent.putExtra("Sign", listOfGifLinks.get(position));
+                startActivity(intent);
+            }
+        });
+        listOfImageLinks = new ArrayList<String>();
+        listOfGifLinks = new ArrayList<String>();
         this.imageDatabase = new ImageDatabase();
     }
 
     public void search(View v) {
         clearScreen();
-        clearLists(listOfLinks);
+        clearLists(listOfImageLinks);
+        clearLists(listOfGifLinks);
         String[] tempArray = getSearchTerm().split(" ");
         for(int i = 0; i < tempArray.length; i++){
             imageDatabase.imageFromDatabase(tempArray[i], this);
@@ -47,8 +55,12 @@ public class Words_Activity extends AppCompatActivity {
         }, 1000);
     }
 
-    public ArrayList<String> getListOfLinks(){
-        return listOfLinks;
+    public ArrayList<String> getListOfImageLinks(){
+        return listOfImageLinks;
+    }
+
+    public ArrayList<String> getListOfGifLinks(){
+        return listOfGifLinks;
     }
 
     public void clearScreen(){
@@ -73,7 +85,11 @@ public class Words_Activity extends AppCompatActivity {
     }
 
     public void displayWords(){
-        grid.setAdapter(new GridAdapter(listOfLinks, this));
+        grid.setAdapter(new GridAdapter(listOfImageLinks, this));
+    }
+
+    public void makeToast(String s){
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
 
 }

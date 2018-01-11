@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Gif_Activity.class);
                 intent.putExtra("Sign", signGIF);
-                startActivity(intent); //TODO: passing the correct parameters
+                startActivity(intent);
             }
         });
     }

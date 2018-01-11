@@ -1,14 +1,13 @@
 package com.example.shahzademambaccus.finalyearprojectuser;
 
 import android.widget.ImageView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -33,9 +32,14 @@ public class ImageDatabase {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
-                    String link = jsonResponse.getString("image");
-                    if(!link.equals("")) {
-                        wordsActivity.getListOfLinks().add(link); //TODO: crashes when invalid word is typed in
+                    boolean success = jsonResponse.getBoolean("success");
+                    if(success){
+                        String imageLink = jsonResponse.getString("image");
+                        String gifLink = jsonResponse.getString("video");
+                        wordsActivity.getListOfImageLinks().add(imageLink);
+                        wordsActivity.getListOfGifLinks().add(gifLink);
+                    }else{
+                        Toast.makeText(wordsActivity, word + " Cannot be found", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -57,7 +61,7 @@ public class ImageDatabase {
                     if (success) {
                         String link = jsonResponse.getString("image");
                         String video = jsonResponse.getString("video");
-                        Toast.makeText(mainActivity, "In ID: " + video, Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(mainActivity, "In ID: " + video, Toast.LENGTH_SHORT).show();
                         mainActivity.setSignGIF(video);
                         new DownloadImage(link, image).execute();
                     } else {

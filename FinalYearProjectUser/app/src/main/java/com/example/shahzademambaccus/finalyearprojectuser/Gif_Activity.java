@@ -8,15 +8,15 @@ import android.widget.Toast;
 
 public class Gif_Activity extends AppCompatActivity {
 
-    String gifLink;
+    private String gifLink = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gif);
-        Bundle bundle = new Bundle();
-        String gifLink = bundle.getString("Sign");
-        Toast.makeText(this, "in GA: " + gifLink, Toast.LENGTH_SHORT).show();
+        Bundle bundle = getIntent().getExtras();
+        this.gifLink = bundle.getString("Sign");
+        //Toast.makeText(this, "in GA: " + gifLink, Toast.LENGTH_SHORT).show();
         playVideoGIF();
     }
 
