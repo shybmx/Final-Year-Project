@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView image;
     private ImageDatabase imageDatabase;
     private String signGIF;
+    private String displayWord;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Gif_Activity.class);
                 intent.putExtra("Sign", signGIF);
+                intent.putExtra("DisplayWord", displayWord);
                 startActivity(intent);
             }
         });
@@ -60,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void setSignGIF(String link){
         signGIF = link;
+    }
+
+    public void setWord(String word){
+        displayWord = word;
     }
 
 }

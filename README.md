@@ -15,7 +15,6 @@ TODO: Create register page
             - Check if username exist
         - Password
 TODO: Implement sessions
-TODO: Place word under GIF in Gif_Activity
 TODO: Implement previously visited signs
 
 TODO: Cleanup

@@ -15,4 +15,15 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         />
+
+    <TextView
+        android:id="@+id/SelectedWord"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/GIFPlayer"
+        android:layout_centerHorizontal="true"
+        android:text="TextView"
+        android:textSize="40dp"/>
+
 </RelativeLayout>

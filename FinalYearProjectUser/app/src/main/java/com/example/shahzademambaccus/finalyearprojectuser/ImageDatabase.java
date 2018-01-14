@@ -16,7 +16,6 @@ public class ImageDatabase {
 
     int count = 0;
     int counter = 0;
-    private String[] listOfWords;
 
     public ImageDatabase() {
 
@@ -36,8 +35,10 @@ public class ImageDatabase {
                     if(success){
                         String imageLink = jsonResponse.getString("image");
                         String gifLink = jsonResponse.getString("video");
+                        String word = jsonResponse.getString("word");
                         wordsActivity.getListOfImageLinks().add(imageLink);
                         wordsActivity.getListOfGifLinks().add(gifLink);
+                        wordsActivity.getListOfWords().add(word);
                     }else{
                         Toast.makeText(wordsActivity, word + " Cannot be found", Toast.LENGTH_SHORT).show();
                     }
@@ -61,8 +62,10 @@ public class ImageDatabase {
                     if (success) {
                         String link = jsonResponse.getString("image");
                         String video = jsonResponse.getString("video");
+                        String word = jsonResponse.getString("word");
                         //Toast.makeText(mainActivity, "In ID: " + video, Toast.LENGTH_SHORT).show();
                         mainActivity.setSignGIF(video);
+                        mainActivity.setWord(word);
                         new DownloadImage(link, image).execute();
                     } else {
                         //Toast.makeText(mainActivity, "Sign of the day cannot be retrieved", Toast.LENGTH_LONG).show();

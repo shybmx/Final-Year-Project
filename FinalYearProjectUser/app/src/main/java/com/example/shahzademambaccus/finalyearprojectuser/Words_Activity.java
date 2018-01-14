@@ -19,6 +19,7 @@ public class Words_Activity extends AppCompatActivity {
     private GridView grid;
     private ArrayList<String> listOfImageLinks;
     private ArrayList<String> listOfGifLinks;
+    private ArrayList<String> listOfWords;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +31,13 @@ public class Words_Activity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(Words_Activity.this, Gif_Activity.class);
                 intent.putExtra("Sign", listOfGifLinks.get(position));
+                intent.putExtra("DisplayWord", listOfWords.get(position));
                 startActivity(intent);
             }
         });
         listOfImageLinks = new ArrayList<String>();
         listOfGifLinks = new ArrayList<String>();
+        listOfWords = new ArrayList<String>();
         this.imageDatabase = new ImageDatabase();
     }
 
@@ -42,6 +45,7 @@ public class Words_Activity extends AppCompatActivity {
         clearScreen();
         clearLists(listOfImageLinks);
         clearLists(listOfGifLinks);
+        clearLists(listOfWords);
         String[] tempArray = getSearchTerm().split(" ");
         for(int i = 0; i < tempArray.length; i++){
             imageDatabase.imageFromDatabase(tempArray[i], this);
@@ -61,6 +65,10 @@ public class Words_Activity extends AppCompatActivity {
 
     public ArrayList<String> getListOfGifLinks(){
         return listOfGifLinks;
+    }
+
+    public ArrayList<String> getListOfWords(){
+        return listOfWords;
     }
 
     public void clearScreen(){
