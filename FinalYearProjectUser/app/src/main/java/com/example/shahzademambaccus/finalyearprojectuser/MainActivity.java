@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void previouslyVisitedSigns(View v){
         startActivity(new Intent(MainActivity.this, PreviouslyVisitedSigns.class));
-        //Toast.makeText(this, "In M: " + signGIF, Toast.LENGTH_SHORT).show();
     }
 
 

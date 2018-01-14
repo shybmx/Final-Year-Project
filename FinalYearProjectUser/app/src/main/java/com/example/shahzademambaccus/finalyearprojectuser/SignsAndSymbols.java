@@ -19,11 +19,14 @@ import java.util.ArrayList;
 public class SignsAndSymbols extends AppCompatActivity{
 
     private String category = "";
+    private String loadingWord = "";
     private ArrayList<String> listOfWords;
     private ArrayList<String> listOfLinks;
     private ImageDatabase imageDatabase;
     private GridView grid;
     private boolean isSymbolCategory;
+    private EditText textField;
+    int millisecondsToLoad = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +39,17 @@ public class SignsAndSymbols extends AppCompatActivity{
         String currentText = bundle.getString("CurrentText");
 
         grid = (GridView) findViewById(R.id.SignsAndSymbolsGrid);
+
+        textField = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
+
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //EditText textField = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
-                //textField.getText().append(" " + listOfWords.get(position));
+                if(!textField.getText().equals("")) {
+                    textField.getText().append(" " + listOfWords.get(position));
+                    return;
+                }
+                textField.setText(listOfWords.get(position));
             }
         });
 
@@ -49,14 +58,21 @@ public class SignsAndSymbols extends AppCompatActivity{
 
         this.imageDatabase = new ImageDatabase();
         imageDatabase.signsAndSymbolsCounter(category, this);
+
+        if(isSymbolCategory){
+            loadingWord = "Symbols";
+        }else{
+            loadingWord = "Signs";
+        }
+
         Handler handler = new Handler();
-        loadingToast(".");
+        loadingToast("Gathering " + loadingWord);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                getAllSignsAndSymbols(imageDatabase.getSignsAndSymbolsCount());
             }
-        },1000 );
+        },millisecondsToLoad );
         setCurrentText(currentText);
     }
 
@@ -68,19 +84,16 @@ public class SignsAndSymbols extends AppCompatActivity{
     }
 
     public String getCurrentText(){
-        EditText translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
-        String translatedSignsAndSymbolsTxt = translatedSignsAndSymbolsET.getText().toString();
+        String translatedSignsAndSymbolsTxt = textField.getText().toString();
         return translatedSignsAndSymbolsTxt;
     }
 
     public void setCurrentText(String currentText){
-        EditText translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
-        translatedSignsAndSymbolsET.setText(currentText);
+        textField.setText(currentText);
     }
 
     public void clearSignAndSymbolButtonPressed(View view){
-        EditText translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
-        translatedSignsAndSymbolsET.setText("");
+        textField.setText("");
     }
 
     public ArrayList<String> getListOfWords(){
@@ -102,20 +115,20 @@ public class SignsAndSymbols extends AppCompatActivity{
     public void getAllSignsAndSymbols(int numberOfSignsAndSymbols){
         imageDatabase.getSignsAndSymbols(category, this, numberOfSignsAndSymbols, isSymbolCategory);
         Handler handler = new Handler();
-        loadingToast("..");
+        loadingToast("Displaying " + loadingWord);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 placeSignsAndSymbolsOnScreen();
             }
-        }, 1000);
+        }, millisecondsToLoad);
     }
 
     public void placeSignsAndSymbolsOnScreen(){
         grid.setAdapter(new GridAdapter(listOfLinks, this, isSymbolCategory));
     }
 
-    public void loadingToast(String number){
-        Toast.makeText(this, "Loading" + number, Toast.LENGTH_SHORT).show();
+    public void loadingToast(String word){
+        Toast.makeText(this, "Loading: " + word, Toast.LENGTH_SHORT).show();
     }
 }
