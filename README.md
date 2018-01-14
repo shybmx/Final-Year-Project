@@ -1,6 +1,22 @@
 # Final Year Project
 
-TODO: Need to make sure the login checks if the email is already in used.
-TODO: Figure out how to check if the user is already logged in
-TODO: Get information from server and display on screen
-TODO: Once registered. Automatically transfer E-Mail into login page
+TODO: Make onclick work with grid view,
+        - Place text in textedit bar
+
+TODO: Create login page
+        - GUI
+        - Database Connection
+        - Check if password is correct
+            - Maybe implement encryption
+TODO: Create register page
+        - GUI
+        - Database Connection
+        - Username
+            - Check if username exist
+        - Password
+TODO: Implement sessions
+TODO: Place word under GIF in Gif_Activity
+TODO: Implement previously visited signs
+
+TODO: Cleanup
+
