@@ -56,6 +56,7 @@ public class GridAdapter extends BaseAdapter {
             new DownloadImage(arrayOfImageView.get(position), holder.getImageView(), arrayOfWords.get(position), holder.getTextView()).execute();
         }else{
             Glide.with(context).load(arrayOfImageView.get(position)).asGif().into(holder.getImageView());
+            holder.getTextView().setText(arrayOfWords.get(position));
         }
         return row;
     }
