@@ -1,11 +1,11 @@
 package com.example.shahzademambaccus.finalyearprojectuser;
 
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -50,7 +50,7 @@ public class ImageDatabase {
         queue.add(imageRequest);
     }
 
-    public void getSignOfTheDay(final ImageView image, final MainActivity mainActivity) {
+    public void getSignOfTheDay(final ImageView image, final MainActivity mainActivity, final TextView textView) {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -64,7 +64,7 @@ public class ImageDatabase {
                         //Toast.makeText(mainActivity, "In ID: " + video, Toast.LENGTH_SHORT).show();
                         mainActivity.setSignGIF(video);
                         mainActivity.setWord(word);
-                        new DownloadImage(link, image).execute();
+                        new DownloadImage(link, image, word, textView).execute();
                     } else {
                         //Toast.makeText(mainActivity, "Sign of the day cannot be retrieved", Toast.LENGTH_LONG).show();
                     }

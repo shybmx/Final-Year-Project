@@ -125,7 +125,7 @@ public class SignsAndSymbols extends AppCompatActivity{
     }
 
     public void placeSignsAndSymbolsOnScreen(){
-        grid.setAdapter(new GridAdapter(listOfLinks, this, isSymbolCategory));
+        grid.setAdapter(new GridAdapter(listOfLinks, listOfWords,this, isSymbolCategory));
     }
 
     public void loadingToast(String word){

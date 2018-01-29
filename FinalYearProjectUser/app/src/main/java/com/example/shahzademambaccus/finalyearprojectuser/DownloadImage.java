@@ -4,7 +4,9 @@ package com.example.shahzademambaccus.finalyearprojectuser;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -14,11 +16,14 @@ public class DownloadImage extends AsyncTask<Void, Void, Bitmap>{
 
     private String imageURL;
     private ImageView image;
+    private String word;
+    private TextView textView;
 
-    public DownloadImage(String imageURL, ImageView image){
+    public DownloadImage(String imageURL, ImageView image, String word, TextView textView){
         this.imageURL = imageURL;
         this.image = image;
-
+        this.word = word;
+        this.textView = textView;
     }
 
 
@@ -41,6 +46,7 @@ public class DownloadImage extends AsyncTask<Void, Void, Bitmap>{
         super.onPostExecute(bitmap);
         if(bitmap != null){
              image.setImageBitmap(bitmap);
+             textView.setText(word);
         }
     }
 
