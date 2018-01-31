@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.shahzademambaccus.finalyearprojectuser.MainActivity">
 
+    <include
+        android:id="@+id/Tool_Bar_Main"
+        layout="@layout/tool_bar"
+        />
+
     <Button
         android:id="@+id/textToBSLBtn"
         android:layout_width="wrap_content"
@@ -17,7 +22,8 @@
         android:gravity="left|center_vertical"
         android:onClick="textToBSLActivity"
         android:text="Text to BSL"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:layout_below="@id/Tool_Bar_Main"/>
 
     <Button
         android:id="@+id/BSLSymbolsToTextBtn"
@@ -62,10 +68,11 @@
         android:id="@+id/SignOfTheDayTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/previouslyVisitedSign"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textSize="30sp"
-        android:text="Sign Of The Day" />
+        android:layout_marginTop="33dp"
+        android:text="Sign Of The Day"
+        android:textSize="30sp" />
 
     <ImageView
         android:id="@+id/SignOfTheDayImg"

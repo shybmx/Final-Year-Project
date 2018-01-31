@@ -6,6 +6,11 @@
     android:layout_height="match_parent"
     tools:context="com.example.shahzademambaccus.finalyearprojectuser.Words_Activity">
 
+    <include
+        android:id="@+id/Tool_Bar_Words"
+        layout="@layout/tool_bar"
+        />
+
     <Button
         android:id="@+id/SearchBtn"
         android:layout_width="wrap_content"
@@ -31,17 +36,6 @@
         android:layout_toStartOf="@+id/SearchBtn"
         android:hint="Search"/>
 
-    <TextView
-        android:id="@+id/BSLSymbolTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="15sp"
-        android:textSize="35sp"
-        android:text="BSL Symbols" />
-
     <GridView
         android:id="@+id/TranslatedSignsGrid"
         android:layout_width="match_parent"
@@ -54,6 +48,6 @@
         android:verticalSpacing="10dp"
         android:columnWidth="120dp"
         android:stretchMode="spacingWidthUniform"
-        android:layout_below="@+id/BSLSymbolTitle" />
+        android:layout_below="@+id/Tool_Bar_Words" />
 
 </RelativeLayout>

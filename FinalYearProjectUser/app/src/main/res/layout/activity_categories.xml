@@ -6,11 +6,20 @@
     android:layout_height="match_parent"
     tools:context="com.example.shahzademambaccus.finalyearprojectuser.Categories">
 
+    <include
+        android:id="@+id/Tool_Bar"
+        layout="@layout/tool_bar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="434dp" />
+
 
     <ScrollView
         android:id="@+id/ScrollViewCategory"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Tool_Bar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,12 +68,6 @@
                 android:text="Communication"
                 android:onClick="communicationButtonPressed"/>
 
-            <Button
-                android:id="@+id/DemandsBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Demands"
-                android:onClick="demandsButtonPressed"/>
 
             <Button
                 android:id="@+id/AnimalsBtn"
@@ -94,12 +97,6 @@
                 android:text="Feelings"
                 android:onClick="feelingsButtonPressed"/>
 
-            <Button
-                android:id="@+id/MovementBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Movement"
-                android:onClick="movementButtonPressed"/>
 
             <Button
                 android:id="@+id/SizeAndPositionBtn"
@@ -107,6 +104,20 @@
                 android:layout_height="wrap_content"
                 android:text="Size and Positions"
                 android:onClick="sizeAndPositionButtonPressed"/>
+
+            <Button
+                android:id="@+id/RoomBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rooms"
+                android:onClick="roomButtonPressed"/>
+
+            <Button
+                android:id="@+id/miscellaneousBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Miscellaneous"
+                android:onClick="miscellaneousButtonPressed"/>
         </LinearLayout>
 
     </ScrollView>

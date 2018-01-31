@@ -6,4 +6,9 @@
     android:layout_height="match_parent"
     tools:context="com.example.shahzademambaccus.finalyearprojectuser.PreviouslyVisitedSigns">
 
+    <include
+        android:id="@+id/Tool_Bar_Previously_Visited"
+        layout="@layout/tool_bar"
+        />
+
 </RelativeLayout>

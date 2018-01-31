@@ -9,11 +9,9 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SignsAndSymbols extends AppCompatActivity{
@@ -25,7 +23,9 @@ public class SignsAndSymbols extends AppCompatActivity{
     private ImageDatabase imageDatabase;
     private GridView grid;
     private boolean isSymbolCategory;
-    private EditText textField;
+    private EditText translatedText;
+    private TextView title;
+    private ImageView backButton;
     int millisecondsToLoad = 1000;
 
     @Override
@@ -38,20 +38,20 @@ public class SignsAndSymbols extends AppCompatActivity{
         category = bundle.getString("Category");
         String currentText = bundle.getString("CurrentText");
 
-        //Toast.makeText(this, category, Toast.LENGTH_SHORT).show();
-
         grid = (GridView) findViewById(R.id.SignsAndSymbolsGrid);
 
-        textField = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
+        translatedText = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
+
+        setToolbar();
 
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(!textField.getText().equals("")) {
-                    textField.getText().append(" " + listOfWords.get(position));
+                if(!translatedText.getText().equals("")) {
+                    translatedText.getText().append(" " + listOfWords.get(position));
                     return;
                 }
-                textField.setText(listOfWords.get(position));
+                translatedText.setText(listOfWords.get(position));
             }
         });
 
@@ -78,24 +78,17 @@ public class SignsAndSymbols extends AppCompatActivity{
         setCurrentText(currentText);
     }
 
-    public void backButtonPressed(View v){
-        Intent intent = new Intent(SignsAndSymbols.this, Categories.class);
-        intent.putExtra("Symbol", isSymbolCategory);
-        intent.putExtra("CurrentText", getCurrentText());
-        startActivity(intent);
-    }
-
     public String getCurrentText(){
-        String translatedSignsAndSymbolsTxt = textField.getText().toString();
+        String translatedSignsAndSymbolsTxt = translatedText.getText().toString();
         return translatedSignsAndSymbolsTxt;
     }
 
     public void setCurrentText(String currentText){
-        textField.setText(currentText);
+        translatedText.setText(currentText);
     }
 
     public void clearSignAndSymbolButtonPressed(View view){
-        textField.setText("");
+        translatedText.setText("");
     }
 
     public ArrayList<String> getListOfWords(){
@@ -132,5 +125,25 @@ public class SignsAndSymbols extends AppCompatActivity{
 
     public void loadingToast(String word){
         Toast.makeText(this, "Loading: " + word, Toast.LENGTH_SHORT).show();
+    }
+
+    public void setToolbar(){
+        title = (TextView) findViewById(R.id.Tool_Bar_Text);
+        if(isSymbolCategory) {
+            title.setText("Symbols");
+        }else{
+            title.setText("Signs");
+        }
+
+        backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignsAndSymbols.this, Categories.class);
+                intent.putExtra("Symbol", isSymbolCategory);
+                intent.putExtra("CurrentText", getCurrentText());
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -7,6 +7,10 @@
     android:background="@color/black"
     tools:context="com.example.shahzademambaccus.finalyearprojectuser.Gif_Activity">
 
+    <include
+        android:id="@+id/Tool_Bar_Gif"
+        layout="@layout/tool_bar"
+        />
 
     <ImageView
         android:id="@+id/GIFPlayer"

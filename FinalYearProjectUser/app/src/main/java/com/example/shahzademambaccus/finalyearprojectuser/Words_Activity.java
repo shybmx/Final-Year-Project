@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.lang.reflect.Array;
@@ -20,12 +22,16 @@ public class Words_Activity extends AppCompatActivity {
     private ArrayList<String> listOfImageLinks;
     private ArrayList<String> listOfGifLinks;
     private ArrayList<String> listOfWords;
+    private int timeDelay = 1000;
+    private TextView title;
+    private ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_words_);
         grid = (GridView) findViewById(R.id.TranslatedSignsGrid);
+        setToolBar();
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -51,12 +57,13 @@ public class Words_Activity extends AppCompatActivity {
             imageDatabase.imageFromDatabase(tempArray[i], this);
         }
         Handler handler = new Handler();
+        makeToast("Loading: Gathering Symbols");
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 displayWords();
             }
-        }, 1000);
+        }, timeDelay);
     }
 
     public ArrayList<String> getListOfImageLinks(){
@@ -93,11 +100,24 @@ public class Words_Activity extends AppCompatActivity {
     }
 
     public void displayWords(){
+        makeToast("Loading: Displaying Symbols");
         grid.setAdapter(new GridAdapter(listOfImageLinks, listOfWords,this, true));
     }
 
     public void makeToast(String s){
         Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
+    }
+
+    public void setToolBar(){
+        title = (TextView) findViewById(R.id.Tool_Bar_Text);
+        title.setText("BSL Symbols");
+        backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Words_Activity.this, MainActivity.class));
+            }
+        });
     }
 
 }

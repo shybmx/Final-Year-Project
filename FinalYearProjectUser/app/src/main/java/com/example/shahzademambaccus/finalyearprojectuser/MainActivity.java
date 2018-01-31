@@ -14,15 +14,18 @@ public class MainActivity extends AppCompatActivity {
     private ImageDatabase imageDatabase;
     private String signGIF;
     private String displayWord;
-    private TextView textView;
+    private TextView symbolText;
+    private TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = (TextView) findViewById(R.id.SignOfTheDayWord);
+        symbolText = (TextView) findViewById(R.id.SignOfTheDayWord);
         this.imageDatabase = new ImageDatabase();
         image = (ImageView) findViewById(R.id.SignOfTheDayImg);
+        title = (TextView) findViewById(R.id.Tool_Bar_Text);
+        title.setText("Application name");
         getSignOfTheDay();
     }
 
@@ -50,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void getSignOfTheDay(){
-        imageDatabase.getSignOfTheDay(image, this, textView);
+        imageDatabase.getSignOfTheDay(image, this, symbolText);
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

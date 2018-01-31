@@ -5,13 +5,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class Categories extends AppCompatActivity {
 
     boolean isSymbolCategory = false;
     private EditText translatedSignsAndSymbolsET;
     private static final String[] categories = new String[13];
+    private TextView title;
+    private ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,23 +25,24 @@ public class Categories extends AppCompatActivity {
         String currentText = bundle.getString("CurrentText");
         translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedTxt);
         setCurrentText(currentText);
+        setToolBar();
         categories[0] = "foodanddrinks";
         categories[1] = "householdobjects";
         categories[2] = "questions";
         categories[3] = "verbs";
         categories[4] = "communications";
-        categories[5] = "demands";
-        categories[6] = "animals";
-        categories[7] = "connectives";
-        categories[8] = "outdoorobjects";
-        categories[9] = "feelings";
-        categories[10] = "movement";
-        categories[11] = "size";
-        categories[12] = "familyandpeople";
+        categories[5] = "animals";
+        categories[6] = "connectives";
+        categories[7] = "outdoorobjects";
+        categories[8] = "feelings";
+        categories[9] = "size";
+        categories[10] = "familyandpeople";
+        categories[11] = "rooms";
+        categories[12] = "miscellaneous";
     }
 
     public void familyAndPeopleButtonPressed(View v){
-        createNewActivity(v,categories[12]);
+        createNewActivity(v,categories[10]);
     }
 
     public void foodAndDrinksButtonPressed(View v){
@@ -61,32 +65,32 @@ public class Categories extends AppCompatActivity {
         createNewActivity(v, categories[4]);
     }
 
-    public void demandsButtonPressed(View v){
+    public void animalsButtonPressed(View v){
         createNewActivity(v, categories[5]);
     }
 
-    public void animalsButtonPressed(View v){
+    public void connectivesButtonPressed(View v){
         createNewActivity(v, categories[6]);
     }
 
-    public void connectivesButtonPressed(View v){
+    public void outdoorObjectsButtonPressed(View v){
         createNewActivity(v, categories[7]);
     }
 
-    public void outdoorObjectsButtonPressed(View v){
+    public void feelingsButtonPressed(View v){
         createNewActivity(v, categories[8]);
     }
 
-    public void feelingsButtonPressed(View v){
+    public void sizeAndPositionButtonPressed(View v){
         createNewActivity(v, categories[9]);
     }
 
-    public void movementButtonPressed(View v){
-        createNewActivity(v, categories[10]);
+    public void roomButtonPressed(View v){
+        createNewActivity(v, categories[11]);
     }
 
-    public void sizeAndPositionButtonPressed(View v){
-        createNewActivity(v, categories[11]);
+    public void miscellaneousButtonPressed(View v){
+        createNewActivity(v, categories[12]);
     }
 
     public String getCurrentText(){
@@ -110,5 +114,17 @@ public class Categories extends AppCompatActivity {
         intent.putExtra("Category", category);
         intent.putExtra("CurrentText", getCurrentText());
         startActivity(intent);
+    }
+
+    public void setToolBar(){
+        title = (TextView) findViewById(R.id.Tool_Bar_Text);
+        backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
+        title.setText("Catgegories");
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Categories.this, MainActivity.class));
+            }
+        });
     }
 }
