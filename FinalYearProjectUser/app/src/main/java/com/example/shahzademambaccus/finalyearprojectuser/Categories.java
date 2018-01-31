@@ -10,6 +10,7 @@ import android.widget.Toast;
 public class Categories extends AppCompatActivity {
 
     boolean isSymbolCategory = false;
+    private EditText translatedSignsAndSymbolsET;
     private static final String[] categories = new String[13];
 
     @Override
@@ -19,12 +20,13 @@ public class Categories extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         isSymbolCategory = bundle.getBoolean("Symbol");
         String currentText = bundle.getString("CurrentText");
+        translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedTxt);
         setCurrentText(currentText);
         categories[0] = "foodanddrinks";
         categories[1] = "householdobjects";
         categories[2] = "questions";
         categories[3] = "verbs";
-        categories[4] = "greetings";
+        categories[4] = "communications";
         categories[5] = "demands";
         categories[6] = "animals";
         categories[7] = "connectives";
@@ -55,7 +57,7 @@ public class Categories extends AppCompatActivity {
         createNewActivity(v, categories[3]);
     }
 
-    public void greetingsButtonPressed(View v){
+    public void communicationButtonPressed(View v){
         createNewActivity(v, categories[4]);
     }
 
@@ -88,19 +90,16 @@ public class Categories extends AppCompatActivity {
     }
 
     public String getCurrentText(){
-        EditText translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedTxt);
         String translatedSignsAndSymbolsTxt = translatedSignsAndSymbolsET.getText().toString();
         return translatedSignsAndSymbolsTxt;
     }
 
     public void setCurrentText(String currentText){
-        EditText translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedTxt);
         translatedSignsAndSymbolsET.setText(currentText);
     }
 
-    public void clearButtonPressed(){
-        EditText translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedTxt);
-        if(translatedSignsAndSymbolsET.getText().equals("")){
+    public void clearButtonPressed(View v){
+        if(!translatedSignsAndSymbolsET.getText().equals("")){
             translatedSignsAndSymbolsET.getText().clear();
         }
     }

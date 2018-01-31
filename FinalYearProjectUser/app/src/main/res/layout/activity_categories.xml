@@ -8,6 +8,7 @@
 
 
     <ScrollView
+        android:id="@+id/ScrollViewCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -52,11 +53,11 @@
                 android:onClick="verbsButtonPressed"/>
 
             <Button
-                android:id="@+id/GreetingsBtn"
+                android:id="@+id/CommuicationBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Greetings"
-                android:onClick="greetingsButtonPressed"/>
+                android:text="Communication"
+                android:onClick="communicationButtonPressed"/>
 
             <Button
                 android:id="@+id/DemandsBtn"
@@ -122,6 +123,7 @@
         android:ems="10"
         android:inputType="none"
         android:editable="false"
+        android:layout_below="@+id/ScrollViewCategory"
         android:hint="Translated text will be here" />
 
     <Button

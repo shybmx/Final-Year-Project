@@ -38,6 +38,8 @@ public class SignsAndSymbols extends AppCompatActivity{
         category = bundle.getString("Category");
         String currentText = bundle.getString("CurrentText");
 
+        //Toast.makeText(this, category, Toast.LENGTH_SHORT).show();
+
         grid = (GridView) findViewById(R.id.SignsAndSymbolsGrid);
 
         textField = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
