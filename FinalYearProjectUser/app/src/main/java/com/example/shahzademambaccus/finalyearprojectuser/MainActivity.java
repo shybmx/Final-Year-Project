@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         this.imageDatabase = new ImageDatabase();
         image = (ImageView) findViewById(R.id.SignOfTheDayImg);
         title = (TextView) findViewById(R.id.Tool_Bar_Text);
-        title.setText("Application name");
+        title.setText("CommSigns");
         getSignOfTheDay();
     }
 
