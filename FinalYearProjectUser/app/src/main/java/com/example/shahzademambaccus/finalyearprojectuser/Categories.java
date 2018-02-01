@@ -119,6 +119,7 @@ public class Categories extends AppCompatActivity {
     public void setToolBar(){
         title = (TextView) findViewById(R.id.Tool_Bar_Text);
         backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
+        backButton.setImageResource(R.drawable.back);
         title.setText("Catgegories");
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -134,8 +134,8 @@ public class SignsAndSymbols extends AppCompatActivity{
         }else{
             title.setText("Signs");
         }
-
         backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
+        backButton.setImageResource(R.drawable.back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

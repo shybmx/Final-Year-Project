@@ -112,6 +112,7 @@ public class Words_Activity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.Tool_Bar_Text);
         title.setText("BSL Symbols");
         backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
+        backButton.setImageResource(R.drawable.back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

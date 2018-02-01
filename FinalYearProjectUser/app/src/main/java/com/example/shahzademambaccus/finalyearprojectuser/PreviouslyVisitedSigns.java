@@ -23,6 +23,7 @@ public class PreviouslyVisitedSigns extends AppCompatActivity {
        title = (TextView) findViewById(R.id.Tool_Bar_Text);
        backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
        title.setText("Previously Visited Signs");
+       backButton.setImageResource(R.drawable.back);
        backButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {

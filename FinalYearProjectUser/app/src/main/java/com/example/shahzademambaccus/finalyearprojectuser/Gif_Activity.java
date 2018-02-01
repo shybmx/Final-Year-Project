@@ -46,5 +46,6 @@ public class Gif_Activity extends AppCompatActivity {
     public void setLabelText(String wordToBeDisplayed){
         TextView textView = (TextView) findViewById(R.id.SelectedWord);
         textView.setText(wordToBeDisplayed);
+        backButton.setImageResource(R.drawable.back);
     }
 }

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private String displayWord;
     private TextView symbolText;
     private TextView title;
+    private ImageView logoImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +24,7 @@ public class MainActivity extends AppCompatActivity {
         symbolText = (TextView) findViewById(R.id.SignOfTheDayWord);
         this.imageDatabase = new ImageDatabase();
         image = (ImageView) findViewById(R.id.SignOfTheDayImg);
-        title = (TextView) findViewById(R.id.Tool_Bar_Text);
-        title.setText("CommSigns");
+        setTitle();
         getSignOfTheDay();
     }
 
@@ -71,6 +70,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void setWord(String word){
         displayWord = word;
+    }
+
+    public void setTitle(){
+        title = (TextView) findViewById(R.id.Tool_Bar_Text);
+        logoImageView = (ImageView) findViewById(R.id.Tool_Bar_Back);
+        title.setText("CommSigns");
+        logoImageView.setImageResource(R.drawable.logo);
     }
 
 }
