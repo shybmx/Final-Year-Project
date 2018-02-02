@@ -11,10 +11,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-
 
 public class Words_Activity extends AppCompatActivity {
     private ImageDatabase imageDatabase;
@@ -25,12 +22,14 @@ public class Words_Activity extends AppCompatActivity {
     private int timeDelay = 1000;
     private TextView title;
     private ImageView backButton;
+    private EditText searchTermET;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_words_);
         grid = (GridView) findViewById(R.id.TranslatedSignsGrid);
+        searchTermET = (EditText) findViewById(R.id.SearchTerm);
         setToolBar();
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -91,7 +90,6 @@ public class Words_Activity extends AppCompatActivity {
     }
 
     public String getSearchTerm() {
-        EditText searchTermET = (EditText) findViewById(R.id.SearchTerm);
         String searchTermTxt = searchTermET.getText().toString();
         if(searchTermTxt.isEmpty()){
             Toast.makeText(this, "Insert Text to be translated", Toast.LENGTH_LONG).show();

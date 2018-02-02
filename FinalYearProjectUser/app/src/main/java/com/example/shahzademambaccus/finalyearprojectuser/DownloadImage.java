@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
@@ -44,6 +46,7 @@ public class DownloadImage extends AsyncTask<Void, Void, Bitmap>{
     @Override
     protected void onPostExecute(Bitmap bitmap){
         super.onPostExecute(bitmap);
+        image.setImageBitmap(null);
         if(bitmap != null){
              image.setImageBitmap(bitmap);
              textView.setText(word);

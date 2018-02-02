@@ -1,12 +1,10 @@
 package com.example.shahzademambaccus.finalyearprojectuser;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -40,7 +38,7 @@ public class Gif_Activity extends AppCompatActivity {
 
     public void playVideoGIF(){
         ImageView video = (ImageView) findViewById(R.id.GIFPlayer);
-        Glide.with(this).load(gifLink).asGif().into(video);
+        Glide.with(this).load(gifLink).asGif().placeholder(R.drawable.loadingblack).error(R.drawable.error).into(video);
     }
 
     public void setLabelText(String wordToBeDisplayed){
