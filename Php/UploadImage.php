@@ -6,26 +6,18 @@
         echo "fail";
     }
 
-    $word = $_POST["word"];
+    $listOfWords = $_POST["word"];
 
-    $statement = mysqli_prepare($con, "SELECT * FROM Symbols WHERE word = ? ");
-    mysqli_stmt_bind_param($statement, "s", $word);
-    mysqli_stmt_execute($statement);
+    $breakDown = explode(" ", $listOfWords);
 
-    mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $imageID, $word, $category, $image, $video);
+    foreach($breakDown as $word){
+        $statement = "SELECT * FROM Symbols WHERE word = '$word' ";
+        $result = mysqli_query($con, $statement);
+        $response = array();
 
-    $response = array();
-    $response["success"] = false;
-
-    while(mysqli_stmt_fetch($statement)){
-        $response["success"] = true;
-        $response["imageID"] = $imageID;
-        $response["word"] = $word;
-        $response["category"] = $category;
-        $response["image"] = $image;
-        $response["video"] = $video;
+        while($row = mysqli_fetch_array($result)){
+            array_push($response, array("imageID"=>$row[0], "word"=>$row[1], "category"=>$row[2], "image"=>$row[3], "video"=>$row[4]));
+        }
     }
-
-    print_r(json_encode($response));
+    echo json_encode(array("List"=>$response));
 ?> 

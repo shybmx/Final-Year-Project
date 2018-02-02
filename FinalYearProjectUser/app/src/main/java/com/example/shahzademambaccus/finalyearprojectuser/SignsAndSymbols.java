@@ -59,7 +59,7 @@ public class SignsAndSymbols extends AppCompatActivity{
         listOfLinks = new ArrayList<String>();
 
         this.imageDatabase = new ImageDatabase();
-        imageDatabase.signsAndSymbolsCounter(category, this);
+
 
         if(isSymbolCategory){
             loadingWord = "Symbols";
@@ -67,14 +67,9 @@ public class SignsAndSymbols extends AppCompatActivity{
             loadingWord = "Signs";
         }
 
-        Handler handler = new Handler();
         loadingToast("Gathering " + loadingWord);
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-               getAllSignsAndSymbols(imageDatabase.getSignsAndSymbolsCount());
-            }
-        },millisecondsToLoad );
+
+        getAllSignsAndSymbols();
         setCurrentText(currentText);
     }
 
@@ -107,8 +102,8 @@ public class SignsAndSymbols extends AppCompatActivity{
         return listOfLinks;
     }
 
-    public void getAllSignsAndSymbols(int numberOfSignsAndSymbols){
-        imageDatabase.getSignsAndSymbols(category, this, numberOfSignsAndSymbols, isSymbolCategory);
+    public void getAllSignsAndSymbols(){
+        imageDatabase.getSignsAndSymbols(category, this, isSymbolCategory);
         Handler handler = new Handler();
         loadingToast("Displaying " + loadingWord);
         handler.postDelayed(new Runnable() {

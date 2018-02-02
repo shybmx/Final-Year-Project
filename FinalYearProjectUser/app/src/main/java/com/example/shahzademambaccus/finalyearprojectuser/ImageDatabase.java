@@ -7,13 +7,17 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 public class ImageDatabase {
 
     int count = 0;
     int counter = 0;
+
 
     public ImageDatabase() {
 
@@ -29,16 +33,12 @@ public class ImageDatabase {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
-                    boolean success = jsonResponse.getBoolean("success");
-                    if(success){
-                        String imageLink = jsonResponse.getString("image");
-                        String gifLink = jsonResponse.getString("video");
-                        String word = jsonResponse.getString("word");
-                        wordsActivity.getListOfImageLinks().add(imageLink);
-                        wordsActivity.getListOfGifLinks().add(gifLink);
-                        wordsActivity.getListOfWords().add(word);
-                    }else{
-                        Toast.makeText(wordsActivity, word + " Cannot be found", Toast.LENGTH_SHORT).show();
+                    JSONArray jsonArray = jsonResponse.getJSONArray("List");
+                    for(int i = 0; i < jsonArray.length(); i++){
+                        JSONObject finalResponse = jsonArray.getJSONObject(i);
+                        wordsActivity.getListOfWords().add(finalResponse.getString("word"));
+                        wordsActivity.getListOfGifLinks().add(finalResponse.getString("video"));
+                        wordsActivity.getListOfImageLinks().add(finalResponse.getString("image"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -78,40 +78,33 @@ public class ImageDatabase {
         queue.add(signOfTheDayRequest);
     }
 
-    public void signsAndSymbolsCounter(String category, SignsAndSymbols signsAndSymbols) {
-        count = 0;
+    public void getSignsAndSymbols(final String category, final SignsAndSymbols signsAndSymbols, final boolean isSymbol) {
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
-                    boolean success = jsonResponse.getBoolean("success");
-                    if (success) {
-                        count = jsonResponse.getInt("count");
-                    } else {
-
+                    JSONArray jsonArray = jsonResponse.getJSONArray("ListOfSignsAndSymbols");
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject finalResponse = jsonArray.getJSONObject(i);
+                        String word = finalResponse.getString("word");
+                        String links;
+                        if (isSymbol) {
+                            links = finalResponse.getString("image");
+                        } else {
+                            links = finalResponse.getString("video");
+                        }
+                        signsAndSymbols.getListOfWords().add(word);
+                        signsAndSymbols.getListOfLinks().add(links);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         };
-        CountRequest countRequest = new CountRequest(category, responseListener);
+        SignsAndSymbolsRequest signsAndSymbolsRequest = new SignsAndSymbolsRequest(category, responseListener);
         RequestQueue queue = Volley.newRequestQueue(signsAndSymbols);
-        queue.add(countRequest);
-    }
-
-    public void getSignsAndSymbols(String category, SignsAndSymbols signsAndSymbols, int numberToDisplay, boolean isSymbol) {
-        counter = 0;
-        signsAndSymbols.clearLists(signsAndSymbols.getListOfWords());
-        signsAndSymbols.clearLists(signsAndSymbols.getListOfLinks());
-        while (counter < numberToDisplay){
-            MyResponseListener responseListener = new MyResponseListener(counter, signsAndSymbols, isSymbol);
-            SignsAndSymbolsRequest signsAndSymbolsRequest = new SignsAndSymbolsRequest(category, responseListener);
-            RequestQueue queue = Volley.newRequestQueue(signsAndSymbols);
-            queue.add(signsAndSymbolsRequest);
-            counter++;
-        }
+        queue.add(signsAndSymbolsRequest);
     }
 
     public int getSignsAndSymbolsCount() {

@@ -51,12 +51,8 @@ public class Words_Activity extends AppCompatActivity {
         clearLists(listOfImageLinks);
         clearLists(listOfGifLinks);
         clearLists(listOfWords);
-        String[] tempArray = getSearchTerm().split(" ");
-        for(int i = 0; i < tempArray.length; i++){
-            imageDatabase.imageFromDatabase(tempArray[i], this);
-        }
         Handler handler = new Handler();
-        makeToast("Loading: Gathering Symbols");
+        imageDatabase.imageFromDatabase(getSearchTerm(), this);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -98,7 +94,9 @@ public class Words_Activity extends AppCompatActivity {
     }
 
     public void displayWords(){
-        makeToast("Loading: Displaying Symbols");
+        for(int i = 0; i < listOfWords.size(); i++){
+            makeToast(listOfWords.get(i) + " " + i);
+        }
         grid.setAdapter(new GridAdapter(listOfImageLinks, listOfWords,this, true));
     }
 
