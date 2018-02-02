@@ -13,6 +13,7 @@ public class Gif_Activity extends AppCompatActivity {
     private String gifLink = "";
     private String displayWord = "";
     private ImageView backButton;
+    private Gif_Activity gif_activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class Gif_Activity extends AppCompatActivity {
         displayWord = bundle.getString("DisplayWord");
         playVideoGIF();
         setLabelText(displayWord);
+        gif_activity = this;
     }
 
     private void setToolBar() {
@@ -31,7 +33,7 @@ public class Gif_Activity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(Gif_Activity.this, ));
+                gif_activity.finish();
             }
         });
     }
