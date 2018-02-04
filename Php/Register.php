@@ -6,21 +6,23 @@
         echo "Failed";
     }
 
-    $eMail = $_POST["email"];
-    $username = $_POST["username"];
-    $firstName = $_POST["firstname"];
-    $lastName = $_POST["lastname"];
-    $dateOfBirth = $_POST["dateofbirth"];
-    $phoneNumber = $_POST["phonenumber"];
+    $username = $_POST["user"];
     $password = $_POST["pass"];
 
-    $statement = mysqli_prepare($con, "INSERT INTO Accounts(email, username, firstname, lastname, dateofbirth, phonenumber, pass) VALUES (?,?,?,?,?,?,?)");
-    mysqli_stmt_bind_param($statement, "sssssis", $eMail, $username,$firstName, $lastName, $dateOfBirth, $phoneNumber, $password);
-    mysqli_stmt_execute($statement);
-    
+    $query = mysqli_query($con, "SELECT * FROM Accounts WHERE Username = '$username'");
+
+    $numbers =  mysqli_num_rows($query);
+
     $response = array();
-    $response["success"] = true;
-    
-    
+    $response["success"] = false;
+
+    if(!$numbers > 0){
+        $statement = mysqli_prepare($con, "INSERT INTO Accounts(Username, Password) VALUES (?,?)");
+        mysqli_stmt_bind_param($statement, "ss", $username, $password);
+        mysqli_stmt_execute($statement);
+
+        $response["success"] = true;
+    }
+
     print_r(json_encode($response));
 ?>

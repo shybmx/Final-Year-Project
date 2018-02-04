@@ -1,5 +1,6 @@
 package com.example.shahzademambaccus.finalyearprojectuser;
 
+import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -105,7 +106,8 @@ public class ImageDatabase {
         queue.add(signsAndSymbolsRequest);
     }
 
-    public boolean login(String username, String password, Login login){
+    public void login(String username, String password, final Login login){
+        loggedin = false;
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -113,7 +115,10 @@ public class ImageDatabase {
                     JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
                     boolean success = jsonResponse.getBoolean("success");
                     if(success){
-                      loggedin = true;
+                        Intent intent = new Intent(login.getApplicationContext(), MainActivity.class);
+                        login.startActivity(intent);
+                    }else{
+                        Toast.makeText(login, "Cannot login", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -123,7 +128,30 @@ public class ImageDatabase {
         LoginRequest loginRequest = new LoginRequest(username, password, responseListener);
         RequestQueue queue = Volley.newRequestQueue(login);
         queue.add(loginRequest);
-        return loggedin;
+    }
+
+    public void register(String username, String password, final Register register){
+        loggedin = false;
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
+                    boolean success = jsonResponse.getBoolean("success");
+                    if(success){
+                        Intent intent = new Intent(register.getApplicationContext(), Login.class);
+                        register.startActivity(intent);
+                    }else{
+                        Toast.makeText(register, "Cannot register", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        RegisterRequest registerRequest = new RegisterRequest(username, password, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(register);
+        queue.add(registerRequest);
     }
 
 }

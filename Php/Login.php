@@ -5,10 +5,11 @@
     }else{
         echo "fail";
     }
+    
     $userName = $_POST["user"];
     $password = $_POST["pass"];
 
-    $statement = mysqli_prepare($con, "SELECT * FROM Accounts WHERE username = ? AND pass = ?");
+    $statement = mysqli_prepare($con, "SELECT * FROM Accounts WHERE Username = ? AND Password = ?");
     mysqli_stmt_bind_param($statement, "ss", $userName, $password);
     mysqli_stmt_execute($statement);
 
@@ -20,7 +21,7 @@
 
     while(mysqli_stmt_fetch($statement)){
         $response["success"] = true;
-        $response["email"] = $userName;
+        $response["user"] = $userName;
         $response["pass"] = $password;
     }
 

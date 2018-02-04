@@ -11,7 +11,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,8 +23,8 @@
         <activity android:name=".PreviouslyVisitedSigns" />
         <activity android:name=".SignsAndSymbols" />
         <activity android:name=".Gif_Activity" />
-        <activity android:name=".Login" />
-        <activity android:name=".Register"></activity>
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".Register"/>
     </application>
 
 </manifest>

@@ -34,16 +34,12 @@ public class Login extends AppCompatActivity {
         String user = userName.getText().toString();
         String pass = passWord.getText().toString();
         if(checkFields(user, pass)){
-            if(database.login(user, pass, this)){
-                startActivity(new Intent(this, MainActivity.class));
-            }else{
-                Toast.makeText(this, "Username/Password is incorrect", Toast.LENGTH_SHORT).show();
-            }
+            database.login(user, pass, this);
         }
     }
 
     public void registerButtonPressed(View v){
-        startActivity(new Intent(this, Register.class));
+        startActivity(new Intent(Login.this, Register.class));
     }
 
     public boolean checkFields(String username, String password){
