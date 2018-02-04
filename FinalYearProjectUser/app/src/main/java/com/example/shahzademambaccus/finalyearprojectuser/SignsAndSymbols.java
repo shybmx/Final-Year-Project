@@ -60,7 +60,6 @@ public class SignsAndSymbols extends AppCompatActivity{
 
         this.imageDatabase = new ImageDatabase();
 
-
         if(isSymbolCategory){
             loadingWord = "Symbols";
         }else{

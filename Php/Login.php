@@ -5,22 +5,22 @@
     }else{
         echo "fail";
     }
-    $eMail = $_POST["email"];
+    $userName = $_POST["user"];
     $password = $_POST["pass"];
 
-    $statement = mysqli_prepare($con, "SELECT * FROM Accounts WHERE email = ? AND pass = ?");
-    mysqli_stmt_bind_param($statement, "ss", $eMail, $password);
+    $statement = mysqli_prepare($con, "SELECT * FROM Accounts WHERE username = ? AND pass = ?");
+    mysqli_stmt_bind_param($statement, "ss", $userName, $password);
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $eMail, $password);
+    mysqli_stmt_bind_result($statement, $userName, $password);
 
     $response = array();
     $response["success"] = false;
 
     while(mysqli_stmt_fetch($statement)){
         $response["success"] = true;
-        $response["email"] = $eMail;
+        $response["email"] = $userName;
         $response["pass"] = $password;
     }
 

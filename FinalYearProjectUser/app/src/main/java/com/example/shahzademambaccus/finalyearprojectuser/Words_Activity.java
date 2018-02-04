@@ -94,9 +94,6 @@ public class Words_Activity extends AppCompatActivity {
     }
 
     public void displayWords(){
-        for(int i = 0; i < listOfWords.size(); i++){
-            makeToast(listOfWords.get(i) + " " + i);
-        }
         grid.setAdapter(new GridAdapter(listOfImageLinks, listOfWords,this, true));
     }
 

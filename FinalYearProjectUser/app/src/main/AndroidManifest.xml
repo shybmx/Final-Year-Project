@@ -22,7 +22,9 @@
         <activity android:name=".Categories" />
         <activity android:name=".PreviouslyVisitedSigns" />
         <activity android:name=".SignsAndSymbols" />
-        <activity android:name=".Gif_Activity"></activity>
+        <activity android:name=".Gif_Activity" />
+        <activity android:name=".Login" />
+        <activity android:name=".Register"></activity>
     </application>
 
 </manifest>

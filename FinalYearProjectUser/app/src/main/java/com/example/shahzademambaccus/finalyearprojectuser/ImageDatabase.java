@@ -15,9 +15,7 @@ import org.json.JSONObject;
 
 public class ImageDatabase {
 
-    int count = 0;
-    int counter = 0;
-
+    boolean loggedin = false;
 
     public ImageDatabase() {
 
@@ -107,8 +105,25 @@ public class ImageDatabase {
         queue.add(signsAndSymbolsRequest);
     }
 
-    public int getSignsAndSymbolsCount() {
-        return count;
+    public boolean login(String username, String password, Login login){
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
+                    boolean success = jsonResponse.getBoolean("success");
+                    if(success){
+                      loggedin = true;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        LoginRequest loginRequest = new LoginRequest(username, password, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(login);
+        queue.add(loginRequest);
+        return loggedin;
     }
 
 }
