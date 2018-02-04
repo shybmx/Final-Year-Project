@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView symbolText;
     private TextView title;
     private ImageView logoImageView;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,18 +26,24 @@ public class MainActivity extends AppCompatActivity {
         symbolText = (TextView) findViewById(R.id.SignOfTheDayWord);
         this.imageDatabase = new ImageDatabase();
         image = (ImageView) findViewById(R.id.SignOfTheDayImg);
+        Bundle bundle = getIntent().getExtras();
+        username = bundle.getString("username");
         setTitle();
         getSignOfTheDay();
     }
 
     public void textToBSLActivity(View v){
-        startActivity(new Intent(MainActivity.this, Words_Activity.class));
+        //startActivity(new Intent(MainActivity.this, Words_Activity.class));
+        Intent intent = new Intent(MainActivity.this, Words_Activity.class);
+        intent.putExtra("Username", username);
+        startActivity(intent);
     }
 
     public void bslSymbolToText (View v){
         Intent intent = new Intent(MainActivity.this, Categories.class);
         intent.putExtra("Symbol", true);
         intent.putExtra("CurrentText", "");
+        intent.putExtra("Username", username);
         startActivity(intent);
     }
 

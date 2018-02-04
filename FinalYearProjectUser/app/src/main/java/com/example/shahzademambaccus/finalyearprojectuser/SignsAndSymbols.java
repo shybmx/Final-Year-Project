@@ -27,6 +27,7 @@ public class SignsAndSymbols extends AppCompatActivity{
     private TextView title;
     private ImageView backButton;
     int millisecondsToLoad = 1000;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class SignsAndSymbols extends AppCompatActivity{
         isSymbolCategory = bundle.getBoolean("Symbol");
         category = bundle.getString("Category");
         String currentText = bundle.getString("CurrentText");
-
+        username = bundle.getString("Username");
         grid = (GridView) findViewById(R.id.SignsAndSymbolsGrid);
 
         translatedText = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);

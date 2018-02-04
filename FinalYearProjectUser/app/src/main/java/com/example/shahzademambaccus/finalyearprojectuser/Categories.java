@@ -15,6 +15,7 @@ public class Categories extends AppCompatActivity {
     private static final String[] categories = new String[13];
     private TextView title;
     private ImageView backButton;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class Categories extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         isSymbolCategory = bundle.getBoolean("Symbol");
         String currentText = bundle.getString("CurrentText");
+        username = bundle.getString("Username");
         translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedTxt);
         setCurrentText(currentText);
         setToolBar();
@@ -113,6 +115,7 @@ public class Categories extends AppCompatActivity {
         intent.putExtra("Symbol", isSymbolCategory);
         intent.putExtra("Category", category);
         intent.putExtra("CurrentText", getCurrentText());
+        intent.putExtra("Username", username);
         startActivity(intent);
     }
 

@@ -23,6 +23,7 @@ public class Words_Activity extends AppCompatActivity {
     private TextView title;
     private ImageView backButton;
     private EditText searchTermET;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,8 @@ public class Words_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Bundle bundle = getIntent().getExtras();
+        username = bundle.getString("Username");
         listOfImageLinks = new ArrayList<String>();
         listOfGifLinks = new ArrayList<String>();
         listOfWords = new ArrayList<String>();
