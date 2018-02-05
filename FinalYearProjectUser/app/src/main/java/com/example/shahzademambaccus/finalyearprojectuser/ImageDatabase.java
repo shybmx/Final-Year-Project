@@ -61,7 +61,6 @@ public class ImageDatabase {
                         String link = jsonResponse.getString("image");
                         String video = jsonResponse.getString("video");
                         String word = jsonResponse.getString("word");
-                        //Toast.makeText(mainActivity, "In ID: " + video, Toast.LENGTH_SHORT).show();
                         mainActivity.setSignGIF(video);
                         mainActivity.setWord(word);
                         new DownloadImage(link, image, word, textView).execute();
@@ -174,6 +173,29 @@ public class ImageDatabase {
         SaveSignRequest saveSignRequest = new SaveSignRequest(username, word, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(saveSignRequest);
+    }
+
+    public void getPrevisoulyVisited(String username, final PreviouslyVisitedSigns previouslyVisitedSigns){
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
+                    JSONArray jsonArray = jsonObject.getJSONArray("List");
+                    for(int i = 0; i < jsonArray.length(); i++){
+                        JSONObject finalResponse = jsonArray.getJSONObject(i);
+                        previouslyVisitedSigns.getListOfLinks().add(finalResponse.getString("image"));
+                        previouslyVisitedSigns.getListOfGifs().add(finalResponse.getString("video"));
+                        previouslyVisitedSigns.getListOfWords().add(finalResponse.getString("word"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        GetPreviouslyVisitedRequest getPreviouslyVisitedRequest = new GetPreviouslyVisitedRequest(username, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(previouslyVisitedSigns);
+        queue.add(getPreviouslyVisitedRequest);
     }
 
 }

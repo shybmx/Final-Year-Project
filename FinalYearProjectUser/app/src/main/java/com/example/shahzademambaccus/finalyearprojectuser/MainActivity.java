@@ -51,11 +51,14 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, Categories.class);
         intent.putExtra("Symbol", false);
         intent.putExtra("CurrentText", "");
+        intent.putExtra("Username", username);
         startActivity(intent);
     }
 
     public void previouslyVisitedSigns(View v){
-        startActivity(new Intent(MainActivity.this, PreviouslyVisitedSigns.class));
+        Intent intent = new Intent(MainActivity.this, PreviouslyVisitedSigns.class);
+        intent.putExtra("Username", username);
+        startActivity(intent);
     }
 
 

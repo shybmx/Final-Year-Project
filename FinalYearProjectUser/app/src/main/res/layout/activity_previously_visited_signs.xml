@@ -11,4 +11,16 @@
         layout="@layout/tool_bar"
         />
 
+    <GridView
+        android:id="@+id/Previously_Visited_Grid"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:numColumns="auto_fit"
+        android:horizontalSpacing="12dp"
+        android:columnWidth="120dp"
+        android:stretchMode="spacingWidthUniform"
+        android:layout_below="@+id/Tool_Bar_Previously_Visited" />
+
 </RelativeLayout>

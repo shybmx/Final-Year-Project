@@ -28,6 +28,7 @@ public class SignsAndSymbols extends AppCompatActivity{
     private ImageView backButton;
     int millisecondsToLoad = 1000;
     private String username;
+    private SignsAndSymbols signsAndSymbols;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class SignsAndSymbols extends AppCompatActivity{
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                imageDatabase.addToPreviouslyVisited(username, listOfWords.get(position), signsAndSymbols);
                 if(!translatedText.getText().equals("")) {
                     translatedText.getText().append(" " + listOfWords.get(position));
                     return;
@@ -55,6 +57,8 @@ public class SignsAndSymbols extends AppCompatActivity{
                 translatedText.setText(listOfWords.get(position));
             }
         });
+
+        signsAndSymbols = this;
 
         listOfWords = new ArrayList<String>();
         listOfLinks = new ArrayList<String>();
