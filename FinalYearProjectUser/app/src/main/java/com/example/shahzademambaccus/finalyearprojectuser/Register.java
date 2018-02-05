@@ -15,12 +15,15 @@ public class Register extends AppCompatActivity {
     private TextView password1;
     private TextView password2;
     private DatabaseConnection database;
+    private ImageView logout;
+    private Register register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         database = new DatabaseConnection();
+        register = this;
         setupGUI();
         setToolBar();
     }
@@ -28,14 +31,22 @@ public class Register extends AppCompatActivity {
     public void setupGUI() {
         title = (TextView) findViewById(R.id.Tool_Bar_Text);
         backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                register.finish();
+            }
+        });
         userName = (TextView) findViewById(R.id.Register_Username);
         password1 = (TextView) findViewById(R.id.Register_Password);
         password2 = (TextView) findViewById(R.id.Register_Password_Re);
+        logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
     }
 
     public void setToolBar() {
         title.setText("Register");
         backButton.setImageResource(R.drawable.back);
+        logout.setImageResource(0);
     }
 
     public void registerButtonPressed(View v){

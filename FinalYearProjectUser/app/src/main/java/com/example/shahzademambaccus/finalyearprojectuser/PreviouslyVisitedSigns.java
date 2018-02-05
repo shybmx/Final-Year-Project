@@ -1,5 +1,6 @@
 package com.example.shahzademambaccus.finalyearprojectuser;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ public class PreviouslyVisitedSigns extends AppCompatActivity {
     private GridView grid;
     private DatabaseConnection database;
     private String username;
+    private ImageView logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,14 @@ public class PreviouslyVisitedSigns extends AppCompatActivity {
                previouslyVisitedSigns.finish();
            }
        });
+        logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout logout = new Logout(previouslyVisitedSigns);
+                startActivity(new Intent(previouslyVisitedSigns, Login.class));
+            }
+        });
     }
 
     private void setGUI() {

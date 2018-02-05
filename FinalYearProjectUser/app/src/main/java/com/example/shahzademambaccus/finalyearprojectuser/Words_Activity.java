@@ -25,6 +25,7 @@ public class Words_Activity extends AppCompatActivity {
     private EditText searchTermET;
     private String username;
     private Words_Activity words_activity;
+    private ImageView logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +128,15 @@ public class Words_Activity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Words_Activity.this, MainActivity.class));
+                words_activity.finish();
+            }
+        });
+        logoutButton = (ImageView) findViewById(R.id.Tool_Bar_Logout);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout logout = new Logout(words_activity);
+                startActivity(new Intent(words_activity, Login.class));
             }
         });
     }

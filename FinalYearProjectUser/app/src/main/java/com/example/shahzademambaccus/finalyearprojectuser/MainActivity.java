@@ -3,9 +3,13 @@ package com.example.shahzademambaccus.finalyearprojectuser;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,12 +21,15 @@ public class MainActivity extends AppCompatActivity {
     private TextView title;
     private ImageView logoImageView;
     private String username;
+    private ImageView logout;
+    private MainActivity mainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.databaseConnection = new DatabaseConnection();
+        databaseConnection = new DatabaseConnection();
+        mainActivity = this;
         setGUI();
         getExtras();
         setToolBar();
@@ -57,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, Categories.class);
         intent.putExtra("Symbol", false);
         intent.putExtra("CurrentText", "");
-        intent.putExtra("Username", username);
+        //intent.putExtra("Username", username);
         startActivity(intent);
     }
 
@@ -94,6 +101,14 @@ public class MainActivity extends AppCompatActivity {
         logoImageView = (ImageView) findViewById(R.id.Tool_Bar_Back);
         title.setText("CommSigns");
         logoImageView.setImageResource(R.drawable.logo);
+        logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout logout = new Logout(mainActivity);
+                startActivity(new Intent(mainActivity, Login.class));
+            }
+        });
     }
 
 }

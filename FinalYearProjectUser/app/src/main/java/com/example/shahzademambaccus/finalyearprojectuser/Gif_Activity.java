@@ -1,5 +1,6 @@
 package com.example.shahzademambaccus.finalyearprojectuser;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ public class Gif_Activity extends AppCompatActivity {
     private String displayWord = "";
     private ImageView backButton;
     private Gif_Activity gif_activity;
+    private ImageView logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,14 @@ public class Gif_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 gif_activity.finish();
+            }
+        });
+        logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout logout = new Logout(gif_activity);
+                startActivity(new Intent(gif_activity, Login.class));
             }
         });
     }

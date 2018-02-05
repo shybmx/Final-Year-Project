@@ -29,6 +29,7 @@ public class SignsAndSymbols extends AppCompatActivity{
     int millisecondsToLoad = 1000;
     private String username;
     private SignsAndSymbols signsAndSymbols;
+    private ImageView logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +145,15 @@ public class SignsAndSymbols extends AppCompatActivity{
                 intent.putExtra("Symbol", isSymbolCategory);
                 intent.putExtra("CurrentText", getCurrentText());
                 startActivity(intent);
+            }
+        });
+
+        logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout logout = new Logout(signsAndSymbols);
+                startActivity(new Intent(signsAndSymbols, Login.class));
             }
         });
     }

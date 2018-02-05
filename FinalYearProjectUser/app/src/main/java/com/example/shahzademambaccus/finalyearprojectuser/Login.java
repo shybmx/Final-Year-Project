@@ -20,6 +20,7 @@ public class Login extends AppCompatActivity {
     private SharedPreferences sharedPreference;
     private SharedPreferences.Editor editor;
     private Boolean saveLogin;
+    private ImageView logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class Login extends AppCompatActivity {
     public void setToolBar() {
         title.setText("Login");
         logo.setImageResource(R.drawable.logo);
+        logout.setImageResource(0);
     }
 
     public void loginButtonPressed(View v){
@@ -80,6 +82,7 @@ public class Login extends AppCompatActivity {
         logo = (ImageView) findViewById(R.id.Tool_Bar_Back);
         userName = (EditText) findViewById(R.id.Login_userNameET);
         passWord = (EditText) findViewById(R.id.Login_passwordET);
+        logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
     }
 
     public void setUserName(String userNameField){

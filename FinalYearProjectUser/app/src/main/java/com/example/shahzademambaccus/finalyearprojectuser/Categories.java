@@ -16,13 +16,16 @@ public class Categories extends AppCompatActivity {
     private TextView title;
     private ImageView backButton;
     private String username;
+    private Categories category;
+    private ImageView logout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
-        getExtras();
+        category = this;
         setGUI();
+        getExtras();
         setToolBar();
         fillArray();
     }
@@ -111,7 +114,15 @@ public class Categories extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Categories.this, MainActivity.class));
+               category.finish();
+            }
+        });
+        logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout logout = new Logout(category);
+                startActivity(new Intent(category, Login.class));
             }
         });
     }

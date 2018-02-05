@@ -18,7 +18,6 @@ import org.json.JSONObject;
 
 public class DatabaseConnection {
 
-
     public DatabaseConnection() {
 
     }
