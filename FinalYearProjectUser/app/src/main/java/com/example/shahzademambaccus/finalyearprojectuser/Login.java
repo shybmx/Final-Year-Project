@@ -15,15 +15,19 @@ public class Login extends AppCompatActivity {
     private ImageView logo;
     private EditText userName;
     private EditText passWord;
-    private ImageDatabase database;
+    private DatabaseConnection database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        database = new ImageDatabase();
+        database = new DatabaseConnection();
         setupGUI();
         setToolBar();
+        getExtras();
+    }
+
+    public void getExtras() {
         //Bundle bundle = getIntent().getExtras();
         //String registerUsername = bundle.getString("username");
         //setUserName(registerUsername);

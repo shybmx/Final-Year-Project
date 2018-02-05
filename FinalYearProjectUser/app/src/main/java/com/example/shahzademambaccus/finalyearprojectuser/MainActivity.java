@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     ImageView image;
-    private ImageDatabase imageDatabase;
+    private DatabaseConnection databaseConnection;
     private String signGIF;
     private String displayWord;
     private TextView symbolText;
@@ -23,17 +22,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        symbolText = (TextView) findViewById(R.id.SignOfTheDayWord);
-        this.imageDatabase = new ImageDatabase();
-        image = (ImageView) findViewById(R.id.SignOfTheDayImg);
-        Bundle bundle = getIntent().getExtras();
-        username = bundle.getString("Username");
-        setTitle();
+        this.databaseConnection = new DatabaseConnection();
+        setGUI();
+        getExtras();
+        setToolBar();
         getSignOfTheDay();
     }
 
+    public void getExtras() {
+        Bundle bundle = getIntent().getExtras();
+        username = bundle.getString("Username");
+    }
+
+    public void setGUI() {
+        symbolText = (TextView) findViewById(R.id.SignOfTheDayWord);
+        image = (ImageView) findViewById(R.id.SignOfTheDayImg);
+    }
+
     public void textToBSLActivity(View v){
-        //startActivity(new Intent(MainActivity.this, Words_Activity.class));
         Intent intent = new Intent(MainActivity.this, Words_Activity.class);
         intent.putExtra("Username", username);
         startActivity(intent);
@@ -63,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void getSignOfTheDay(){
-        imageDatabase.getSignOfTheDay(image, this, symbolText);
+        databaseConnection.getSignOfTheDay(image, this, symbolText);
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         displayWord = word;
     }
 
-    public void setTitle(){
+    public void setToolBar(){
         title = (TextView) findViewById(R.id.Tool_Bar_Text);
         logoImageView = (ImageView) findViewById(R.id.Tool_Bar_Back);
         title.setText("CommSigns");

@@ -15,11 +15,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class ImageDatabase {
+public class DatabaseConnection {
 
-    boolean loggedin = false;
 
-    public ImageDatabase() {
+    public DatabaseConnection() {
 
     }
 
@@ -107,7 +106,6 @@ public class ImageDatabase {
     }
 
     public void login(final String username, String password, final Login login){
-        loggedin = false;
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

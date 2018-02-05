@@ -55,9 +55,7 @@ public class GridAdapter extends BaseAdapter {
             holder = (ViewHolder) row.getTag();
         }
         if(isSymbol) {
-            //Toast.makeText(context, arrayOfWords.get(position) + position, Toast.LENGTH_SHORT).show();
             new DownloadImage(arrayOfImageView.get(position).toString(), holder.getImageView(), arrayOfWords.get(position).toString(), holder.getTextView()).execute();
-            //notifyDataSetChanged();
         }else{
             Glide.with(context).load(arrayOfImageView.get(position)).asGif().placeholder(R.drawable.loadingwhite).error(R.drawable.error).into(holder.getImageView());
             holder.getTextView().setText(arrayOfWords.get(position));

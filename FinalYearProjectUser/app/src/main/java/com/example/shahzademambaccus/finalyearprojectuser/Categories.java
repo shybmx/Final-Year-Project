@@ -21,26 +21,10 @@ public class Categories extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
-        Bundle bundle = getIntent().getExtras();
-        isSymbolCategory = bundle.getBoolean("Symbol");
-        String currentText = bundle.getString("CurrentText");
-        username = bundle.getString("Username");
-        translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedTxt);
-        setCurrentText(currentText);
+        getExtras();
+        setGUI();
         setToolBar();
-        categories[0] = "foodanddrinks";
-        categories[1] = "householdobjects";
-        categories[2] = "questions";
-        categories[3] = "verbs";
-        categories[4] = "communications";
-        categories[5] = "animals";
-        categories[6] = "connectives";
-        categories[7] = "outdoorobjects";
-        categories[8] = "feelings";
-        categories[9] = "size";
-        categories[10] = "familyandpeople";
-        categories[11] = "rooms";
-        categories[12] = "miscellaneous";
+        fillArray();
     }
 
     public void familyAndPeopleButtonPressed(View v){
@@ -130,5 +114,33 @@ public class Categories extends AppCompatActivity {
                 startActivity(new Intent(Categories.this, MainActivity.class));
             }
         });
+    }
+
+    public void setGUI(){
+        translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedTxt);
+    }
+
+    public void getExtras() {
+        Bundle bundle = getIntent().getExtras();
+        isSymbolCategory = bundle.getBoolean("Symbol");
+        String currentText = bundle.getString("CurrentText");
+        username = bundle.getString("Username");
+        setCurrentText(currentText);
+    }
+
+    public void fillArray(){
+        categories[0] = "foodanddrinks";
+        categories[1] = "householdobjects";
+        categories[2] = "questions";
+        categories[3] = "verbs";
+        categories[4] = "communications";
+        categories[5] = "animals";
+        categories[6] = "connectives";
+        categories[7] = "outdoorobjects";
+        categories[8] = "feelings";
+        categories[9] = "size";
+        categories[10] = "familyandpeople";
+        categories[11] = "rooms";
+        categories[12] = "miscellaneous";
     }
 }

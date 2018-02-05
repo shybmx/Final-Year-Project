@@ -19,13 +19,17 @@ public class Gif_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gif);
-        Bundle bundle = getIntent().getExtras();
+        getExtras();
         setToolBar();
-        gifLink = bundle.getString("Sign");
-        displayWord = bundle.getString("DisplayWord");
         playVideoGIF();
         setLabelText(displayWord);
         gif_activity = this;
+    }
+
+    private void getExtras() {
+        Bundle bundle = getIntent().getExtras();
+        gifLink = bundle.getString("Sign");
+        displayWord = bundle.getString("DisplayWord");
     }
 
     private void setToolBar() {
@@ -48,4 +52,5 @@ public class Gif_Activity extends AppCompatActivity {
         textView.setText(wordToBeDisplayed);
         backButton.setImageResource(R.drawable.back);
     }
+
 }

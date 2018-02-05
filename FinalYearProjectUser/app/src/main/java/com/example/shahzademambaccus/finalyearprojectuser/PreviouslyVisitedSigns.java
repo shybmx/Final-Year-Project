@@ -19,23 +19,31 @@ public class PreviouslyVisitedSigns extends AppCompatActivity {
     private ArrayList<String> listOfLinks;
     private ArrayList<String> listOfGifs;
     private GridView grid;
-    private ImageDatabase database;
+    private DatabaseConnection database;
     private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_previously_visited_signs);
+        previouslyVisitedSigns = this;
+        database = new DatabaseConnection();
         setGUI();
         setToolBar();
-        Bundle bundle = getIntent().getExtras();
-        username = bundle.getString("Username");
-        previouslyVisitedSigns = this;
+        getExtras();
+        setArrayLists();
+        getAllSigns();
+    }
+
+    public void setArrayLists() {
         listOfWords = new ArrayList<String>();
         listOfLinks = new ArrayList<String>();
         listOfGifs = new ArrayList<String>();
-        database = new ImageDatabase();
-        getAllSigns();
+    }
+
+    public void getExtras() {
+        Bundle bundle = getIntent().getExtras();
+        username = bundle.getString("Username");
     }
 
     public void setToolBar(){
@@ -81,6 +89,5 @@ public class PreviouslyVisitedSigns extends AppCompatActivity {
     public void displayAllSigns(){
         grid.setAdapter(new GridAdapter(listOfLinks, listOfWords, this, true));
     }
-
 
 }

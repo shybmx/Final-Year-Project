@@ -14,7 +14,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class Words_Activity extends AppCompatActivity {
-    private ImageDatabase imageDatabase;
+    private DatabaseConnection databaseConnection;
     private GridView grid;
     private ArrayList<String> listOfImageLinks;
     private ArrayList<String> listOfGifLinks;
@@ -30,26 +30,38 @@ public class Words_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_words_);
-        grid = (GridView) findViewById(R.id.TranslatedSignsGrid);
-        searchTermET = (EditText) findViewById(R.id.SearchTerm);
-        setToolBar();
+        this.databaseConnection = new DatabaseConnection();
         words_activity = this;
-        Bundle bundle = getIntent().getExtras();
-        username = bundle.getString("Username");
+        setGUI();
+        setToolBar();
+        getExtras();
+        setArrayLists();
+    }
+
+    public void setArrayLists() {
         listOfImageLinks = new ArrayList<String>();
         listOfGifLinks = new ArrayList<String>();
         listOfWords = new ArrayList<String>();
-        this.imageDatabase = new ImageDatabase();
+    }
+
+    public void getExtras() {
+        Bundle bundle = getIntent().getExtras();
+        username = bundle.getString("Username");
+    }
+
+    public void setGUI() {
+        grid = (GridView) findViewById(R.id.TranslatedSignsGrid);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(Words_Activity.this, Gif_Activity.class);
                 intent.putExtra("Sign", listOfGifLinks.get(position));
                 intent.putExtra("DisplayWord", listOfWords.get(position));
-                imageDatabase.addToPreviouslyVisited(username, listOfWords.get(position), words_activity);
+                databaseConnection.addToPreviouslyVisited(username, listOfWords.get(position), words_activity);
                 startActivity(intent);
             }
         });
+        searchTermET = (EditText) findViewById(R.id.SearchTerm);
     }
 
     public void search(View v) {
@@ -58,7 +70,7 @@ public class Words_Activity extends AppCompatActivity {
         clearLists(listOfGifLinks);
         clearLists(listOfWords);
         Handler handler = new Handler();
-        imageDatabase.imageFromDatabase(getSearchTerm(), this);
+        databaseConnection.imageFromDatabase(getSearchTerm(), this);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

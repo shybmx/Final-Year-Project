@@ -20,7 +20,7 @@ public class SignsAndSymbols extends AppCompatActivity{
     private String loadingWord = "";
     private ArrayList<String> listOfWords;
     private ArrayList<String> listOfLinks;
-    private ImageDatabase imageDatabase;
+    private DatabaseConnection databaseConnection;
     private GridView grid;
     private boolean isSymbolCategory;
     private EditText translatedText;
@@ -34,22 +34,32 @@ public class SignsAndSymbols extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signs_and_symbols);
-
-        Bundle bundle = getIntent().getExtras();
-        isSymbolCategory = bundle.getBoolean("Symbol");
-        category = bundle.getString("Category");
-        String currentText = bundle.getString("CurrentText");
-        username = bundle.getString("Username");
-        grid = (GridView) findViewById(R.id.SignsAndSymbolsGrid);
-
-        translatedText = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
-
+        signsAndSymbols = this;
+        getExtras();
+        setGUI();
         setToolbar();
+        setArrayLits();
+        this.databaseConnection = new DatabaseConnection();
+        if(isSymbolCategory){
+            loadingWord = "Symbols";
+        }else{
+            loadingWord = "Signs";
+        }
+        loadingToast("Gathering " + loadingWord);
+        getAllSignsAndSymbols();
+    }
 
+    public void setArrayLits() {
+        listOfWords = new ArrayList<String>();
+        listOfLinks = new ArrayList<String>();
+    }
+
+    public void setGUI() {
+        grid = (GridView) findViewById(R.id.SignsAndSymbolsGrid);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                imageDatabase.addToPreviouslyVisited(username, listOfWords.get(position), signsAndSymbols);
+                databaseConnection.addToPreviouslyVisited(username, listOfWords.get(position), signsAndSymbols);
                 if(!translatedText.getText().equals("")) {
                     translatedText.getText().append(" " + listOfWords.get(position));
                     return;
@@ -57,23 +67,15 @@ public class SignsAndSymbols extends AppCompatActivity{
                 translatedText.setText(listOfWords.get(position));
             }
         });
+        translatedText = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
+    }
 
-        signsAndSymbols = this;
-
-        listOfWords = new ArrayList<String>();
-        listOfLinks = new ArrayList<String>();
-
-        this.imageDatabase = new ImageDatabase();
-
-        if(isSymbolCategory){
-            loadingWord = "Symbols";
-        }else{
-            loadingWord = "Signs";
-        }
-
-        loadingToast("Gathering " + loadingWord);
-
-        getAllSignsAndSymbols();
+    public void getExtras() {
+        Bundle bundle = getIntent().getExtras();
+        isSymbolCategory = bundle.getBoolean("Symbol");
+        category = bundle.getString("Category");
+        String currentText = bundle.getString("CurrentText");
+        username = bundle.getString("Username");
         setCurrentText(currentText);
     }
 
@@ -107,7 +109,7 @@ public class SignsAndSymbols extends AppCompatActivity{
     }
 
     public void getAllSignsAndSymbols(){
-        imageDatabase.getSignsAndSymbols(category, this, isSymbolCategory);
+        databaseConnection.getSignsAndSymbols(category, this, isSymbolCategory);
         Handler handler = new Handler();
         loadingToast("Displaying " + loadingWord);
         handler.postDelayed(new Runnable() {

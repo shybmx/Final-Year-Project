@@ -1,6 +1,5 @@
 package com.example.shahzademambaccus.finalyearprojectuser;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,15 +14,15 @@ public class Register extends AppCompatActivity {
     private TextView userName;
     private TextView password1;
     private TextView password2;
-    private ImageDatabase database;
+    private DatabaseConnection database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        database = new DatabaseConnection();
         setupGUI();
         setToolBar();
-        database = new ImageDatabase();
     }
 
     public void setupGUI() {
@@ -32,7 +31,6 @@ public class Register extends AppCompatActivity {
         userName = (TextView) findViewById(R.id.Register_Username);
         password1 = (TextView) findViewById(R.id.Register_Password);
         password2 = (TextView) findViewById(R.id.Register_Password_Re);
-
     }
 
     public void setToolBar() {
