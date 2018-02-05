@@ -1,6 +1,7 @@
 package com.example.shahzademambaccus.finalyearprojectuser;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,15 +17,30 @@ public class Login extends AppCompatActivity {
     private EditText userName;
     private EditText passWord;
     private DatabaseConnection database;
+    private SharedPreferences sharedPreference;
+    private SharedPreferences.Editor editor;
+    private Boolean saveLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         database = new DatabaseConnection();
+        sharedPreferences();
         setupGUI();
         setToolBar();
         getExtras();
+    }
+
+    public void sharedPreferences() {
+        sharedPreference = getSharedPreferences("loginRef", MODE_PRIVATE);
+        editor = sharedPreference.edit();
+        saveLogin = sharedPreference.getBoolean("saveLogin", false);
+        if(saveLogin){
+            Intent intent = new Intent(Login.this, MainActivity.class);
+            intent.putExtra("Username", sharedPreference.getString("Username", null));
+            startActivity(intent);
+        }
     }
 
     public void getExtras() {
@@ -42,7 +58,8 @@ public class Login extends AppCompatActivity {
         String user = userName.getText().toString();
         String pass = passWord.getText().toString();
         if(checkFields(user, pass)){
-            database.login(user, pass, this);
+            editor = sharedPreference.edit();
+            database.login(user, pass, this, editor);
         }
     }
 

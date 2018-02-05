@@ -2,6 +2,7 @@ package com.example.shahzademambaccus.finalyearprojectuser;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -105,7 +106,7 @@ public class DatabaseConnection {
         queue.add(signsAndSymbolsRequest);
     }
 
-    public void login(final String username, String password, final Login login){
+    public void login(final String username, final String password, final Login login, final SharedPreferences.Editor editor){
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -114,6 +115,9 @@ public class DatabaseConnection {
                     boolean success = jsonResponse.getBoolean("success");
                     if(success){
                         Intent intent = new Intent(login.getApplicationContext(), MainActivity.class);
+                        editor.putBoolean("saveLogin", true);
+                        editor.putString("Username", username);
+                        editor.commit();
                         intent.putExtra("Username", username);
                         login.startActivity(intent);
                     }else{
