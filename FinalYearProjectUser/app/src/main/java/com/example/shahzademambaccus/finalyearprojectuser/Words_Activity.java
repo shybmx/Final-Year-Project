@@ -24,6 +24,7 @@ public class Words_Activity extends AppCompatActivity {
     private ImageView backButton;
     private EditText searchTermET;
     private String username;
+    private Words_Activity words_activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,21 +33,23 @@ public class Words_Activity extends AppCompatActivity {
         grid = (GridView) findViewById(R.id.TranslatedSignsGrid);
         searchTermET = (EditText) findViewById(R.id.SearchTerm);
         setToolBar();
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(Words_Activity.this, Gif_Activity.class);
-                intent.putExtra("Sign", listOfGifLinks.get(position));
-                intent.putExtra("DisplayWord", listOfWords.get(position));
-                startActivity(intent);
-            }
-        });
+        words_activity = this;
         Bundle bundle = getIntent().getExtras();
         username = bundle.getString("Username");
         listOfImageLinks = new ArrayList<String>();
         listOfGifLinks = new ArrayList<String>();
         listOfWords = new ArrayList<String>();
         this.imageDatabase = new ImageDatabase();
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(Words_Activity.this, Gif_Activity.class);
+                intent.putExtra("Sign", listOfGifLinks.get(position));
+                intent.putExtra("DisplayWord", listOfWords.get(position));
+                imageDatabase.addToPreviouslyVisited(username, listOfWords.get(position), words_activity);
+                startActivity(intent);
+            }
+        });
     }
 
     public void search(View v) {

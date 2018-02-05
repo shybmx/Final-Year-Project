@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         this.imageDatabase = new ImageDatabase();
         image = (ImageView) findViewById(R.id.SignOfTheDayImg);
         Bundle bundle = getIntent().getExtras();
-        username = bundle.getString("username");
+        username = bundle.getString("Username");
         setTitle();
         getSignOfTheDay();
     }

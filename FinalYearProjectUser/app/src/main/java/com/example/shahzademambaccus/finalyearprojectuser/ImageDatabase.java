@@ -1,5 +1,6 @@
 package com.example.shahzademambaccus.finalyearprojectuser;
 
+import android.content.Context;
 import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -132,7 +133,6 @@ public class ImageDatabase {
     }
 
     public void register(final String username, String password, final Register register){
-        loggedin = false;
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -156,8 +156,24 @@ public class ImageDatabase {
         queue.add(registerRequest);
     }
 
-    public void addToPreviouslyVisited(){
-
+    public void addToPreviouslyVisited(String username, String word, final Context context){
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
+                    boolean success = jsonResponse.getBoolean("success");
+                    if(success){
+                        Toast.makeText(context, "success", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        SaveSignRequest saveSignRequest = new SaveSignRequest(username, word, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(saveSignRequest);
     }
 
 }
