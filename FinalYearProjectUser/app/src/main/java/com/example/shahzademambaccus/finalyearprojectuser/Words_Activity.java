@@ -26,6 +26,9 @@ public class Words_Activity extends AppCompatActivity {
     private String username;
     private Words_Activity words_activity;
     private ImageView logoutButton;
+    private static final String USERNAME_LABEL = "Username";
+    private static final String SIGN_LABEL = "Sign";
+    private static final String DISPLAY_WORD_LABEL = "DisplayWord";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,7 @@ public class Words_Activity extends AppCompatActivity {
 
     public void getExtras() {
         Bundle bundle = getIntent().getExtras();
-        username = bundle.getString("Username");
+        username = bundle.getString(USERNAME_LABEL);
     }
 
     public void setGUI() {
@@ -56,8 +59,8 @@ public class Words_Activity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(Words_Activity.this, Gif_Activity.class);
-                intent.putExtra("Sign", listOfGifLinks.get(position));
-                intent.putExtra("DisplayWord", listOfWords.get(position));
+                intent.putExtra(SIGN_LABEL, listOfGifLinks.get(position));
+                intent.putExtra(DISPLAY_WORD_LABEL, listOfWords.get(position));
                 databaseConnection.addToPreviouslyVisited(username, listOfWords.get(position), words_activity);
                 startActivity(intent);
             }

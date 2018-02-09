@@ -21,6 +21,10 @@ public class Login extends AppCompatActivity {
     private SharedPreferences.Editor editor;
     private Boolean saveLogin;
     private ImageView logout;
+    private static final String USERNAME_LABEL = "Username";
+    private static final String LOGIN_LABEL = "Login";
+    private static final String LOGIN_STATUS_LABEL = "saveLogin";
+    private static final String LOGIN_REF_LABEL = "loginRef";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +38,12 @@ public class Login extends AppCompatActivity {
     }
 
     public void sharedPreferences() {
-        sharedPreference = getSharedPreferences("loginRef", MODE_PRIVATE);
+        sharedPreference = getSharedPreferences(LOGIN_REF_LABEL, MODE_PRIVATE);
         editor = sharedPreference.edit();
-        saveLogin = sharedPreference.getBoolean("saveLogin", false);
+        saveLogin = sharedPreference.getBoolean(LOGIN_STATUS_LABEL, false);
         if(saveLogin){
             Intent intent = new Intent(Login.this, MainActivity.class);
-            intent.putExtra("Username", sharedPreference.getString("Username", null));
+            intent.putExtra(USERNAME_LABEL, sharedPreference.getString(USERNAME_LABEL, null));
             startActivity(intent);
         }
     }
@@ -51,7 +55,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void setToolBar() {
-        title.setText("Login");
+        title.setText(LOGIN_LABEL);
         logo.setImageResource(R.drawable.logo);
         logout.setImageResource(0);
     }

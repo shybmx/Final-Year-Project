@@ -30,6 +30,10 @@ public class SignsAndSymbols extends AppCompatActivity{
     private String username;
     private SignsAndSymbols signsAndSymbols;
     private ImageView logout;
+    private static final String SYMBOL_LABEL = "Symbol";
+    private static final String CATEGORY_LABEL = "Category";
+    private static final String CURRENT_TEXT_LABEL = "CurrentText";
+    private static final String USERNAME_LABEL = "Username";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +50,7 @@ public class SignsAndSymbols extends AppCompatActivity{
         }else{
             loadingWord = "Signs";
         }
+        title.setText(loadingWord);
         loadingToast("Gathering " + loadingWord);
         getAllSignsAndSymbols();
     }
@@ -76,10 +81,10 @@ public class SignsAndSymbols extends AppCompatActivity{
 
     public void getExtras() {
         Bundle bundle = getIntent().getExtras();
-        isSymbolCategory = bundle.getBoolean("Symbol");
-        category = bundle.getString("Category");
-        String currentText = bundle.getString("CurrentText");
-        username = bundle.getString("Username");
+        isSymbolCategory = bundle.getBoolean(SYMBOL_LABEL);
+        category = bundle.getString(CATEGORY_LABEL);
+        String currentText = bundle.getString(CURRENT_TEXT_LABEL);
+        username = bundle.getString(USERNAME_LABEL);
         setCurrentText(currentText);
     }
 
@@ -133,20 +138,13 @@ public class SignsAndSymbols extends AppCompatActivity{
     }
 
     public void setToolbar(){
-
-        if(isSymbolCategory) {
-            title.setText("Symbols");
-        }else{
-            title.setText("Signs");
-        }
-
         backButton.setImageResource(R.drawable.back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignsAndSymbols.this, Categories.class);
-                intent.putExtra("Symbol", isSymbolCategory);
-                intent.putExtra("CurrentText", getCurrentText());
+                intent.putExtra(SYMBOL_LABEL, isSymbolCategory);
+                intent.putExtra(CURRENT_TEXT_LABEL, getCurrentText());
                 startActivity(intent);
             }
         });

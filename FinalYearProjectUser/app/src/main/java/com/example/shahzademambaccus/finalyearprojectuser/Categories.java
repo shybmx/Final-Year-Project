@@ -19,6 +19,10 @@ public class Categories extends AppCompatActivity {
     private Categories category;
     private ImageView logout;
     private static final String TITLE_LABEL = "Category";
+    private static final String SYMBOL_LABEL = "Symbol";
+    private static final String CATEGORY_LABEL = "Category";
+    private static final String CURRENT_TEXT_LABEL = "CurrentText";
+    private static final String USERNAME_LABEL = "Username";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,10 +104,10 @@ public class Categories extends AppCompatActivity {
 
     public void createNewActivity(View v, String category){
         Intent intent = new Intent(Categories.this, SignsAndSymbols.class);
-        intent.putExtra("Symbol", isSymbolCategory);
-        intent.putExtra("Category", category);
-        intent.putExtra("CurrentText", getCurrentText());
-        intent.putExtra("Username", username);
+        intent.putExtra(SYMBOL_LABEL, isSymbolCategory);
+        intent.putExtra(CATEGORY_LABEL, category);
+        intent.putExtra(CURRENT_TEXT_LABEL, getCurrentText());
+        intent.putExtra(USERNAME_LABEL, username);
         startActivity(intent);
     }
 
@@ -114,7 +118,7 @@ public class Categories extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                Intent intent = new Intent(category, MainActivity.class);
-               intent.putExtra("Username", username);
+               intent.putExtra(USERNAME_LABEL, username);
                startActivity(intent);
             }
         });
@@ -136,9 +140,9 @@ public class Categories extends AppCompatActivity {
 
     public void getExtras() {
         Bundle bundle = getIntent().getExtras();
-        isSymbolCategory = bundle.getBoolean("Symbol");
-        String currentText = bundle.getString("CurrentText");
-        username = bundle.getString("Username");
+        isSymbolCategory = bundle.getBoolean(SYMBOL_LABEL);
+        String currentText = bundle.getString(CURRENT_TEXT_LABEL);
+        username = bundle.getString(USERNAME_LABEL);
         setCurrentText(currentText);
     }
 

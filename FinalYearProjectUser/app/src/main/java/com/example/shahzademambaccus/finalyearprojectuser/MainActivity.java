@@ -23,6 +23,12 @@ public class MainActivity extends AppCompatActivity {
     private String username;
     private ImageView logout;
     private MainActivity mainActivity;
+    private static final String USERNAME_LABEL = "Username";
+    private static final String SYMBOL_LABEL = "Symbol";
+    private static final String CURRENT_TEXT_LABEL = "CurrentText";
+    private static final String SIGN_LABEL = "Sign";
+    private static final String DISPLAY_WORD_LABEL = "DisplayWord";
+    private static final String TITLE_LABEL = "CommSigns";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void getExtras() {
         Bundle bundle = getIntent().getExtras();
-        username = bundle.getString("Username");
+        username = bundle.getString(USERNAME_LABEL);
     }
 
     public void setGUI() {
@@ -48,29 +54,29 @@ public class MainActivity extends AppCompatActivity {
 
     public void textToBSLActivity(View v){
         Intent intent = new Intent(MainActivity.this, Words_Activity.class);
-        intent.putExtra("Username", username);
+        intent.putExtra(USERNAME_LABEL, username);
         startActivity(intent);
     }
 
     public void bslSymbolToText (View v){
         Intent intent = new Intent(MainActivity.this, Categories.class);
-        intent.putExtra("Symbol", true);
-        intent.putExtra("CurrentText", "");
-        intent.putExtra("Username", username);
+        intent.putExtra(SYMBOL_LABEL, true);
+        intent.putExtra(CURRENT_TEXT_LABEL, "");
+        intent.putExtra(USERNAME_LABEL, username);
         startActivity(intent);
     }
 
     public void bslSignsToText(View v){
         Intent intent = new Intent(MainActivity.this, Categories.class);
-        intent.putExtra("Symbol", false);
-        intent.putExtra("CurrentText", "");
-        intent.putExtra("Username", username);
+        intent.putExtra(SYMBOL_LABEL, false);
+        intent.putExtra(CURRENT_TEXT_LABEL, "");
+        intent.putExtra(USERNAME_LABEL, username);
         startActivity(intent);
     }
 
     public void previouslyVisitedSigns(View v){
         Intent intent = new Intent(MainActivity.this, PreviouslyVisitedSigns.class);
-        intent.putExtra("Username", username);
+        intent.putExtra(USERNAME_LABEL, username);
         startActivity(intent);
     }
 
@@ -81,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Gif_Activity.class);
-                intent.putExtra("Sign", signGIF);
-                intent.putExtra("DisplayWord", displayWord);
+                intent.putExtra(SIGN_LABEL, signGIF);
+                intent.putExtra(DISPLAY_WORD_LABEL, displayWord);
                 startActivity(intent);
             }
         });
@@ -99,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     public void setToolBar(){
         title = (TextView) findViewById(R.id.Tool_Bar_Text);
         logoImageView = (ImageView) findViewById(R.id.Tool_Bar_Back);
-        title.setText("CommSigns");
+        title.setText(TITLE_LABEL);
         logoImageView.setImageResource(R.drawable.logo);
         logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
         logout.setOnClickListener(new View.OnClickListener() {

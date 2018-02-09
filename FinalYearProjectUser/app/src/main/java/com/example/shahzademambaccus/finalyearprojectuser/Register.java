@@ -17,6 +17,7 @@ public class Register extends AppCompatActivity {
     private DatabaseConnection database;
     private ImageView logout;
     private Register register;
+    private static final String TITLE_LABEL = "Register";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class Register extends AppCompatActivity {
     }
 
     public void setToolBar() {
-        title.setText("Register");
+        title.setText(TITLE_LABEL);
         backButton.setImageResource(R.drawable.back);
         logout.setImageResource(0);
     }

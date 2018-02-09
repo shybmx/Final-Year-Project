@@ -16,6 +16,8 @@ public class Gif_Activity extends AppCompatActivity {
     private ImageView backButton;
     private Gif_Activity gif_activity;
     private ImageView logout;
+    private static final String SIGN_LABEL = "Sign";
+    private static final String DISPLAY_WORD_LABEL = "DisplayWord";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +32,8 @@ public class Gif_Activity extends AppCompatActivity {
 
     private void getExtras() {
         Bundle bundle = getIntent().getExtras();
-        gifLink = bundle.getString("Sign");
-        displayWord = bundle.getString("DisplayWord");
+        gifLink = bundle.getString(SIGN_LABEL);
+        displayWord = bundle.getString(DISPLAY_WORD_LABEL);
     }
 
     private void setToolBar() {
