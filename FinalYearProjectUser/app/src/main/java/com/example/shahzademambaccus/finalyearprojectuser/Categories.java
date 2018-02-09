@@ -18,6 +18,7 @@ public class Categories extends AppCompatActivity {
     private String username;
     private Categories category;
     private ImageView logout;
+    private static final String TITLE_LABEL = "Category";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,17 +108,16 @@ public class Categories extends AppCompatActivity {
     }
 
     public void setToolBar(){
-        title = (TextView) findViewById(R.id.Tool_Bar_Text);
-        backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
         backButton.setImageResource(R.drawable.back);
-        title.setText("Catgegories");
+        title.setText(TITLE_LABEL);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               category.finish();
+               Intent intent = new Intent(category, MainActivity.class);
+               intent.putExtra("Username", username);
+               startActivity(intent);
             }
         });
-        logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,7 +128,10 @@ public class Categories extends AppCompatActivity {
     }
 
     public void setGUI(){
+        title = (TextView) findViewById(R.id.Tool_Bar_Text);
+        backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
         translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedTxt);
+        logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
     }
 
     public void getExtras() {

@@ -18,6 +18,11 @@ import org.json.JSONObject;
 
 public class DatabaseConnection {
 
+    private static final String WORD = "word";
+    private static final String VIDEO = "video";
+    private static final String IMAGE = "image";
+    private static final String JSON_LIST = "List";
+
     public DatabaseConnection() {
 
     }
@@ -32,12 +37,12 @@ public class DatabaseConnection {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
-                    JSONArray jsonArray = jsonResponse.getJSONArray("List");
+                    JSONArray jsonArray = jsonResponse.getJSONArray(JSON_LIST);
                     for(int i = 0; i < jsonArray.length(); i++){
                         JSONObject finalResponse = jsonArray.getJSONObject(i);
-                        wordsActivity.getListOfWords().add(finalResponse.getString("word"));
-                        wordsActivity.getListOfGifLinks().add(finalResponse.getString("video"));
-                        wordsActivity.getListOfImageLinks().add(finalResponse.getString("image"));
+                        wordsActivity.getListOfWords().add(finalResponse.getString(WORD));
+                        wordsActivity.getListOfGifLinks().add(finalResponse.getString(VIDEO));
+                        wordsActivity.getListOfImageLinks().add(finalResponse.getString(IMAGE));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -57,9 +62,9 @@ public class DatabaseConnection {
                     JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
                     boolean success = jsonResponse.getBoolean("success");
                     if (success) {
-                        String link = jsonResponse.getString("image");
-                        String video = jsonResponse.getString("video");
-                        String word = jsonResponse.getString("word");
+                        String link = jsonResponse.getString(IMAGE);
+                        String video = jsonResponse.getString(VIDEO);
+                        String word = jsonResponse.getString(WORD);
                         mainActivity.setSignGIF(video);
                         mainActivity.setWord(word);
                         new DownloadImage(link, image, word, textView).execute();
@@ -85,14 +90,13 @@ public class DatabaseConnection {
                     JSONArray jsonArray = jsonResponse.getJSONArray("ListOfSignsAndSymbols");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject finalResponse = jsonArray.getJSONObject(i);
-                        String word = finalResponse.getString("word");
                         String links;
                         if (isSymbol) {
-                            links = finalResponse.getString("image");
+                            links = finalResponse.getString(IMAGE);
                         } else {
-                            links = finalResponse.getString("video");
+                            links = finalResponse.getString(VIDEO);
                         }
-                        signsAndSymbols.getListOfWords().add(word);
+                        signsAndSymbols.getListOfWords().add(finalResponse.getString(WORD));
                         signsAndSymbols.getListOfLinks().add(links);
                     }
                 } catch (JSONException e) {
@@ -120,7 +124,7 @@ public class DatabaseConnection {
                         intent.putExtra("Username", username);
                         login.startActivity(intent);
                     }else{
-                        Toast.makeText(login, "Cannot login", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(login, "Username/Password is incorrect", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -182,12 +186,12 @@ public class DatabaseConnection {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
-                    JSONArray jsonArray = jsonObject.getJSONArray("List");
+                    JSONArray jsonArray = jsonObject.getJSONArray(JSON_LIST);
                     for(int i = 0; i < jsonArray.length(); i++){
                         JSONObject finalResponse = jsonArray.getJSONObject(i);
-                        previouslyVisitedSigns.getListOfLinks().add(finalResponse.getString("image"));
-                        previouslyVisitedSigns.getListOfGifs().add(finalResponse.getString("video"));
-                        previouslyVisitedSigns.getListOfWords().add(finalResponse.getString("word"));
+                        previouslyVisitedSigns.getListOfLinks().add(finalResponse.getString(IMAGE));
+                        previouslyVisitedSigns.getListOfGifs().add(finalResponse.getString(VIDEO));
+                        previouslyVisitedSigns.getListOfWords().add(finalResponse.getString(WORD));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

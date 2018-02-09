@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, Categories.class);
         intent.putExtra("Symbol", false);
         intent.putExtra("CurrentText", "");
-        //intent.putExtra("Username", username);
+        intent.putExtra("Username", username);
         startActivity(intent);
     }
 

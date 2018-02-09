@@ -36,11 +36,11 @@ public class SignsAndSymbols extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signs_and_symbols);
         signsAndSymbols = this;
-        getExtras();
         setGUI();
         setToolbar();
         setArrayLits();
         this.databaseConnection = new DatabaseConnection();
+        getExtras();
         if(isSymbolCategory){
             loadingWord = "Symbols";
         }else{
@@ -56,6 +56,9 @@ public class SignsAndSymbols extends AppCompatActivity{
     }
 
     public void setGUI() {
+        logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
+        backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
+        title = (TextView) findViewById(R.id.Tool_Bar_Text);
         grid = (GridView) findViewById(R.id.SignsAndSymbolsGrid);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -130,13 +133,13 @@ public class SignsAndSymbols extends AppCompatActivity{
     }
 
     public void setToolbar(){
-        title = (TextView) findViewById(R.id.Tool_Bar_Text);
+
         if(isSymbolCategory) {
             title.setText("Symbols");
         }else{
             title.setText("Signs");
         }
-        backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
+
         backButton.setImageResource(R.drawable.back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +151,7 @@ public class SignsAndSymbols extends AppCompatActivity{
             }
         });
 
-        logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

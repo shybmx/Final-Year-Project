@@ -1,7 +1,6 @@
 package com.example.shahzademambaccus.finalyearprojectuser;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 
 public class Logout {
