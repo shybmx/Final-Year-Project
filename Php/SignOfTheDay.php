@@ -6,7 +6,7 @@
         echo "fail";
     }
 
-    $statement = mysqli_prepare($con, "SELECT * FROM Symbols ORDER BY RAND() LIMIT 1");
+    $statement = mysqli_prepare($con, "SELECT * FROM `SignOfTheDay`");
     mysqli_stmt_execute($statement);
 
     mysqli_stmt_store_result($statement);

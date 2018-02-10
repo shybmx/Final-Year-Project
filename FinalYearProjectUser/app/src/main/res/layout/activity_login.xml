@@ -29,6 +29,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:ems="10"
+        android:layout_below="@id/Login_userNameET"
         android:inputType="textPassword"
         android:layout_marginTop="20dp"
         android:hint="Password"/>

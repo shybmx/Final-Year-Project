@@ -26,7 +26,7 @@ public class SignsAndSymbols extends AppCompatActivity{
     private EditText translatedText;
     private TextView title;
     private ImageView backButton;
-    int millisecondsToLoad = 1000;
+    int millisecondsToLoad = 5000; //TODO: fix timing
     private String username;
     private SignsAndSymbols signsAndSymbols;
     private ImageView logout;
@@ -34,6 +34,7 @@ public class SignsAndSymbols extends AppCompatActivity{
     private static final String CATEGORY_LABEL = "Category";
     private static final String CURRENT_TEXT_LABEL = "CurrentText";
     private static final String USERNAME_LABEL = "Username";
+    private GridAdapter gridAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class SignsAndSymbols extends AppCompatActivity{
         setGUI();
         setToolbar();
         setArrayLits();
-        this.databaseConnection = new DatabaseConnection();
+        databaseConnection = new DatabaseConnection();
         getExtras();
         if(isSymbolCategory){
             loadingWord = "Symbols";
@@ -68,7 +69,7 @@ public class SignsAndSymbols extends AppCompatActivity{
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                databaseConnection.addToPreviouslyVisited(username, listOfWords.get(position), signsAndSymbols);
+                databaseConnection.addToPreviouslyVisited(username, listOfWords.get(position).toString(), signsAndSymbols);
                 if(!translatedText.getText().equals("")) {
                     translatedText.getText().append(" " + listOfWords.get(position));
                     return;
@@ -120,7 +121,6 @@ public class SignsAndSymbols extends AppCompatActivity{
     public void getAllSignsAndSymbols(){
         databaseConnection.getSignsAndSymbols(category, this, isSymbolCategory);
         Handler handler = new Handler();
-        loadingToast("Displaying " + loadingWord);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -130,7 +130,10 @@ public class SignsAndSymbols extends AppCompatActivity{
     }
 
     public void placeSignsAndSymbolsOnScreen(){
+        loadingToast("Displaying " + loadingWord);
         grid.setAdapter(new GridAdapter(listOfLinks, listOfWords,this, isSymbolCategory));
+        //gridAdapter = new GridAdapter(listOfLinks, listOfWords, this, isSymbolCategory);
+       // grid.setAdapter(gridAdapter);
     }
 
     public void loadingToast(String word){
@@ -142,14 +145,15 @@ public class SignsAndSymbols extends AppCompatActivity{
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //gridAdapter.getDownloadImage().isCancel();
+                clearScreen();
                 Intent intent = new Intent(SignsAndSymbols.this, Categories.class);
                 intent.putExtra(SYMBOL_LABEL, isSymbolCategory);
+                intent.putExtra(USERNAME_LABEL, username);
                 intent.putExtra(CURRENT_TEXT_LABEL, getCurrentText());
                 startActivity(intent);
             }
         });
-
-
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,5 +161,9 @@ public class SignsAndSymbols extends AppCompatActivity{
                 startActivity(new Intent(signsAndSymbols, Login.class));
             }
         });
+    }
+
+    public void clearScreen(){
+        grid.setAdapter(null);
     }
 }

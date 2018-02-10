@@ -8,7 +8,7 @@
 
     $username = $_POST["user"];
 
-    $query = mysqli_query($con, "SELECT word FROM PrevisoulyVisited WHERE username = '$username' LIMIT 10");
+    $query = mysqli_query($con, "SELECT word FROM PrevisoulyVisited WHERE `Username` = '$username' ORDER BY id DESC LIMIT 10");
     
     $temparray = array();
     $response = array();

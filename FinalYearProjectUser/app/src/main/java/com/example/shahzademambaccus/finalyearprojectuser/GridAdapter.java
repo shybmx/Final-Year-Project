@@ -17,6 +17,7 @@ public class GridAdapter extends BaseAdapter {
     private ArrayList<String> arrayOfWords;
     private Context context;
     private boolean isSymbol;
+    private DownloadImage downloadImage;
 
     public GridAdapter(ArrayList<String> listOfImageView, ArrayList<String> listOfWords, Context context, boolean isSymbol){
        arrayOfImageView = listOfImageView;
@@ -54,10 +55,16 @@ public class GridAdapter extends BaseAdapter {
         }
         if(isSymbol) {
             new DownloadImage(arrayOfImageView.get(position).toString(), holder.getImageView(), arrayOfWords.get(position).toString(), holder.getTextView()).execute();
+            //downloadImage = new DownloadImage(arrayOfImageView.get(position).toString(), holder.getImageView(), arrayOfWords.get(position).toString(), holder.getTextView());
+            //downloadImage.execute();
         }else{
             Glide.with(context).load(arrayOfImageView.get(position)).asGif().placeholder(R.drawable.loadingwhite).error(R.drawable.error).into(holder.getImageView());
             holder.getTextView().setText(arrayOfWords.get(position));
         }
         return row;
+    }
+
+    public DownloadImage getDownloadImage(){
+        return downloadImage;
     }
 }
