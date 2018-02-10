@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -17,7 +18,7 @@ public class GridAdapter extends BaseAdapter {
     private ArrayList<String> arrayOfWords;
     private Context context;
     private boolean isSymbol;
-    private DownloadImage downloadImage;
+    //private DownloadImage downloadImage;
 
     public GridAdapter(ArrayList<String> listOfImageView, ArrayList<String> listOfWords, Context context, boolean isSymbol){
        arrayOfImageView = listOfImageView;
@@ -44,7 +45,7 @@ public class GridAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         View row = convertView;
-        ViewHolder holder = null;
+        ViewHolder holder;
         if(row == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             row = inflater.inflate(R.layout.single_image, parent, false);
@@ -55,16 +56,12 @@ public class GridAdapter extends BaseAdapter {
         }
         if(isSymbol) {
             new DownloadImage(arrayOfImageView.get(position).toString(), holder.getImageView(), arrayOfWords.get(position).toString(), holder.getTextView()).execute();
-            //downloadImage = new DownloadImage(arrayOfImageView.get(position).toString(), holder.getImageView(), arrayOfWords.get(position).toString(), holder.getTextView());
-            //downloadImage.execute();
         }else{
             Glide.with(context).load(arrayOfImageView.get(position)).asGif().placeholder(R.drawable.loadingwhite).error(R.drawable.error).into(holder.getImageView());
             holder.getTextView().setText(arrayOfWords.get(position));
         }
+        //notifyDataSetChanged();
         return row;
     }
 
-    public DownloadImage getDownloadImage(){
-        return downloadImage;
-    }
 }

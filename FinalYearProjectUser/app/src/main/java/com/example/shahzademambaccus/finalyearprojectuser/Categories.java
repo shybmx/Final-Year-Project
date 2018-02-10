@@ -12,7 +12,7 @@ public class Categories extends AppCompatActivity {
 
     boolean isSymbolCategory = false;
     private EditText translatedSignsAndSymbolsET;
-    private static final String[] categories = new String[13];
+    private static final String[] categories = new String[15];
     private TextView title;
     private ImageView backButton;
     private String username;
@@ -35,13 +35,17 @@ public class Categories extends AppCompatActivity {
         fillArray();
     }
 
-    public void familyAndPeopleButtonPressed(View v){
+    public void familyButtonPressed(View v){
         createNewActivity(v,categories[10]);
     }
 
-    public void foodAndDrinksButtonPressed(View v){
+    public void peopleButtonPressed(View v){createNewActivity(v, categories[13]);}
+
+    public void foodButtonPressed(View v){
         createNewActivity(v, categories[0]);
     }
+
+    public void drinksButtonPressed(View v){createNewActivity(v, categories[14]);}
 
     public void householdObjectsButtonPressed(View v){
         createNewActivity(v, categories[1]);
@@ -86,6 +90,7 @@ public class Categories extends AppCompatActivity {
     public void miscellaneousButtonPressed(View v){
         createNewActivity(v, categories[12]);
     }
+
 
     public String getCurrentText(){
         String translatedSignsAndSymbolsTxt = translatedSignsAndSymbolsET.getText().toString();
@@ -147,7 +152,7 @@ public class Categories extends AppCompatActivity {
     }
 
     public void fillArray(){
-        categories[0] = "foodanddrinks";
+        categories[0] = "food";
         categories[1] = "householdobjects";
         categories[2] = "questions";
         categories[3] = "verbs";
@@ -157,8 +162,10 @@ public class Categories extends AppCompatActivity {
         categories[7] = "outdoorobjects";
         categories[8] = "feelings";
         categories[9] = "size";
-        categories[10] = "familyandpeople";
+        categories[10] = "family";
         categories[11] = "rooms";
         categories[12] = "miscellaneous";
+        categories[13] = "people";
+        categories[14] = "drinks";
     }
 }

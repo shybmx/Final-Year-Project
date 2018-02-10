@@ -19,7 +19,8 @@
         android:id="@+id/ScrollViewCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/Tool_Bar">
+        android:layout_below="@+id/Tool_Bar"
+        android:layout_above="@+id/Category_TranslatedTxt">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,18 +28,31 @@
             android:orientation="vertical" >
 
             <Button
-                android:id="@+id/Category_FamilyAndPeopleBtn"
+                android:id="@+id/Category_FamilyBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Family and People"
-                android:onClick="familyAndPeopleButtonPressed"/>
+                android:text="Family"
+                android:onClick="familyButtonPressed"/>
 
             <Button
-                android:id="@+id/Category_FoodAndDrinksBtn"
+                android:id="@+id/Category_PeopleBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Food and Drinks"
-                android:onClick="foodAndDrinksButtonPressed"/>
+                android:text="People"
+                android:onClick="peopleButtonPressed"/>
+
+            <Button
+                android:id="@+id/Category_FoodBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Food"
+                android:onClick="foodButtonPressed"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Drinks"
+                android:onClick="drinksButtonPressed"/>
 
             <Button
                 android:id="@+id/Category_HouseholdObjectsBtn"
@@ -134,7 +148,6 @@
         android:ems="10"
         android:inputType="none"
         android:editable="false"
-        android:layout_below="@+id/ScrollViewCategory"
         android:hint="Translated text will be here" />
 
     <Button

@@ -26,7 +26,7 @@ public class SignsAndSymbols extends AppCompatActivity{
     private EditText translatedText;
     private TextView title;
     private ImageView backButton;
-    int millisecondsToLoad = 5000; //TODO: fix timing
+    int millisecondsToLoad = 1000;
     private String username;
     private SignsAndSymbols signsAndSymbols;
     private ImageView logout;
@@ -34,7 +34,7 @@ public class SignsAndSymbols extends AppCompatActivity{
     private static final String CATEGORY_LABEL = "Category";
     private static final String CURRENT_TEXT_LABEL = "CurrentText";
     private static final String USERNAME_LABEL = "Username";
-    private GridAdapter gridAdapter;
+    //private GridAdapter gridAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,8 @@ public class SignsAndSymbols extends AppCompatActivity{
             loadingWord = "Signs";
         }
         title.setText(loadingWord);
+        clearLists(listOfLinks);
+        clearLists(listOfWords);
         loadingToast("Gathering " + loadingWord);
         getAllSignsAndSymbols();
     }
@@ -152,6 +154,7 @@ public class SignsAndSymbols extends AppCompatActivity{
                 intent.putExtra(USERNAME_LABEL, username);
                 intent.putExtra(CURRENT_TEXT_LABEL, getCurrentText());
                 startActivity(intent);
+                signsAndSymbols.finish();
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {
