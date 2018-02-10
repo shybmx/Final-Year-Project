@@ -27,42 +27,42 @@
             android:orientation="vertical" >
 
             <Button
-                android:id="@+id/FamilyAndPeopleBtn"
+                android:id="@+id/Category_FamilyAndPeopleBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Family and People"
                 android:onClick="familyAndPeopleButtonPressed"/>
 
             <Button
-                android:id="@+id/FoodAndDrinksBtn"
+                android:id="@+id/Category_FoodAndDrinksBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Food and Drinks"
                 android:onClick="foodAndDrinksButtonPressed"/>
 
             <Button
-                android:id="@+id/HouseholdObjectsBtn"
+                android:id="@+id/Category_HouseholdObjectsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Household Objects"
                 android:onClick="householdObjectsButtonPressed"/>
 
             <Button
-                android:id="@+id/QuestionsBtn"
+                android:id="@+id/Category_QuestionsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Questions"
                 android:onClick="questionButtonPressed"/>
 
             <Button
-                android:id="@+id/VerbsBtn"
+                android:id="@+id/Category_VerbsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Verbs"
                 android:onClick="verbsButtonPressed"/>
 
             <Button
-                android:id="@+id/CommuicationBtn"
+                android:id="@+id/Category_CommuicationBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Communication"
@@ -70,28 +70,28 @@
 
 
             <Button
-                android:id="@+id/AnimalsBtn"
+                android:id="@+id/Category_AnimalsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Animals"
                 android:onClick="animalsButtonPressed"/>
 
             <Button
-                android:id="@+id/OutdoorObjectsBtn"
+                android:id="@+id/Category_OutdoorObjectsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Outdoor Objects"
                 android:onClick="outdoorObjectsButtonPressed"/>
 
             <Button
-                android:id="@+id/ConnectivesBtn"
+                android:id="@+id/Category_ConnectivesBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Connectives"
                 android:onClick="connectivesButtonPressed"/>
 
             <Button
-                android:id="@+id/FeelingsBtn"
+                android:id="@+id/Category_FeelingsBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Feelings"
@@ -99,21 +99,21 @@
 
 
             <Button
-                android:id="@+id/SizeAndPositionBtn"
+                android:id="@+id/Category_SizeAndPositionBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Size and Positions"
                 android:onClick="sizeAndPositionButtonPressed"/>
 
             <Button
-                android:id="@+id/RoomBtn"
+                android:id="@+id/Category_RoomBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Rooms"
                 android:onClick="roomButtonPressed"/>
 
             <Button
-                android:id="@+id/miscellaneousBtn"
+                android:id="@+id/Category_miscellaneousBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Miscellaneous"
@@ -123,14 +123,14 @@
     </ScrollView>
 
     <EditText
-        android:id="@+id/TranslatedTxt"
+        android:id="@+id/Category_TranslatedTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/ClearBtn"
-        android:layout_toStartOf="@+id/ClearBtn"
+        android:layout_toLeftOf="@+id/Category_ClearBtn"
+        android:layout_toStartOf="@+id/Category_ClearBtn"
         android:ems="10"
         android:inputType="none"
         android:editable="false"
@@ -138,11 +138,11 @@
         android:hint="Translated text will be here" />
 
     <Button
-        android:id="@+id/ClearBtn"
+        android:id="@+id/Category_ClearBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/TranslatedTxt"
-        android:layout_alignBottom="@+id/TranslatedTxt"
+        android:layout_alignBaseline="@+id/Category_TranslatedTxt"
+        android:layout_alignBottom="@+id/Category_TranslatedTxt"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:text="Clear"

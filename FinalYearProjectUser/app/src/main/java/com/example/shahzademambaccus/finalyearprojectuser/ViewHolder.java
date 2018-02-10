@@ -10,8 +10,8 @@ public class ViewHolder {
     private TextView word;
 
     public ViewHolder(View v){
-        image = (ImageView) v.findViewById(R.id.SignsAndSymbolsImage);
-        word = (TextView) v.findViewById(R.id.SignsAndSymbolsWord);
+        image = (ImageView) v.findViewById(R.id.Image_Signs_And_Symbol);
+        word = (TextView) v.findViewById(R.id.Image_Signs_And_Symbol_Word);
     }
 
     public ImageView getImageView(){

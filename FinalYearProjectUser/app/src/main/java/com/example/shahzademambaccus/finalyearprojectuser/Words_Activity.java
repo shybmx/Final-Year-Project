@@ -54,7 +54,7 @@ public class Words_Activity extends AppCompatActivity {
     }
 
     public void setGUI() {
-        grid = (GridView) findViewById(R.id.TranslatedSignsGrid);
+        grid = (GridView) findViewById(R.id.Words_TranslatedSignsGrid);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -65,7 +65,7 @@ public class Words_Activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        searchTermET = (EditText) findViewById(R.id.SearchTerm);
+        searchTermET = (EditText) findViewById(R.id.Words_SearchTerm);
     }
 
     public void search(View v) {

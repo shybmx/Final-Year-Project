@@ -13,35 +13,35 @@
 
 
     <Button
-        android:id="@+id/ClearSignAndSymbolBtn"
+        android:id="@+id/Signs_And_Symbols_ClearBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/TranslatedSignSymbolTxt"
-        android:layout_alignBottom="@+id/TranslatedSignSymbolTxt"
+        android:layout_alignBaseline="@+id/Signs_And_Symbols_TranslatedTxt"
+        android:layout_alignBottom="@+id/Signs_And_Symbols_TranslatedTxt"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:onClick="clearSignAndSymbolButtonPressed"
         android:text="Clear" />
 
     <EditText
-        android:id="@+id/TranslatedSignSymbolTxt"
+        android:id="@+id/Signs_And_Symbols_TranslatedTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/ClearSignAndSymbolBtn"
-        android:layout_toStartOf="@+id/ClearSignAndSymbolBtn"
+        android:layout_toLeftOf="@+id/Signs_And_Symbols_ClearBtn"
+        android:layout_toStartOf="@+id/Signs_And_Symbols_ClearBtn"
         android:ems="10"
         android:hint="Translated text will be here"
         android:inputType="none"
         android:editable="false"/>
 
     <GridView
-        android:id="@+id/SignsAndSymbolsGrid"
+        android:id="@+id/Signs_And_Symbols_Grid"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/ClearSignAndSymbolBtn"
+        android:layout_above="@+id/Signs_And_Symbols_ClearBtn"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:numColumns="auto_fit"

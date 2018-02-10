@@ -6,17 +6,17 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/SignsAndSymbolsImage"
+        android:id="@+id/Image_Signs_And_Symbol"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true" />
 
     <TextView
-        android:id="@+id/SignsAndSymbolsWord"
+        android:id="@+id/Image_Signs_And_Symbol_Word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/SignsAndSymbolsImage"
+        android:layout_below="@+id/Image_Signs_And_Symbol"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"/>
 </RelativeLayout>

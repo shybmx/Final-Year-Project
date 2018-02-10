@@ -12,7 +12,7 @@
         />
 
     <Button
-        android:id="@+id/textToBSLBtn"
+        android:id="@+id/Main_textToBSLBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -26,68 +26,68 @@
         android:layout_below="@id/Tool_Bar_Main"/>
 
     <Button
-        android:id="@+id/BSLSymbolsToTextBtn"
+        android:id="@+id/Main_BSLSymbolsToTextBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/textToBSLBtn"
+        android:layout_below="@+id/Main_textToBSLBtn"
         android:gravity="left|center_vertical"
         android:onClick="bslSymbolToText"
         android:text="BSL Symbol to text" />
 
     <Button
-        android:id="@+id/BSLSignsToTextBtn"
+        android:id="@+id/Main_BSLSignsToTextBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/BSLSymbolsToTextBtn"
+        android:layout_below="@+id/Main_BSLSymbolsToTextBtn"
         android:gravity="left|center_vertical"
         android:onClick="bslSignsToText"
         android:text="BSL Signs To Text" />
 
     <Button
-        android:id="@+id/previouslyVisitedSign"
+        android:id="@+id/Main_previouslyVisitedSign"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/BSLSignsToTextBtn"
+        android:layout_below="@+id/Main_BSLSignsToTextBtn"
         android:gravity="left|center_vertical"
         android:onClick="previouslyVisitedSigns"
         android:text="Previously Visited Signs" />
 
     <TextView
-        android:id="@+id/SignOfTheDayTxt"
+        android:id="@+id/Main_SignOfTheDayTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/previouslyVisitedSign"
+        android:layout_below="@+id/Main_previouslyVisitedSign"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"
         android:text="Sign Of The Day"
         android:textSize="30sp" />
 
     <ImageView
-        android:id="@+id/SignOfTheDayImg"
+        android:id="@+id/Main_SignOfTheDayImg"
         android:layout_width="150sp"
         android:layout_height="150sp"
-        android:layout_below="@+id/SignOfTheDayTxt"
+        android:layout_below="@+id/Main_SignOfTheDayTxt"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         app:srcCompat="@android:drawable/screen_background_light_transparent" />
 
     <TextView
-        android:id="@+id/SignOfTheDayWord"
+        android:id="@+id/Main_SignOfTheDayWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/SignOfTheDayImg"
+        android:layout_below="@+id/Main_SignOfTheDayImg"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"/>
 

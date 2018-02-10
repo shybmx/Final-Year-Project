@@ -64,7 +64,7 @@ public class SignsAndSymbols extends AppCompatActivity{
         logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
         backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
         title = (TextView) findViewById(R.id.Tool_Bar_Text);
-        grid = (GridView) findViewById(R.id.SignsAndSymbolsGrid);
+        grid = (GridView) findViewById(R.id.Signs_And_Symbols_Grid);
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -76,7 +76,7 @@ public class SignsAndSymbols extends AppCompatActivity{
                 translatedText.setText(listOfWords.get(position));
             }
         });
-        translatedText = (EditText) findViewById(R.id.TranslatedSignSymbolTxt);
+        translatedText = (EditText) findViewById(R.id.Signs_And_Symbols_TranslatedTxt);
     }
 
     public void getExtras() {

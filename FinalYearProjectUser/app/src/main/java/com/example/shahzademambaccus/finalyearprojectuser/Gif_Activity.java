@@ -55,12 +55,12 @@ public class Gif_Activity extends AppCompatActivity {
     }
 
     public void playVideoGIF(){
-        ImageView video = (ImageView) findViewById(R.id.GIFPlayer);
+        ImageView video = (ImageView) findViewById(R.id.GIF_GIFPlayer);
         Glide.with(this).load(gifLink).asGif().placeholder(R.drawable.loadingblack).error(R.drawable.error).into(video);
     }
 
     public void setLabelText(String wordToBeDisplayed){
-        TextView textView = (TextView) findViewById(R.id.SelectedWord);
+        TextView textView = (TextView) findViewById(R.id.GIF_SelectedWord);
         textView.setText(wordToBeDisplayed);
         backButton.setImageResource(R.drawable.back);
     }

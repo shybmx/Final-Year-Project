@@ -134,7 +134,7 @@ public class Categories extends AppCompatActivity {
     public void setGUI(){
         title = (TextView) findViewById(R.id.Tool_Bar_Text);
         backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
-        translatedSignsAndSymbolsET = (EditText) findViewById(R.id.TranslatedTxt);
+        translatedSignsAndSymbolsET = (EditText) findViewById(R.id.Category_TranslatedTxt);
         logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
     }
 
