@@ -39,7 +39,7 @@ public class GridAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return position;
+        return 0;//position;
     }
 
     @Override
@@ -60,7 +60,6 @@ public class GridAdapter extends BaseAdapter {
             Glide.with(context).load(arrayOfImageView.get(position)).asGif().placeholder(R.drawable.loadingwhite).error(R.drawable.error).into(holder.getImageView());
             holder.getTextView().setText(arrayOfWords.get(position));
         }
-        //notifyDataSetChanged();
         return row;
     }
 

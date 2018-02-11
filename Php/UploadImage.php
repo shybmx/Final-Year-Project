@@ -9,14 +9,16 @@
     $listOfWords = $_POST["word"];
 
     $breakDown = explode(" ", $listOfWords);
+    $response = array();
 
     foreach($breakDown as $word){
-        $statement = "SELECT * FROM Symbols WHERE word = '$word' ";
-        $result = mysqli_query($con, $statement);
-        $response = array();
+        if(!$word == ""){
+            $statement = "SELECT * FROM `Symbols` WHERE `word` LIKE '$word%' LIMIT 1";
+            $result = mysqli_query($con, $statement);
 
-        while($row = mysqli_fetch_array($result)){
-            array_push($response, array("imageID"=>$row[0], "word"=>$row[1], "category"=>$row[2], "image"=>$row[3], "video"=>$row[4]));
+            while($row = mysqli_fetch_array($result)){
+                array_push($response, array("imageID"=>$row[0], "word"=>$row[1], "category"=>$row[2], "image"=>$row[3], "video"=>$row[4]));
+            }
         }
     }
     echo json_encode(array("List"=>$response));

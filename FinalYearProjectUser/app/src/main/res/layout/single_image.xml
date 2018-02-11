@@ -16,6 +16,7 @@
         android:id="@+id/Image_Signs_And_Symbol_Word"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:layout_below="@+id/Image_Signs_And_Symbol"
         android:layout_centerHorizontal="true"
         android:textSize="15sp"/>
