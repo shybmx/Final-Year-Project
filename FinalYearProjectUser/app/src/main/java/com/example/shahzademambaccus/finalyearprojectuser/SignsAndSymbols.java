@@ -34,7 +34,6 @@ public class SignsAndSymbols extends AppCompatActivity{
     private static final String CATEGORY_LABEL = "Category";
     private static final String CURRENT_TEXT_LABEL = "CurrentText";
     private static final String USERNAME_LABEL = "Username";
-    //private GridAdapter gridAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,14 +85,12 @@ public class SignsAndSymbols extends AppCompatActivity{
         Bundle bundle = getIntent().getExtras();
         isSymbolCategory = bundle.getBoolean(SYMBOL_LABEL);
         category = bundle.getString(CATEGORY_LABEL);
-        String currentText = bundle.getString(CURRENT_TEXT_LABEL);
         username = bundle.getString(USERNAME_LABEL);
-        setCurrentText(currentText);
+        setCurrentText(bundle.getString(CURRENT_TEXT_LABEL));
     }
 
     public String getCurrentText(){
-        String translatedSignsAndSymbolsTxt = translatedText.getText().toString();
-        return translatedSignsAndSymbolsTxt;
+        return translatedText.getText().toString();
     }
 
     public void setCurrentText(String currentText){
@@ -134,8 +131,6 @@ public class SignsAndSymbols extends AppCompatActivity{
     public void placeSignsAndSymbolsOnScreen(){
         loadingToast("Displaying " + loadingWord);
         grid.setAdapter(new GridAdapter(listOfLinks, listOfWords,this, isSymbolCategory));
-        //gridAdapter = new GridAdapter(listOfLinks, listOfWords, this, isSymbolCategory);
-       // grid.setAdapter(gridAdapter);
     }
 
     public void loadingToast(String word){
@@ -147,14 +142,14 @@ public class SignsAndSymbols extends AppCompatActivity{
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //gridAdapter.getDownloadImage().isCancel();
                 clearScreen();
                 Intent intent = new Intent(SignsAndSymbols.this, Categories.class);
                 intent.putExtra(SYMBOL_LABEL, isSymbolCategory);
                 intent.putExtra(USERNAME_LABEL, username);
                 intent.putExtra(CURRENT_TEXT_LABEL, getCurrentText());
-                startActivity(intent);
                 signsAndSymbols.finish();
+                startActivity(intent);
+
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {

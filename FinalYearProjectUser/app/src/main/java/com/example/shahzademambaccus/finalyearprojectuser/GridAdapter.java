@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,6 @@ public class GridAdapter extends BaseAdapter {
     private ArrayList<String> arrayOfWords;
     private Context context;
     private boolean isSymbol;
-    //private DownloadImage downloadImage;
 
     public GridAdapter(ArrayList<String> listOfImageView, ArrayList<String> listOfWords, Context context, boolean isSymbol){
        arrayOfImageView = listOfImageView;
@@ -39,7 +39,7 @@ public class GridAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return 0;//position;
+        return position;
     }
 
     @Override
@@ -55,7 +55,8 @@ public class GridAdapter extends BaseAdapter {
             holder = (ViewHolder) row.getTag();
         }
         if(isSymbol) {
-            new DownloadImage(arrayOfImageView.get(position).toString(), holder.getImageView(), arrayOfWords.get(position).toString(), holder.getTextView()).execute();
+            Picasso.with(context).load(arrayOfImageView.get(position)).placeholder(R.drawable.loadingwhite).into(holder.getImageView());
+            holder.getTextView().setText(arrayOfWords.get(position));
         }else{
             Glide.with(context).load(arrayOfImageView.get(position)).asGif().placeholder(R.drawable.loadingwhite).error(R.drawable.error).into(holder.getImageView());
             holder.getTextView().setText(arrayOfWords.get(position));

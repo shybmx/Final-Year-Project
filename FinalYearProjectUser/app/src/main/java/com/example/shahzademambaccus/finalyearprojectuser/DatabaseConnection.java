@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,12 +65,10 @@ public class DatabaseConnection {
                     JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
                     boolean success = jsonResponse.getBoolean(SUCCESS_LABEL);
                     if (success) {
-                        String link = jsonResponse.getString(IMAGE_LABEL);
-                        String video = jsonResponse.getString(VIDEO_LABEL);
                         String word = jsonResponse.getString(WORD_LABEL);
-                        mainActivity.setSignGIF(video);
+                        mainActivity.setSignGIF(jsonResponse.getString(VIDEO_LABEL));
                         mainActivity.setWord(word);
-                        new DownloadImage(link, image, word, textView).execute();
+                        new DownloadImage(jsonResponse.getString(IMAGE_LABEL), image, word, textView).execute();
                     } else {
                         //Toast.makeText(mainActivity, "Sign of the day cannot be retrieved", Toast.LENGTH_LONG).show();
                     }
@@ -92,14 +91,12 @@ public class DatabaseConnection {
                     JSONArray jsonArray = jsonResponse.getJSONArray(JSON_LIST_LABEL);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject finalResponse = jsonArray.getJSONObject(i);
-                        String links;
                         if (isSymbol) {
-                            links = finalResponse.getString(IMAGE_LABEL);
+                            signsAndSymbols.getListOfLinks().add(finalResponse.getString(IMAGE_LABEL));
                         } else {
-                            links = finalResponse.getString(VIDEO_LABEL);
+                            signsAndSymbols.getListOfLinks().add(finalResponse.getString(VIDEO_LABEL));
                         }
                         signsAndSymbols.getListOfWords().add(finalResponse.getString(WORD_LABEL));
-                        signsAndSymbols.getListOfLinks().add(links);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

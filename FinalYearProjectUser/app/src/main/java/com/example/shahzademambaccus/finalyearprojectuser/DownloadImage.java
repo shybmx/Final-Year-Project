@@ -20,7 +20,6 @@ public class DownloadImage extends AsyncTask<Void, Void, Bitmap>{
     private ImageView image;
     private String word;
     private TextView textView;
-    private boolean cancelled = false;
 
     public DownloadImage(String imageURL, ImageView image, String word, TextView textView){
         this.imageURL = imageURL;
@@ -52,14 +51,6 @@ public class DownloadImage extends AsyncTask<Void, Void, Bitmap>{
              image.setImageBitmap(bitmap);
              textView.setText(word);
         }
-    }
-
-    public void isCancel(boolean isCanceled){
-        cancelled = isCanceled;
-    }
-
-    public boolean checkIsCanceled(){
-        return cancelled;
     }
 
 }
