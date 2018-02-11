@@ -56,11 +56,10 @@ public class GridAdapter extends BaseAdapter {
         }
         if(isSymbol) {
             Picasso.with(context).load(arrayOfImageView.get(position)).placeholder(R.drawable.loadingwhite).into(holder.getImageView());
-            holder.getTextView().setText(arrayOfWords.get(position));
         }else{
             Glide.with(context).load(arrayOfImageView.get(position)).asGif().placeholder(R.drawable.loadingwhite).error(R.drawable.error).into(holder.getImageView());
-            holder.getTextView().setText(arrayOfWords.get(position));
         }
+        holder.getTextView().setText(arrayOfWords.get(position));
         return row;
     }
 
