@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -200,6 +199,27 @@ public class DatabaseConnection {
         GetPreviouslyVisitedRequest getPreviouslyVisitedRequest = new GetPreviouslyVisitedRequest(username, responseListener);
         RequestQueue queue = Volley.newRequestQueue(previouslyVisitedSigns);
         queue.add(getPreviouslyVisitedRequest);
+    }
+
+    public void getMinigameSignsAndSymbols(final Minigame minigame){
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response.substring(response.indexOf("{"), response.lastIndexOf("}") + 1));
+                    if(jsonResponse.getBoolean("success")){
+                        minigame.setSign(jsonResponse.getString(IMAGE_LABEL));
+                        minigame.setSymbol(jsonResponse.getString(VIDEO_LABEL));
+                        minigame.setWord(jsonResponse.getString(WORD_LABEL));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        MinigameRequest minigameRequest = new MinigameRequest(responseListener);
+        RequestQueue queue = Volley.newRequestQueue(minigame);
+        queue.add(minigameRequest);
     }
 
 }

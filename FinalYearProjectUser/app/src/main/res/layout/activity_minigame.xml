@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.shahzademambaccus.finalyearprojectuser.Minigame">
+
+    <include
+        android:id="@+id/Tool_Bar_Minigame"
+        layout="@layout/tool_bar" />
+
+    <ImageView
+        android:id="@+id/Minigame_Sign_Or_Symbol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Tool_Bar_Minigame"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
+
+    <EditText
+        android:id="@+id/Minigame_Guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Minigame_Sign_Or_Symbol"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Answer here" />
+
+    <Button
+        android:id="@+id/Minigame_Sumbit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Minigame_Guess"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Submit"
+        android:onClick="submitAnswer"/>
+
+
+</RelativeLayout>

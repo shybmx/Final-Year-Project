@@ -77,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void minigame(View v){
+        Intent intent = new Intent(MainActivity.this, Minigame.class);
+        intent.putExtra(USERNAME_LABEL, username);
+        startActivity(intent);
+    }
 
     public void getSignOfTheDay(){
         databaseConnection.getSignOfTheDay(image, this, symbolText);

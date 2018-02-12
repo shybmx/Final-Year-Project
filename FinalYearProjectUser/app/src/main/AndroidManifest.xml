@@ -23,8 +23,9 @@
         <activity android:name=".PreviouslyVisitedSigns" />
         <activity android:name=".SignsAndSymbols" />
         <activity android:name=".Gif_Activity" />
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".Register"/>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Register" />
+        <activity android:name=".Minigame"></activity>
     </application>
 
 </manifest>
