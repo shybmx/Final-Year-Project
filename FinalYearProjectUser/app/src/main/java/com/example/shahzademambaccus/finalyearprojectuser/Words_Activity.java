@@ -62,6 +62,15 @@ public class Words_Activity extends AppCompatActivity {
                 finishActivity();
             }
         });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(words_activity, MainActivity.class);
+                intent.putExtra(USERNAME_LABEL, username);
+                startActivity(intent);
+                finishActivity();
+            }
+        });
     }
 
     public void setArrayLists() {
@@ -140,12 +149,6 @@ public class Words_Activity extends AppCompatActivity {
         title.setText("BSL Symbols");
         backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
         backButton.setImageResource(R.drawable.back);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                words_activity.finish();
-            }
-        });
         logoutButton = (ImageView) findViewById(R.id.Tool_Bar_Logout);
     }
 

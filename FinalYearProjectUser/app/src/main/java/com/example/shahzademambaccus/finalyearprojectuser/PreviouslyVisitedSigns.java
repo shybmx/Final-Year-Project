@@ -23,6 +23,7 @@ public class PreviouslyVisitedSigns extends AppCompatActivity {
     private DatabaseConnection database;
     private String username;
     private ImageView logout;
+    private static final String USERNAME_LABEL = "Username";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,10 @@ public class PreviouslyVisitedSigns extends AppCompatActivity {
        backButton.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               previouslyVisitedSigns.finish();
+            Intent intent = new Intent(previouslyVisitedSigns, MainActivity.class);
+            intent.putExtra(USERNAME_LABEL, username);
+            startActivity(intent);
+            finishActivity();
            }
        });
         logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
@@ -100,4 +104,7 @@ public class PreviouslyVisitedSigns extends AppCompatActivity {
         grid.setAdapter(new GridAdapter(listOfLinks, listOfWords, this, true));
     }
 
+    public void finishActivity(){
+        this.finish();
+    }
 }
