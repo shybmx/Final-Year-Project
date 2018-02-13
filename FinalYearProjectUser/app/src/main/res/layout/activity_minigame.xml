@@ -38,5 +38,14 @@
         android:text="Submit"
         android:onClick="submitAnswer"/>
 
+    <TextView
+        android:id="@+id/Minigame_Score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Minigame_Sumbit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:text="" />
+
 
 </RelativeLayout>

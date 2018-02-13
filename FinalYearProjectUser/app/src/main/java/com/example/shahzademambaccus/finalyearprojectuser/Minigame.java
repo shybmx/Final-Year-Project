@@ -29,6 +29,10 @@ public class Minigame extends AppCompatActivity {
     private String signURL;
     private String symbolURL;
     private String signOrSymbolWord;
+    private int numberOfQuestionsAnswered;
+    private int score;
+    private static int MAX_QUESTION = 10;
+    private TextView displayScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,7 @@ public class Minigame extends AppCompatActivity {
         database = new DatabaseConnection();
         minigame = this;
         getSignOrSymbol();
+        numberOfQuestionsAnswered = 0;
     }
 
     public void getExtras() {
@@ -73,32 +78,44 @@ public class Minigame extends AppCompatActivity {
         logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
         question = (ImageView) findViewById(R.id.Minigame_Sign_Or_Symbol);
         answer = (EditText) findViewById(R.id.Minigame_Guess);
+        displayScore = (TextView) findViewById(R.id.Minigame_Score);
     }
 
     public void getSignOrSymbol(){
-        database.getMinigameSignsAndSymbols(this);
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if(isSign){
-                    Picasso.with(minigame).load(signURL).placeholder(R.drawable.loadingwhite).into(question);
-                }else{
-                    Glide.with(minigame).load(symbolURL).placeholder(R.drawable.loadingwhite).into(question);
+        if(numberOfQuestionsAnswered < MAX_QUESTION) {
+            database.getMinigameSignsAndSymbols(this);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (isSign) {
+                        Picasso.with(minigame).load(signURL).placeholder(R.drawable.loadingwhite).into(question);
+                    } else {
+                        Glide.with(minigame).load(symbolURL).placeholder(R.drawable.loadingwhite).into(question);
+                    }
                 }
-            }
-        },1000);
+            }, 1000);
+        }else{
+            showResults();
+        }
     }
 
     public void submitAnswer(View v){
+        numberOfQuestionsAnswered++;
         if(answer.getText().toString().equalsIgnoreCase(getWord())){
             Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
+            score++;
         }else{
             Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
         }
         isSign = !isSign;
         clearScreen();
         getSignOrSymbol();
+    }
+
+    public void showResults(){
+        clearScreen();
+        displayScore.setText("You got: " + score + "/" + MAX_QUESTION);
     }
 
     public void clearScreen(){
