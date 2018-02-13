@@ -33,6 +33,7 @@ public class Categories extends AppCompatActivity {
         getExtras();
         setToolBar();
         fillArray();
+        setupOnClick();
     }
 
     public void familyButtonPressed(View v){
@@ -116,15 +117,13 @@ public class Categories extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void setToolBar(){
-        backButton.setImageResource(R.drawable.back);
-        title.setText(TITLE_LABEL);
+    public void setupOnClick() {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(category, MainActivity.class);
-               intent.putExtra(USERNAME_LABEL, username);
-               startActivity(intent);
+                Intent intent = new Intent(category, MainActivity.class);
+                intent.putExtra(USERNAME_LABEL, username);
+                startActivity(intent);
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {
@@ -134,6 +133,11 @@ public class Categories extends AppCompatActivity {
                 startActivity(new Intent(category, Login.class));
             }
         });
+    }
+
+    public void setToolBar(){
+        backButton.setImageResource(R.drawable.back);
+        title.setText(TITLE_LABEL);
     }
 
     public void setGUI(){

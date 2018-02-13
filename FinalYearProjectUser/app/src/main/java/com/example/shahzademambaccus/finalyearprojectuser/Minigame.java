@@ -43,18 +43,12 @@ public class Minigame extends AppCompatActivity {
         getExtras();
         database = new DatabaseConnection();
         minigame = this;
-        getSignOrSymbol();
         numberOfQuestionsAnswered = 0;
+        getSignOrSymbol();
+        setupOnClick();
     }
 
-    public void getExtras() {
-        Bundle bundle = getIntent().getExtras();
-        username = bundle.getString(USERNAME_LABEL);
-    }
-
-    public void setToolBar() {
-        title.setText(TITLE_LABEL);
-        backButton.setImageResource(R.drawable.back);
+    public void setupOnClick() {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +64,16 @@ public class Minigame extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    public void getExtras() {
+        Bundle bundle = getIntent().getExtras();
+        username = bundle.getString(USERNAME_LABEL);
+    }
+
+    public void setToolBar() {
+        title.setText(TITLE_LABEL);
+        backButton.setImageResource(R.drawable.back);
     }
 
     public void setUpGUI() {

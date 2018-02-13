@@ -37,6 +37,26 @@ public class MainActivity extends AppCompatActivity {
         getExtras();
         setToolBar();
         getSignOfTheDay();
+        setupOnClick();
+    }
+
+    public void setupOnClick() {
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout logout = new Logout(mainActivity);
+                startActivity(new Intent(mainActivity, Login.class));
+            }
+        });
+        image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Gif_Activity.class);
+                intent.putExtra(SIGN_LABEL, signGIF);
+                intent.putExtra(DISPLAY_WORD_LABEL, displayWord);
+                startActivity(intent);
+            }
+        });
     }
 
     public void getExtras() {
@@ -85,15 +105,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void getSignOfTheDay(){
         databaseConnection.getSignOfTheDay(image, this, symbolText);
-        image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Gif_Activity.class);
-                intent.putExtra(SIGN_LABEL, signGIF);
-                intent.putExtra(DISPLAY_WORD_LABEL, displayWord);
-                startActivity(intent);
-            }
-        });
     }
 
     public void setSignGIF(String link){
@@ -110,13 +121,6 @@ public class MainActivity extends AppCompatActivity {
         title.setText(TITLE_LABEL);
         logoImageView.setImageResource(R.drawable.logo);
         logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Logout logout = new Logout(mainActivity);
-                startActivity(new Intent(mainActivity, Login.class));
-            }
-        });
     }
 
 }

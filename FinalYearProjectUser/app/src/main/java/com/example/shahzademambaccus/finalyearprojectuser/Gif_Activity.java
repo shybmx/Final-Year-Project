@@ -26,8 +26,19 @@ public class Gif_Activity extends AppCompatActivity {
         getExtras();
         setToolBar();
         playVideoGIF();
+        setupOnClick();
         setLabelText(displayWord);
         gif_activity = this;
+    }
+
+    public void setupOnClick() {
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout logout = new Logout(gif_activity);
+                startActivity(new Intent(gif_activity, Login.class));
+            }
+        });
     }
 
     private void getExtras() {
@@ -45,13 +56,6 @@ public class Gif_Activity extends AppCompatActivity {
             }
         });
         logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Logout logout = new Logout(gif_activity);
-                startActivity(new Intent(gif_activity, Login.class));
-            }
-        });
     }
 
     public void playVideoGIF(){

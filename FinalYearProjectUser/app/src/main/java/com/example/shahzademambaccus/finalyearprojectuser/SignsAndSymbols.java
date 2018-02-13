@@ -54,7 +54,42 @@ public class SignsAndSymbols extends AppCompatActivity{
         clearLists(listOfLinks);
         clearLists(listOfWords);
         loadingToast("Gathering " + loadingWord);
+        setupOnClick();
         getAllSignsAndSymbols();
+    }
+
+    public void setupOnClick() {
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                databaseConnection.addToPreviouslyVisited(username, listOfWords.get(position).toString(), signsAndSymbols);
+                if(!translatedText.getText().equals("")) {
+                    translatedText.getText().append(" " + listOfWords.get(position));
+                    return;
+                }
+                translatedText.setText(listOfWords.get(position));
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearScreen();
+                Intent intent = new Intent(SignsAndSymbols.this, Categories.class);
+                intent.putExtra(SYMBOL_LABEL, isSymbolCategory);
+                intent.putExtra(USERNAME_LABEL, username);
+                intent.putExtra(CURRENT_TEXT_LABEL, getCurrentText());
+                signsAndSymbols.finish();
+                startActivity(intent);
+
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout logout = new Logout(signsAndSymbols);
+                startActivity(new Intent(signsAndSymbols, Login.class));
+            }
+        });
     }
 
     public void setArrayLits() {
@@ -67,17 +102,6 @@ public class SignsAndSymbols extends AppCompatActivity{
         backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
         title = (TextView) findViewById(R.id.Tool_Bar_Text);
         grid = (GridView) findViewById(R.id.Signs_And_Symbols_Grid);
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                databaseConnection.addToPreviouslyVisited(username, listOfWords.get(position).toString(), signsAndSymbols);
-                if(!translatedText.getText().equals("")) {
-                    translatedText.getText().append(" " + listOfWords.get(position));
-                    return;
-                }
-                translatedText.setText(listOfWords.get(position));
-            }
-        });
         translatedText = (EditText) findViewById(R.id.Signs_And_Symbols_TranslatedTxt);
     }
 
@@ -139,26 +163,6 @@ public class SignsAndSymbols extends AppCompatActivity{
 
     public void setToolbar(){
         backButton.setImageResource(R.drawable.back);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearScreen();
-                Intent intent = new Intent(SignsAndSymbols.this, Categories.class);
-                intent.putExtra(SYMBOL_LABEL, isSymbolCategory);
-                intent.putExtra(USERNAME_LABEL, username);
-                intent.putExtra(CURRENT_TEXT_LABEL, getCurrentText());
-                signsAndSymbols.finish();
-                startActivity(intent);
-
-            }
-        });
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Logout logout = new Logout(signsAndSymbols);
-                startActivity(new Intent(signsAndSymbols, Login.class));
-            }
-        });
     }
 
     public void clearScreen(){

@@ -40,6 +40,27 @@ public class Words_Activity extends AppCompatActivity {
         setToolBar();
         getExtras();
         setArrayLists();
+        setupOnClick();
+    }
+
+    public void setupOnClick() {
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(Words_Activity.this, Gif_Activity.class);
+                intent.putExtra(SIGN_LABEL, listOfGifLinks.get(position));
+                intent.putExtra(DISPLAY_WORD_LABEL, listOfWords.get(position));
+                databaseConnection.addToPreviouslyVisited(username, listOfWords.get(position), words_activity);
+                startActivity(intent);
+            }
+        });
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Logout logout = new Logout(words_activity);
+                startActivity(new Intent(words_activity, Login.class));
+            }
+        });
     }
 
     public void setArrayLists() {
@@ -55,16 +76,6 @@ public class Words_Activity extends AppCompatActivity {
 
     public void setGUI() {
         grid = (GridView) findViewById(R.id.Words_TranslatedSignsGrid);
-        grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(Words_Activity.this, Gif_Activity.class);
-                intent.putExtra(SIGN_LABEL, listOfGifLinks.get(position));
-                intent.putExtra(DISPLAY_WORD_LABEL, listOfWords.get(position));
-                databaseConnection.addToPreviouslyVisited(username, listOfWords.get(position), words_activity);
-                startActivity(intent);
-            }
-        });
         searchTermET = (EditText) findViewById(R.id.Words_SearchTerm);
     }
 
@@ -135,13 +146,6 @@ public class Words_Activity extends AppCompatActivity {
             }
         });
         logoutButton = (ImageView) findViewById(R.id.Tool_Bar_Logout);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Logout logout = new Logout(words_activity);
-                startActivity(new Intent(words_activity, Login.class));
-            }
-        });
     }
 
 }
