@@ -59,6 +59,7 @@ public class Words_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Logout logout = new Logout(words_activity);
                 startActivity(new Intent(words_activity, Login.class));
+                finishActivity();
             }
         });
     }
@@ -148,4 +149,7 @@ public class Words_Activity extends AppCompatActivity {
         logoutButton = (ImageView) findViewById(R.id.Tool_Bar_Logout);
     }
 
+    public void finishActivity(){
+        this.finish();
+    }
 }

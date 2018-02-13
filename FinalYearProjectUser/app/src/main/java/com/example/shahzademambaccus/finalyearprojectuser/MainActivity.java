@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, Words_Activity.class);
         intent.putExtra(USERNAME_LABEL, username);
         startActivity(intent);
+        finishActivity();
     }
 
     public void bslSymbolToText (View v){
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(CURRENT_TEXT_LABEL, "");
         intent.putExtra(USERNAME_LABEL, username);
         startActivity(intent);
+        finishActivity();
     }
 
     public void bslSignsToText(View v){
@@ -89,18 +91,21 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(CURRENT_TEXT_LABEL, "");
         intent.putExtra(USERNAME_LABEL, username);
         startActivity(intent);
+        finishActivity();
     }
 
     public void previouslyVisitedSigns(View v){
         Intent intent = new Intent(MainActivity.this, PreviouslyVisitedSigns.class);
         intent.putExtra(USERNAME_LABEL, username);
         startActivity(intent);
+        finishActivity();
     }
 
     public void minigame(View v){
         Intent intent = new Intent(MainActivity.this, Minigame.class);
         intent.putExtra(USERNAME_LABEL, username);
         startActivity(intent);
+        finishActivity();
     }
 
     public void getSignOfTheDay(){
@@ -123,4 +128,7 @@ public class MainActivity extends AppCompatActivity {
         logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
     }
 
+    public void finishActivity(){
+        this.finish();
+    }
 }

@@ -78,9 +78,8 @@ public class SignsAndSymbols extends AppCompatActivity{
                 intent.putExtra(SYMBOL_LABEL, isSymbolCategory);
                 intent.putExtra(USERNAME_LABEL, username);
                 intent.putExtra(CURRENT_TEXT_LABEL, getCurrentText());
-                signsAndSymbols.finish();
                 startActivity(intent);
-
+                finishActivity();
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +87,7 @@ public class SignsAndSymbols extends AppCompatActivity{
             public void onClick(View v) {
                 Logout logout = new Logout(signsAndSymbols);
                 startActivity(new Intent(signsAndSymbols, Login.class));
+                finishActivity();
             }
         });
     }
@@ -167,5 +167,9 @@ public class SignsAndSymbols extends AppCompatActivity{
 
     public void clearScreen(){
         grid.setAdapter(null);
+    }
+
+    public void finishActivity(){
+        this.finish();
     }
 }

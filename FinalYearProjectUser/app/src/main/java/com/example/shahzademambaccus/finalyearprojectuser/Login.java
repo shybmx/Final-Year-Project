@@ -45,6 +45,7 @@ public class Login extends AppCompatActivity {
             Intent intent = new Intent(Login.this, MainActivity.class);
             intent.putExtra(USERNAME_LABEL, sharedPreference.getString(USERNAME_LABEL, null));
             startActivity(intent);
+            finishActivity();
         }
     }
 
@@ -71,6 +72,7 @@ public class Login extends AppCompatActivity {
 
     public void registerButtonPressed(View v){
         startActivity(new Intent(Login.this, Register.class));
+        finishActivity();
     }
 
     public boolean checkFields(String username, String password){
@@ -91,5 +93,9 @@ public class Login extends AppCompatActivity {
 
     public void setUserName(String userNameField){
       userName.setText(userNameField);
+    }
+
+    public void finishActivity(){
+        this.finish();
     }
 }

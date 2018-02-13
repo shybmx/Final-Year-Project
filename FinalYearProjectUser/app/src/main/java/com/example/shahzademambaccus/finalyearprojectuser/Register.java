@@ -73,4 +73,8 @@ public class Register extends AppCompatActivity {
         }
         return true;
     }
+
+    public void finishActivity(){
+        this.finish();
+    }
 }

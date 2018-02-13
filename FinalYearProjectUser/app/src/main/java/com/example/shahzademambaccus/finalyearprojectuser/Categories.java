@@ -124,6 +124,7 @@ public class Categories extends AppCompatActivity {
                 Intent intent = new Intent(category, MainActivity.class);
                 intent.putExtra(USERNAME_LABEL, username);
                 startActivity(intent);
+                finishActivity();
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {
@@ -131,6 +132,7 @@ public class Categories extends AppCompatActivity {
             public void onClick(View v) {
                 Logout logout = new Logout(category);
                 startActivity(new Intent(category, Login.class));
+                finishActivity();
             }
         });
     }
@@ -171,5 +173,9 @@ public class Categories extends AppCompatActivity {
         categories[12] = "miscellaneous";
         categories[13] = "people";
         categories[14] = "drinks";
+    }
+
+    public void finishActivity(){
+        this.finish();
     }
 }

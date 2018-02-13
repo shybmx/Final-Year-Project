@@ -54,6 +54,7 @@ public class Minigame extends AppCompatActivity {
             public void onClick(View v) {
                 Logout logout = new Logout(minigame);
                 startActivity(new Intent(minigame, Login.class));
+                finishActivity();
             }
         });
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -62,6 +63,7 @@ public class Minigame extends AppCompatActivity {
                 Intent intent = new Intent(minigame, MainActivity.class);
                 intent.putExtra(USERNAME_LABEL, username);
                 startActivity(intent);
+                finishActivity();
             }
         });
     }
@@ -141,5 +143,9 @@ public class Minigame extends AppCompatActivity {
 
     public String getWord(){
         return signOrSymbolWord;
+    }
+
+    public void finishActivity(){
+        this.finish();
     }
 }

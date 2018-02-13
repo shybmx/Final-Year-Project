@@ -37,6 +37,13 @@ public class Gif_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Logout logout = new Logout(gif_activity);
                 startActivity(new Intent(gif_activity, Login.class));
+                finishActivity();
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finishActivity();
             }
         });
     }
@@ -49,12 +56,6 @@ public class Gif_Activity extends AppCompatActivity {
 
     private void setToolBar() {
         backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gif_activity.finish();
-            }
-        });
         logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
     }
 
@@ -69,4 +70,7 @@ public class Gif_Activity extends AppCompatActivity {
         backButton.setImageResource(R.drawable.back);
     }
 
+    public void finishActivity(){
+        this.finish();
+    }
 }
