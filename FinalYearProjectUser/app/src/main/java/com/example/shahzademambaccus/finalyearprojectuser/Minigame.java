@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,7 +33,9 @@ public class Minigame extends AppCompatActivity {
     private int numberOfQuestionsAnswered;
     private int score;
     private static int MAX_QUESTION = 10;
+    private static int SECONDS_TO_WAIT = 1000;
     private TextView displayScore;
+    private Button submitButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +88,7 @@ public class Minigame extends AppCompatActivity {
         question = (ImageView) findViewById(R.id.Minigame_Sign_Or_Symbol);
         answer = (EditText) findViewById(R.id.Minigame_Guess);
         displayScore = (TextView) findViewById(R.id.Minigame_Score);
+        submitButton = (Button) findViewById(R.id.Minigame_Sumbit);
     }
 
     public void getSignOrSymbol(){
@@ -100,13 +104,15 @@ public class Minigame extends AppCompatActivity {
                         Glide.with(minigame).load(symbolURL).placeholder(R.drawable.loadingwhite).into(question);
                     }
                 }
-            }, 1000);
+            }, SECONDS_TO_WAIT);
         }else{
             showResults();
         }
+
     }
 
     public void submitAnswer(View v){
+        clearScreen();
         numberOfQuestionsAnswered++;
         if(answer.getText().toString().equalsIgnoreCase(getWord())){
             Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
@@ -115,12 +121,13 @@ public class Minigame extends AppCompatActivity {
             Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
         }
         isSign = !isSign;
-        clearScreen();
         getSignOrSymbol();
     }
 
     public void showResults(){
         clearScreen();
+        submitButton.setVisibility(View.GONE);
+        answer.setVisibility(View.GONE);
         displayScore.setText("You got: " + score + "/" + MAX_QUESTION);
     }
 
