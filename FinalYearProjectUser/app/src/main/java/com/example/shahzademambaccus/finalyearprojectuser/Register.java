@@ -53,8 +53,10 @@ public class Register extends AppCompatActivity {
     public void registerButtonPressed(View v){
         String user = userName.getText().toString();
         String p1 = password1.getText().toString();
+        Encryption encryption = new Encryption();
+        String encryptedPassword = encryption.cipher(p1);
         if(checkFields()){
-           database.register(user, p1, this);
+           database.register(user, encryptedPassword, this);
         }
     }
 

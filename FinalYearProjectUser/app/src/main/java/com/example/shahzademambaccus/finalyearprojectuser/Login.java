@@ -65,8 +65,10 @@ public class Login extends AppCompatActivity {
         String user = userName.getText().toString();
         String pass = passWord.getText().toString();
         if(checkFields(user, pass)){
+            Encryption encryption = new Encryption();
+            String encryptedPassword = encryption.cipher(pass);
             editor = sharedPreference.edit();
-            database.login(user, pass, this, editor);
+            database.login(user, encryptedPassword, this, editor);
         }
     }
 
