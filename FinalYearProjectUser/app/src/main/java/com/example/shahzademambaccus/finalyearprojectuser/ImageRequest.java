@@ -9,11 +9,11 @@ import java.util.Map;
 
 public class ImageRequest extends StringRequest {
 
-    private static final String LOGIN_REQUEST_URL = "https://lissome-amperage.000webhostapp.com/UploadImage.php";
+    private static final String URL = "https://lissome-amperage.000webhostapp.com/Image.php";
     private Map<String, String> params;
 
     public ImageRequest(String word, Response.Listener<String> listener){
-        super(Method.POST, LOGIN_REQUEST_URL, listener, null);
+        super(Method.POST, URL, listener, null);
         params = new HashMap<>();
         params.put("word", word);
     }

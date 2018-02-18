@@ -7,11 +7,11 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 
 public class GetPreviouslyVisitedRequest extends StringRequest{
-    private static final String GET_PREVIOUSLY_VISITED = "https://lissome-amperage.000webhostapp.com/PreviouslyVisited.php";
+    private static final String URL = "https://lissome-amperage.000webhostapp.com/PreviouslyVisited.php";
     private HashMap<String, String> params;
 
     public GetPreviouslyVisitedRequest(String username, Response.Listener<String> listener) {
-        super(Method.POST, GET_PREVIOUSLY_VISITED, listener, null);
+        super(Method.POST, URL, listener, null);
         params = new HashMap<>();
         params.put("user", username);
     }

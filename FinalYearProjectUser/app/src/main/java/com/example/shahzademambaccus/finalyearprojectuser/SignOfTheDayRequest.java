@@ -8,11 +8,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SignOfTheDayRequest extends StringRequest{
-    private static final String SIGN_OF_THE_DAY = "https://lissome-amperage.000webhostapp.com/SignOfTheDay.php";
+    private static final String URL = "https://lissome-amperage.000webhostapp.com/SignOfTheDay.php";
     private Map<String, String> params;
 
     public SignOfTheDayRequest(Response.Listener<String> listener){
-        super(Request.Method.POST, SIGN_OF_THE_DAY, listener, null);
+        super(Request.Method.POST, URL, listener, null);
         params = new HashMap<>();
     }
 

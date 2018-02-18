@@ -7,11 +7,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SaveSignRequest extends StringRequest{
-    private static final String SAVE_SYMBOL_URL = "https://lissome-amperage.000webhostapp.com/SaveSign.php";
+    private static final String URL = "https://lissome-amperage.000webhostapp.com/SaveSign.php";
     private Map<String, String> params;
 
     public SaveSignRequest(String username, String word, Response.Listener<String> listener) {
-        super(Method.POST, SAVE_SYMBOL_URL, listener, null);
+        super(Method.POST, URL, listener, null);
         params = new HashMap<>();
         params.put("user", username);
         params.put("word", word);

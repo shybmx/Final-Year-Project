@@ -6,11 +6,11 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 
 public class MinigameRequest extends StringRequest {
-    private static String MINIGAME_URL = "https://lissome-amperage.000webhostapp.com/Minigame.php";
+    private static String URL = "https://lissome-amperage.000webhostapp.com/Minigame.php";
     private HashMap<String, String> params;
 
     public MinigameRequest(Response.Listener<String> listener) {
-        super(Method.POST, MINIGAME_URL, listener, null);
+        super(Method.POST, URL, listener, null);
         params = new HashMap<>();
     }
 

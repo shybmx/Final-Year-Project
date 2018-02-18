@@ -9,11 +9,11 @@ import java.util.Map;
 
 public class LoginRequest extends StringRequest {
 
-    private static final String LOGIN_REQUEST_URL = "https://lissome-amperage.000webhostapp.com/Login.php";
+    private static final String URL = "https://lissome-amperage.000webhostapp.com/Login.php";
     private Map<String, String> params;
 
     public LoginRequest(String username, String password, Response.Listener<String> listener) {
-        super(Method.POST, LOGIN_REQUEST_URL, listener, null);
+        super(Method.POST, URL, listener, null);
         params = new HashMap<>();
         params.put("user", username);
         params.put("pass", password);
