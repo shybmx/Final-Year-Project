@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,7 +68,8 @@ public class DatabaseConnection {
                         String word = jsonResponse.getString(WORD_LABEL);
                         mainActivity.setSignGIF(jsonResponse.getString(VIDEO_LABEL));
                         mainActivity.setWord(word);
-                        new DownloadImage(jsonResponse.getString(IMAGE_LABEL), image, word, textView).execute();
+                        Picasso.with(mainActivity).load(jsonResponse.getString(IMAGE_LABEL)).placeholder(R.drawable.loadingwhite).into(image);
+                        textView.setText(word);
                     } else {
                         //Toast.makeText(mainActivity, "Sign of the day cannot be retrieved", Toast.LENGTH_LONG).show();
                     }
