@@ -11,7 +11,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Login">
+        <activity android:name=".Start_Screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,7 +25,8 @@
         <activity android:name=".Gif_Activity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Register" />
-        <activity android:name=".Minigame"></activity>
+        <activity android:name=".Minigame" />
+        <activity android:name=".Login" />
     </application>
 
 </manifest>

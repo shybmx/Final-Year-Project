@@ -51,6 +51,8 @@ public class Minigame extends AppCompatActivity {
         setupOnClick();
     }
 
+    //TODO: Load in batch
+
     public void setupOnClick() {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +120,7 @@ public class Minigame extends AppCompatActivity {
             Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
             score++;
         }else{
-            Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Incorrect, Word was: " + getWord(), Toast.LENGTH_SHORT).show();
         }
         isSign = !isSign;
         getSignOrSymbol();
