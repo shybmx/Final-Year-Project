@@ -137,11 +137,8 @@ public class Words_Activity extends AppCompatActivity {
     }
 
     public void displayWords(){
+        Toast.makeText(this, "Gathering symbols", Toast.LENGTH_SHORT).show();
         grid.setAdapter(new GridAdapter(listOfImageLinks, listOfWords,this, true));
-    }
-
-    public void makeToast(String s){
-        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
 
     public void setToolBar(){
