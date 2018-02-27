@@ -13,11 +13,20 @@
 
     foreach($breakDown as $word){
         if(!$word == ""){
-            $statement = "SELECT * FROM `Symbols` WHERE `word` LIKE '$word%' LIMIT 1";
+
+            $statement = "SELECT * FROM `Symbols` WHERE `word` = '$word' ";
             $result = mysqli_query($con, $statement);
 
-            while($row = mysqli_fetch_array($result)){
-                array_push($response, array("imageID"=>$row[0], "word"=>$row[1], "category"=>$row[2], "image"=>$row[3], "video"=>$row[4]));
+            if(mysqli_num_rows($result) == 1){
+                while($row = mysqli_fetch_array($result)){
+                    array_push($response, array("imageID"=>$row[0], "word"=>$row[1], "category"=>$row[2], "image"=>$row[3], "video"=>$row[4]));
+                }
+            }else{
+                $statement = "SELECT * FROM `Symbols` WHERE `word` LIKE '$word%' LIMIT 1";
+                $result = mysqli_query($con, $statement);
+                while($row = mysqli_fetch_array($result)){
+                    array_push($response, array("imageID"=>$row[0], "word"=>$row[1], "category"=>$row[2], "image"=>$row[3], "video"=>$row[4]));
+                }
             }
         }
     }
