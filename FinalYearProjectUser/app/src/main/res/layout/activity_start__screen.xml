@@ -28,7 +28,7 @@
         android:layout_marginTop="56dp"
         android:maxHeight="100dp"
         android:maxWidth="100dp"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/largeicon" />
 
     <TextView
         android:id="@+id/Logo_Name"
