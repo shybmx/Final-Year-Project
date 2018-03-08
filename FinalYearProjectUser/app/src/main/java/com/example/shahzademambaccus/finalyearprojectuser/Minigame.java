@@ -114,13 +114,14 @@ public class Minigame extends AppCompatActivity {
 
     public void submitAnswer(View v){
         numberOfQuestionsAnswered++;
+        clearScreen();
         if(answer.getText().toString().equalsIgnoreCase(getWord())){
             Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
             score++;
         }else{
             Toast.makeText(this, "Incorrect, Word was: " + getWord().toString(), Toast.LENGTH_SHORT).show();
         }
-        clearScreen();
+        answer.setText("");
         isSign = !isSign;
         getSignOrSymbol();
     }
@@ -134,7 +135,6 @@ public class Minigame extends AppCompatActivity {
 
     public void clearScreen(){
         question.setImageResource(0);
-        answer.setText("");
     }
 
     public void setSign(String url){
