@@ -19,16 +19,18 @@ public class Start_Screen extends AppCompatActivity {
     }
 
     public void nextScreen(){
+        //wait a couple of seconds
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                //go to login class
                 startActivity(new Intent(start_screen, Login.class));
                 finishActivity();
             }
         }, MILLISECOND_TO_WAIT);
     }
-
+    //end this activity
     public void finishActivity(){
         this.finish();
     }

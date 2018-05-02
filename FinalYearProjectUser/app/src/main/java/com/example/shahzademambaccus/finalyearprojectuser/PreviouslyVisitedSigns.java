@@ -29,7 +29,9 @@ public class PreviouslyVisitedSigns extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_previously_visited_signs);
+        //this class as a variable
         previouslyVisitedSigns = this;
+        //connection to database
         database = new DatabaseConnection();
         setGUI();
         setToolBar();
@@ -37,7 +39,7 @@ public class PreviouslyVisitedSigns extends AppCompatActivity {
         setArrayLists();
         getAllSigns();
     }
-
+    //list of arrays to store links and words
     public void setArrayLists() {
         listOfWords = new ArrayList<String>();
         listOfLinks = new ArrayList<String>();
@@ -76,7 +78,7 @@ public class PreviouslyVisitedSigns extends AppCompatActivity {
         backButton = (ImageView) findViewById(R.id.Tool_Bar_Back);
         grid = (GridView) findViewById(R.id.Previously_Visited_Grid);
     }
-
+    //populate arrays with values from database
     public ArrayList<String> getListOfWords(){
         return listOfWords;
     }
@@ -88,9 +90,10 @@ public class PreviouslyVisitedSigns extends AppCompatActivity {
     public ArrayList<String> getListOfGifs(){
         return listOfGifs;
     }
-
+    //get all signs to display based off username
     public void getAllSigns(){
         database.getPrevisoulyVisited(username, this);
+        //wait a second for the request to be sent
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -99,7 +102,7 @@ public class PreviouslyVisitedSigns extends AppCompatActivity {
             }
         }, 1000);
     }
-
+    //display all items on screen
     public void displayAllSigns(){
         grid.setAdapter(new GridAdapter(listOfLinks, listOfWords, this, true));
     }

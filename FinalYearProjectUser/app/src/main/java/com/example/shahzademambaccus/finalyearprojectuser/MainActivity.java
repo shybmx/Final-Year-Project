@@ -31,7 +31,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //connection to database class
         databaseConnection = new DatabaseConnection();
+        //this class stored in a variable
         mainActivity = this;
         setGUI();
         getExtras();
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         getSignOfTheDay();
         setupOnClick();
     }
-
+    //set up listeners for back and logout button
     public void setupOnClick() {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,24 +60,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+    //get username
     public void getExtras() {
         Bundle bundle = getIntent().getExtras();
         username = bundle.getString(USERNAME_LABEL);
     }
-
+    //set up GUI
     public void setGUI() {
         symbolText = (TextView) findViewById(R.id.Main_SignOfTheDayWord);
         image = (ImageView) findViewById(R.id.Main_SignOfTheDayImg);
     }
-
+    //start text to bsl
     public void textToBSLActivity(View v){
         Intent intent = new Intent(MainActivity.this, Words_Activity.class);
         intent.putExtra(USERNAME_LABEL, username);
         startActivity(intent);
         finishActivity();
     }
-
+    //start bsl to text for symbols
     public void bslSymbolToText (View v){
         Intent intent = new Intent(MainActivity.this, Categories.class);
         intent.putExtra(SYMBOL_LABEL, true);
@@ -84,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finishActivity();
     }
-
+    //Start bsl to text for signs
     public void bslSignsToText(View v){
         Intent intent = new Intent(MainActivity.this, Categories.class);
         intent.putExtra(SYMBOL_LABEL, false);
@@ -93,33 +95,33 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finishActivity();
     }
-
+    //start previously visited
     public void previouslyVisitedSigns(View v){
         Intent intent = new Intent(MainActivity.this, PreviouslyVisitedSigns.class);
         intent.putExtra(USERNAME_LABEL, username);
         startActivity(intent);
         finishActivity();
     }
-
+    //start minigame
     public void minigame(View v){
         Intent intent = new Intent(MainActivity.this, Minigame.class);
         intent.putExtra(USERNAME_LABEL, username);
         startActivity(intent);
         finishActivity();
     }
-
+    //get the sign of the day from database
     public void getSignOfTheDay(){
         databaseConnection.getSignOfTheDay(image, this, symbolText);
     }
-
+    //get link for gif for sign of the day
     public void setSignGIF(String link){
         signGIF = link;
     }
-
+    //get the label for sign of the day
     public void setWord(String word){
         displayWord = word;
     }
-
+    //set up toolbar with items and images
     public void setToolBar(){
         title = (TextView) findViewById(R.id.Tool_Bar_Text);
         logoImageView = (ImageView) findViewById(R.id.Tool_Bar_Back);
@@ -127,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         logoImageView.setImageResource(R.drawable.logo);
         logout = (ImageView) findViewById(R.id.Tool_Bar_Logout);
     }
-
+    //end this activity
     public void finishActivity(){
         this.finish();
     }

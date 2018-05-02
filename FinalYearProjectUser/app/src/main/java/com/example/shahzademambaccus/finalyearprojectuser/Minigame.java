@@ -44,14 +44,16 @@ public class Minigame extends AppCompatActivity {
         setUpGUI();
         setToolBar();
         getExtras();
+        //connection to database
         database = new DatabaseConnection();
+        //this class stored in a variable
         minigame = this;
         numberOfQuestionsAnswered = 0;
         getSignOrSymbol();
         setupOnClick();
     }
 
-
+    //set up listeners for back button and logout
     public void setupOnClick() {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +73,7 @@ public class Minigame extends AppCompatActivity {
             }
         });
     }
-
+    //get username
     public void getExtras() {
         Bundle bundle = getIntent().getExtras();
         username = bundle.getString(USERNAME_LABEL);
@@ -91,17 +93,22 @@ public class Minigame extends AppCompatActivity {
         displayScore = (TextView) findViewById(R.id.Minigame_Score);
         submitButton = (Button) findViewById(R.id.Minigame_Sumbit);
     }
-
+    //get sign or symbol from database
     public void getSignOrSymbol(){
+        //checks if all questions have been answered
         if(numberOfQuestionsAnswered < MAX_QUESTION) {
+            //send request to database
             database.getMinigameSignsAndSymbols(this);
+            //wait a second for request to be sent
             Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     if (isSign) {
+                        //display symbol
                         Picasso.with(minigame).load(signURL).placeholder(R.drawable.loadingwhite).into(question);
                     } else {
+                        //display sign
                         Glide.with(minigame).load(symbolURL).placeholder(R.drawable.loadingwhite).into(question);
                     }
                 }
@@ -113,15 +120,20 @@ public class Minigame extends AppCompatActivity {
     }
 
     public void submitAnswer(View v){
+        //increase the number of questions answered
         numberOfQuestionsAnswered++;
         clearScreen();
+        //check if answer is correct
         if(answer.getText().toString().equalsIgnoreCase(getWord())){
             Toast.makeText(this, "Correct", Toast.LENGTH_SHORT).show();
+            //increment score
             score++;
         }else{
             Toast.makeText(this, "Incorrect, Word was: " + getWord().toString(), Toast.LENGTH_SHORT).show();
         }
+        //clear text bar
         answer.setText("");
+        //change question type
         isSign = !isSign;
         getSignOrSymbol();
     }
@@ -132,27 +144,27 @@ public class Minigame extends AppCompatActivity {
         answer.setVisibility(View.GONE);
         displayScore.setText("You got: " + score + "/" + MAX_QUESTION);
     }
-
+    //clear the image view
     public void clearScreen(){
         question.setImageResource(0);
     }
-
+    //set the url for sign
     public void setSign(String url){
         signURL = url;
     }
-
+    //set url for symbol
     public void setSymbol(String url){
         symbolURL = url;
     }
-
+    //set word for answer
     public void setWord(String word){
         signOrSymbolWord = word;
     }
-
+    //get the word for answer
     public String getWord(){
         return signOrSymbolWord;
     }
-
+    //end acitivty
     public void finishActivity(){
         this.finish();
     }

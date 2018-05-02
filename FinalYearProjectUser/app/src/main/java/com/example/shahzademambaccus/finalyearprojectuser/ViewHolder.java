@@ -3,7 +3,7 @@ package com.example.shahzademambaccus.finalyearprojectuser;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+//This class is used for grid view, variables for all items
 public class ViewHolder {
 
     private ImageView image;

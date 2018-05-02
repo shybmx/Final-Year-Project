@@ -23,7 +23,9 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        //database connection
         database = new DatabaseConnection();
+        //class as a variable
         register = this;
         setupGUI();
         setToolBar();
@@ -49,10 +51,11 @@ public class Register extends AppCompatActivity {
         backButton.setImageResource(R.drawable.back);
         logout.setImageResource(0);
     }
-
+    //get values from text bar to send to database
     public void registerButtonPressed(View v){
         String user = userName.getText().toString();
         String p1 = password1.getText().toString();
+        //encrypt password
         Encryption encryption = new Encryption();
         String encryptedPassword = encryption.cipher(p1);
         if(checkFields()){
@@ -64,10 +67,12 @@ public class Register extends AppCompatActivity {
         String user = userName.getText().toString();
         String p1 = password1.getText().toString();
         String p2 = password2.getText().toString();
+        //check if fields are empty
         if(user.isEmpty() || p1.isEmpty() || p2.isEmpty()){
             Toast.makeText(this, "Fill in boxes", Toast.LENGTH_SHORT).show();
             return false;
         }else{
+            //checks if password is the same
             if(!p1.equals(p2)){
                 Toast.makeText(this, "Both passwords must be the same", Toast.LENGTH_SHORT).show();
                 return false;
@@ -75,7 +80,7 @@ public class Register extends AppCompatActivity {
         }
         return true;
     }
-
+    //ends this activity
     public void finishActivity(){
         this.finish();
     }

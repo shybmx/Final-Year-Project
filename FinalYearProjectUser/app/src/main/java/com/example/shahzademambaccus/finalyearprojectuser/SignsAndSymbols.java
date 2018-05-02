@@ -43,8 +43,10 @@ public class SignsAndSymbols extends AppCompatActivity{
         setGUI();
         setToolbar();
         setArrayLits();
+        //database connection
         databaseConnection = new DatabaseConnection();
         getExtras();
+        //get text to place in title
         if(isSymbolCategory){
             loadingWord = "Symbols";
         }else{
@@ -57,13 +59,15 @@ public class SignsAndSymbols extends AppCompatActivity{
         setupOnClick();
         getAllSignsAndSymbols();
     }
-
+    //set up listeners for back, logout and grid
     public void setupOnClick() {
         grid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //when item is pressed, a request is sent to store word with username
                 databaseConnection.addToPreviouslyVisited(username, listOfWords.get(position).toString(), signsAndSymbols);
                 if(!translatedText.getText().equals("")) {
+                    //place word within text box
                     translatedText.getText().append(" " + listOfWords.get(position));
                     return;
                 }
@@ -91,7 +95,7 @@ public class SignsAndSymbols extends AppCompatActivity{
             }
         });
     }
-
+    //array of words and links for urls
     public void setArrayLits() {
         listOfWords = new ArrayList<String>();
         listOfLinks = new ArrayList<String>();
@@ -112,23 +116,23 @@ public class SignsAndSymbols extends AppCompatActivity{
         username = bundle.getString(USERNAME_LABEL);
         setCurrentText(bundle.getString(CURRENT_TEXT_LABEL));
     }
-
+    //get the current text in text box
     public String getCurrentText(){
         return translatedText.getText().toString();
     }
-
+    //set textbox with text from previous activity
     public void setCurrentText(String currentText){
         translatedText.setText(currentText);
     }
-
+    //clear the text box
     public void clearSignAndSymbolButtonPressed(View view){
         translatedText.setText("");
     }
-
+    //array for list of words
     public ArrayList<String> getListOfWords(){
         return listOfWords;
     }
-
+    //clear all arrays
     public void clearLists(ArrayList<String> list){
         if(list == null){
             return;
@@ -136,11 +140,11 @@ public class SignsAndSymbols extends AppCompatActivity{
             list.clear();
         }
     }
-
+    //array of links
     public ArrayList<String> getListOfLinks(){
         return listOfLinks;
     }
-
+    //gets all signs and symbols based of category selected
     public void getAllSignsAndSymbols(){
         databaseConnection.getSignsAndSymbols(category, this, isSymbolCategory);
         Handler handler = new Handler();
@@ -151,24 +155,24 @@ public class SignsAndSymbols extends AppCompatActivity{
             }
         }, millisecondsToLoad);
     }
-
+    //displays signs or symbols based of categories
     public void placeSignsAndSymbolsOnScreen(){
         loadingToast("Displaying " + loadingWord);
         grid.setAdapter(new GridAdapter(listOfLinks, listOfWords,this, isSymbolCategory));
     }
-
+    //loading text
     public void loadingToast(String word){
         Toast.makeText(this, "Loading: " + word, Toast.LENGTH_SHORT).show();
     }
-
+    //set toolbar
     public void setToolbar(){
         backButton.setImageResource(R.drawable.back);
     }
-
+    //clear grid view
     public void clearScreen(){
         grid.setAdapter(null);
     }
-
+    //end activity
     public void finishActivity(){
         this.finish();
     }

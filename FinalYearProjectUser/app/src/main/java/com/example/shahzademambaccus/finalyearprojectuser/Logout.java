@@ -12,6 +12,7 @@ public class Logout {
     private static final String USERNAME_LABEL = "Username";
 
     public Logout(Context context){
+        //ends user session
         sharedPreferences = context.getSharedPreferences(LOGIN_REF_LABEL, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
         editor.putBoolean(LOGIN_STATUS_LABEL, false);

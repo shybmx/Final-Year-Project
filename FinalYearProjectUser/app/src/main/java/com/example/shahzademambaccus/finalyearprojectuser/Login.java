@@ -30,17 +30,19 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //create a connection for the database
         database = new DatabaseConnection();
         sharedPreferences();
         setupGUI();
         setToolBar();
         getExtras();
     }
-
+    //get user session
     public void sharedPreferences() {
         sharedPreference = getSharedPreferences(LOGIN_REF_LABEL, MODE_PRIVATE);
         editor = sharedPreference.edit();
         saveLogin = sharedPreference.getBoolean(LOGIN_STATUS_LABEL, false);
+        //if session found go to main menu
         if(saveLogin){
             Intent intent = new Intent(Login.this, MainActivity.class);
             intent.putExtra(USERNAME_LABEL, sharedPreference.getString(USERNAME_LABEL, null));
@@ -60,23 +62,25 @@ public class Login extends AppCompatActivity {
         logo.setImageResource(R.drawable.logo);
         logout.setImageResource(0);
     }
-
+    //get username and password when login is pressed
     public void loginButtonPressed(View v){
         String user = userName.getText().toString();
         String pass = passWord.getText().toString();
         if(checkFields(user, pass)){
+            //encrypt password
             Encryption encryption = new Encryption();
             String encryptedPassword = encryption.cipher(pass);
             editor = sharedPreference.edit();
+            //send login deatils to database
             database.login(user, encryptedPassword, this, editor);
         }
     }
-
+    //when resgiter button is pressed
     public void registerButtonPressed(View v){
         startActivity(new Intent(Login.this, Register.class));
         finishActivity();
     }
-
+    //check if fields are empty
     public boolean checkFields(String username, String password){
         if(username.isEmpty() || password.isEmpty()){
             Toast.makeText(this, "Please fill username and password", Toast.LENGTH_SHORT).show();
@@ -84,7 +88,7 @@ public class Login extends AppCompatActivity {
         }
         return true;
     }
-
+    //setup GUI
     public void setupGUI(){
         title = (TextView) findViewById(R.id.Tool_Bar_Text);
         logo = (ImageView) findViewById(R.id.Tool_Bar_Back);
@@ -96,7 +100,7 @@ public class Login extends AppCompatActivity {
     public void setUserName(String userNameField){
       userName.setText(userNameField);
     }
-
+    //end this activity
     public void finishActivity(){
         this.finish();
     }

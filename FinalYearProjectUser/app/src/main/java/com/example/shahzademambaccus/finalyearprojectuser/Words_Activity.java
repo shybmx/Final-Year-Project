@@ -72,13 +72,13 @@ public class Words_Activity extends AppCompatActivity {
             }
         });
     }
-
+    //set up arrays
     public void setArrayLists() {
         listOfImageLinks = new ArrayList<String>();
         listOfGifLinks = new ArrayList<String>();
         listOfWords = new ArrayList<String>();
     }
-
+    //get username
     public void getExtras() {
         Bundle bundle = getIntent().getExtras();
         username = bundle.getString(USERNAME_LABEL);
@@ -88,17 +88,19 @@ public class Words_Activity extends AppCompatActivity {
         grid = (GridView) findViewById(R.id.Words_TranslatedSignsGrid);
         searchTermET = (EditText) findViewById(R.id.Words_SearchTerm);
     }
-
+    //when search is pressed
     public void search(View v) {
         clearScreen();
         clearLists(listOfImageLinks);
         clearLists(listOfGifLinks);
         clearLists(listOfWords);
+        //wait for request to be sent
         Handler handler = new Handler();
         databaseConnection.imageFromDatabase(getSearchTerm(), this);
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                //display all symbols
                 displayWords();
             }
         }, timeDelay);
@@ -115,11 +117,11 @@ public class Words_Activity extends AppCompatActivity {
     public ArrayList<String> getListOfWords(){
         return listOfWords;
     }
-
+    //clear the screen
     public void clearScreen(){
         grid.setAdapter(null);
     }
-
+    //clear arrays
     public void clearLists(ArrayList<String> list){
         if(list == null){
             return;
@@ -127,7 +129,7 @@ public class Words_Activity extends AppCompatActivity {
             list.clear();
         }
     }
-
+    //get values typed in for search
     public String getSearchTerm() {
         String searchTermTxt = searchTermET.getText().toString();
         if(searchTermTxt.isEmpty()){
@@ -135,7 +137,7 @@ public class Words_Activity extends AppCompatActivity {
         }
         return searchTermTxt;
     }
-
+    //display symbols using grid format
     public void displayWords(){
         Toast.makeText(this, "Gathering symbols", Toast.LENGTH_SHORT).show();
         grid.setAdapter(new GridAdapter(listOfImageLinks, listOfWords,this, true));

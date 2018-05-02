@@ -8,13 +8,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ImageRequest extends StringRequest {
-
+    //URL for php file
     private static final String URL = "https://lissome-amperage.000webhostapp.com/Image.php";
     private Map<String, String> params;
 
     public ImageRequest(String word, Response.Listener<String> listener){
         super(Method.POST, URL, listener, null);
         params = new HashMap<>();
+        //words to search within the php file
         params.put("word", word);
     }
 

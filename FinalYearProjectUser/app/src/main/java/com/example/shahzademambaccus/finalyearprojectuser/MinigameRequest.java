@@ -6,6 +6,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 
 public class MinigameRequest extends StringRequest {
+    //URL for php file
     private static String URL = "https://lissome-amperage.000webhostapp.com/Minigame.php";
     private HashMap<String, String> params;
 

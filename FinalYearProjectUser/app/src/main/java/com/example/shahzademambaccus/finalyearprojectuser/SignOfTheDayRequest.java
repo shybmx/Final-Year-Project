@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SignOfTheDayRequest extends StringRequest{
+    //URL for php file
     private static final String URL = "https://lissome-amperage.000webhostapp.com/SignOfTheDay.php";
     private Map<String, String> params;
 
